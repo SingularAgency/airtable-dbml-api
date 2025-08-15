@@ -1,0 +1,12 @@
+{
+  "tablesProcessed": 22,
+  "tablesUpdated": 8,
+  "fieldsProcessed": 452,
+  "fieldsUpdated": 285,
+  "errors": [
+    "Field project_brief_copy not found in table advertisers",
+    "Field use_Nontraditional not found in table project_brief",
+    "Field AI_Review_notes not found in table pre_registration_requests",
+    "Field media_outlets_catalog_identification not found in table media_outlets_catalog"
+  ]
+}

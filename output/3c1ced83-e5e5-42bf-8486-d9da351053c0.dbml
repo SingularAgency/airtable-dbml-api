@@ -1,0 +1,21 @@
+{
+  "tablesProcessed": 28,
+  "tablesUpdated": 2,
+  "fieldsProcessed": 638,
+  "fieldsUpdated": 36,
+  "errors": [
+    "Field project_brief_copy not found in table advertisers",
+    "Field use_Nontraditional not found in table project_brief",
+    "Field advertiser_feedback_lift_rating not found in table active_campaign",
+    "Field Sentiment_Analysis_Tag not found in table active_campaign",
+    "Field total_assigned_media_outlet_Rollup not found in table active_campaign",
+    "Field AI_Review_notes not found in table pre_registration_requests",
+    "Field media_outlets_catalog_identification not found in table media_outlets_catalog",
+    "Field record_id_from_media_plan_media_outlets not found in table media_plan_drafts",
+    "Field io_status_from_media_outlet_insertion_orders__from_media_outlet_id not found in table media_plan_media_outlets",
+    "Field company_name_from_active_campaign not found in table media_outlet_insertion_orders",
+    "Field campaign_title_from_active_campaign not found in table media_outlet_insertion_orders",
+    "Field start_date_from_active_campaign not found in table media_outlet_insertion_orders",
+    "Field end_date_from_active_campaign not found in table media_outlet_insertion_orders"
+  ]
+}

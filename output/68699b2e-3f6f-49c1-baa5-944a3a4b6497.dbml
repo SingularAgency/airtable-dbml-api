@@ -1,0 +1,84 @@
+Table Products {
+    product_identifier formula [note: 'business desc: Unique identifier for each product. Stores alphanumeric codes., technical desc: Type: formula, field ID: fldSemBPR1bTftKmE']
+    id autoNumber [note: 'business desc: Unique identifier for each record. Stores numeric values., technical desc: Type: autoNumber, field ID: fldfxoV7kRl4obhSH']
+    record_id formula [note: 'business desc: Unique identifier for each record. Stores integer values., technical desc: Type: formula, field ID: fldgcHFksbUumTrgw']
+    product multilineText [note: 'business desc: Product name or ID; uniquely identifies a product., technical desc: Type: multilineText, field ID: fldZ0jlkQem8V2xHd']
+    sku multilineText [note: 'business desc: Unique product identifier (SKU). Stores a string., technical desc: Type: multilineText, field ID: fldhkBgMzzXliyNQL']
+    short_description multilineText [note: 'business desc: A concise summary of a product or item., technical desc: Type: multilineText, field ID: fldzdrQkhPEIbYg6d']
+    long_description aiText [note: 'business desc: Detailed product description, text format., technical desc: Type: aiText, field ID: fldIRl2YFinDSqCLW']
+    type singleSelect [note: 'business desc: The type field categorizes items by their kind. Stores text values., technical desc: Type: singleSelect, Options: Product, Service, type, field ID: fldrmAInVVEcunwUz']
+    category singleSelect [note: 'business desc: Stores the product category for inventory management., technical desc: Type: singleSelect, Options: Office Furniture, Food & Beverages, Health & Wellness, Electronics, Digital Products, Art & Custom Gifts, Smart Home, Education, Kitchen & Dining, Home Decor, Musical Instruments, Pet Supplies, Tech Services, Baby & Kids, category, field ID: fldy1h1CR4mq5Rtxj']
+    price currency [note: 'business desc: The price field stores the monetary value of a product or service., technical desc: Type: currency, Precision: 2, Symbol: $, field ID: fldYAU4IQKG95v9vJ']
+    sale checkbox [note: 'business desc: The sale field records a specific transactions amount., technical desc: Type: checkbox, field ID: fldyUKEtJIYJwfglp']
+    regular_price number [note: 'business desc: The regular price of a product. Stores a monetary value., technical desc: Type: number, field ID: fldc00sUAD0GE0i6B']
+    product_type singleSelect [note: 'business desc: Categorizes products by type. Stores text strings like Clothing, Electronics., technical desc: Type: singleSelect, Options: physical, virtual, downloaded, product_type, field ID: fldto7bzQXAE8gnWZ']
+    stock number [note: 'business desc: Quantity of a product currently in inventory., technical desc: Type: number, field ID: fldbsQ4eIElDfUN6s']
+    stock_status singleSelect [note: 'business desc: Indicates the current availability of a product in stock. Stores a status (e.g., in stock, out of stock)., technical desc: Type: singleSelect, Options: Available, Back Order, stock_status, field ID: fldQqNbu03eXwMZRW']
+    status singleSelect [note: 'business desc: Status of a task or item; a descriptive code., technical desc: Type: singleSelect, Options: Active, status, field ID: fld6j9FBu4GTfmyvA']
+    tags multilineText [note: 'business desc: Comma-separated list of keywords describing an item., technical desc: Type: multilineText, field ID: flda7iQlA5cTovm9E']
+    featured checkbox [note: 'business desc: Indicates if an item is highlighted; boolean value., technical desc: Type: checkbox, field ID: fldhjdNGDMDRFlqnE']
+    visibility checkbox [note: 'business desc: Visibility of a record: Public/private access status., technical desc: Type: checkbox, field ID: fld0IK5WdiXGXufqW']
+    Invoice_Items multipleRecordLinks [note: 'business desc: Invoice_Items field connects invoices to their line items. Provides itemized details for each invoice., technical desc: Type: multipleRecordLinks, Reference to Invoice_Items table, field ID: fldM3bnaFaS83Pnvj']
+    invoice_product_junction multipleRecordLinks [note: 'business desc: This relationship connects invoices to specific products, tracking whats included in each invoice., technical desc: Type: multipleRecordLinks, Reference to invoice_product_junction table, field ID: fldmorGr7Ahy7pN4I']
+    note: '### Products Table (airtable id: tbldhOXiSh4a2U6IL) - The Products table stores information about all products offered for sale, including details like name, price, and inventory levels. Its crucial for managing the companys product catalog.'
+}
+
+Table Customers {
+    display_name formula [note: 'business desc: The users preferred name displayed to others., technical desc: Type: formula, field ID: fldmyzxAb2qJ69BKN']
+    code singleLineText [note: 'business desc: A unique identifier for a record. Stores alphanumeric codes., technical desc: Type: singleLineText, field ID: fldBhQZaiv2HBIBJu']
+    customer_name singleLineText [note: 'business desc: Stores the name of a customer., technical desc: Type: singleLineText, field ID: fldnAJviN05V1Acwg']
+    email email [note: 'business desc: Stores customer/user email addresses for communication., technical desc: Type: email, field ID: fldLQelg5soTFXPH6']
+    address multilineText [note: 'business desc: Customers physical location. Stores street address, city, state, zip., technical desc: Type: multilineText, field ID: fldJyDssHmOTHK1Zg']
+    phone phoneNumber [note: 'business desc: Customer phone number for contact., technical desc: Type: phoneNumber, field ID: fldkKvaWiFXpTD6Qi']
+    customer_since date [note: 'business desc: Date a customer first joined the business., technical desc: Type: date, Format: l, field ID: fldXkO4WUWYUoRo3z']
+    status singleSelect [note: 'business desc: Status indicates the current state of a record. Stores a descriptive string., technical desc: Type: singleSelect, Options: Active, Inactive, field ID: fld7rZUFchNJO7azJ']
+    Invoices multipleRecordLinks [note: 'business desc: This relationship connects invoices to their associated order details. Provides order context for invoices., technical desc: Type: multipleRecordLinks, Reference to Invoices table, field ID: fldIv3W9FMOoHFACy']
+    id autoNumber [note: 'business desc: Unique identifier for each record. Stores integers., technical desc: Type: autoNumber, field ID: fldU2P1FZQ0UlymX0']
+    record_id formula [note: 'business desc: Unique identifier for each record in the system., technical desc: Type: formula, field ID: fldJDu8RSJKkWX5Yw']
+    note: '### Customers Table (airtable id: tblNikp542dBCKOE0) - The Customers table stores information about the businesss clients, including contact details and potentially purchase history. Its crucial for managing customer relationships.'
+}
+
+Table Invoices {
+    invoice_number formula [note: 'business desc: Unique identifier for each invoice. Stores numerical invoice IDs., technical desc: Type: formula, field ID: fldpicPoqaruImAdI']
+    customer multipleRecordLinks [note: 'business desc: This field connects a record to a specific customer, linking orders or other data to their account., technical desc: Type: multipleRecordLinks, Reference to Customers table, field ID: fldjnvBdeFl7x7FbU']
+    date date [note: 'business desc: The date field stores the date of an event or transaction., technical desc: Type: date, Format: l, field ID: fldyLrtwWxjCjQf3p']
+    subtotal rollup [note: 'business desc: The sum of all items prices before taxes., technical desc: Type: rollup, field ID: fldwpNiPs8GbqhoOb']
+    tax_percent formula [note: 'business desc: Stores the percentage rate of tax applied to a transaction., technical desc: Type: formula, field ID: fld5MwDcKlEFpqwjR']
+    total_invoice formula [note: 'business desc: The total amount of an invoice. Stores numeric data., technical desc: Type: formula, field ID: fldDw8FvsFAhU2P5K']
+    Assignee singleCollaborator [note: 'business desc: The Assignee field stores the user assigned to complete a task., technical desc: Type: singleCollaborator, field ID: fldX6fb3fcy2f1yAE']
+    Status singleSelect [note: 'business desc: The Status field tracks the current state of a record. It uses text values., technical desc: Type: singleSelect, Options: Todo, In progress, Done, field ID: fld8HpyhhczhIFBmH']
+    Invoice_Items multipleRecordLinks [note: 'business desc: Invoice_Items links invoices to their line items, detailing each purchase. Provides purchase details., technical desc: Type: multipleRecordLinks, Reference to Invoice_Items table, field ID: fldntbY9KOum1ba1w']
+    id autoNumber [note: 'business desc: Unique identifier for each record. Stores a numerical ID., technical desc: Type: autoNumber, field ID: fldUeKe5qCebCZGgB']
+    records_id formula [note: 'business desc: Unique identifier for each record. Stores numeric IDs., technical desc: Type: formula, field ID: fldPJmcN9aORxA7dm']
+    customer_name multipleLookupValues [note: 'business desc: Stores the name of a customer., technical desc: Type: multipleLookupValues, field ID: fldgnLAzULFrJ6plN']
+    invoice_product_junction multipleRecordLinks [note: 'business desc: Connects invoices to specific products, detailing quantities and pricing. Provides order specifics., technical desc: Type: multipleRecordLinks, Reference to invoice_product_junction table, field ID: fldNPNbliV8oeXqkU']
+    note: '### Invoices Table (airtable id: tbli2cgniQV9Uqf7o) - The Invoices table stores records of all customer invoices, including details like amounts and dates. It tracks billing transactions.'
+}
+
+Table Invoice_Items {
+    item_invoice formula [note: 'business desc: The invoice associated with an item. Stores invoice number/ID., technical desc: Type: formula, field ID: fldUChtObXZSfSab9']
+    record_id formula [note: 'business desc: Unique identifier for each record in the system. Stores integer values., technical desc: Type: formula, field ID: fldpDo8H1ZxJtKVmi']
+    id autoNumber [note: 'business desc: Unique identifier for each record. Stores integer values., technical desc: Type: autoNumber, field ID: fldw9fkT6BfmrhA1P']
+    invoice multipleRecordLinks [note: 'business desc: Invoice field connects an order to its corresponding invoice record. Provides order tracking., technical desc: Type: multipleRecordLinks, Reference to Invoices table, field ID: fldB1ZgKy3kANIwNY']
+    product multipleRecordLinks [note: 'business desc: This field connects an order to a specific product, enabling tracking of product sales., technical desc: Type: multipleRecordLinks, Reference to Products table, field ID: fldQbsfrfSKcKjZLT']
+    price multipleLookupValues [note: 'business desc: The price field stores the monetary value of a product or service., technical desc: Type: multipleLookupValues, field ID: fldu2gVfSBtLDjs1e']
+    qty number [note: 'business desc: Quantity of items in stock or order. Numeric data., technical desc: Type: number, field ID: fldNG6gOz1Ac6Hn3m']
+    amount formula [note: 'business desc: The amount field stores monetary values., technical desc: Type: formula, field ID: fldWxbLW8Iw3MhkeZ']
+    note: '### Invoice_Items Table (airtable id: tblw7s9giXtPd7aEh) - The Invoice_Items table stores details of items on invoices, including quantities and prices. It supports invoice calculation and tracking.'
+}
+
+Table invoice_product_junction {
+    Name singleLineText [note: 'business desc: Stores the name of a person or entity., technical desc: Type: singleLineText, field ID: fldNVZvkg8IDhsKGf']
+    Invoices multipleRecordLinks [note: 'business desc: Invoices links a record to its related invoice(s). Facilitates invoice tracking., technical desc: Type: multipleRecordLinks, Reference to Invoices table, field ID: fld4n0lqtC06cu9ns']
+    Products multipleRecordLinks [note: 'business desc: This field connects orders to their associated products. Provides order details., technical desc: Type: multipleRecordLinks, Reference to Products table, field ID: fldDWrviws1cMXyLP']
+    price multipleLookupValues [note: 'business desc: The price field stores the monetary value of a product or service., technical desc: Type: multipleLookupValues, field ID: fld83QwzE5y2N898e']
+    qty number [note: 'business desc: Quantity of items in stock or order. Integer value., technical desc: Type: number, field ID: fldSq4WIKMNrozbkD']
+    amount formula [note: 'business desc: The amount field stores the monetary value of a transaction., technical desc: Type: formula, field ID: fldmKkttfFxh8uHGN']
+    note: '### invoice_product_junction Table (airtable id: tbl4gDkCNeSPFM2wz) - Connects invoices to products, storing which products are on which invoices. Tracks invoice line items.'
+}
+
+Ref: Products.Invoice_Items < Invoice_Items.product
+Ref: Products.invoice_product_junction < invoice_product_junction.Products
+Ref: Customers.Invoices < Invoices.customer
+Ref: Invoices.Invoice_Items <> Invoice_Items.invoice
+Ref: Invoices.invoice_product_junction < invoice_product_junction.Invoices

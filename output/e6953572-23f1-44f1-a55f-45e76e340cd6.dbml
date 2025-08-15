@@ -1,0 +1,264 @@
+Table clients {
+    legal_name multilineText [note: 'business desc: Full legal name of a person or entity., technical desc: Type: multilineText, field ID: fldtsA75JYyyPIzQB, readonly field: false']
+    sxsw checkbox [note: 'business desc: SXSW attendance data; indicates whether a user attended SXSW., technical desc: Type: checkbox, field ID: fldB0P2MJCYpt1NRF, readonly field: false']
+    project_start_date date [note: 'business desc: The most recent project start date., technical desc: Type: date, Format: l, field ID: fldWo8KaYZdZFFKQt, readonly field: false']
+    doing_business_as multilineText [note: 'business desc: The Doing Business As field stores the business’s trade name., technical desc: Type: multilineText, field ID: flduZ3LAqAknYPxVa, readonly field: false']
+    service_areas multipleSelects [note: 'business desc: Geographic locations where a service is offered., technical desc: Type: multipleSelects, Options: Curriculum, General Advisory, Market Strategy, Procurement, Professional Development, Other, None selected, Advisory, Market, PD, Advisory - Data Privacy, field ID: fld2HDZg9aVNQdA57, readonly field: false']
+    mailing_address multilineText [note: 'business desc: Customer’s physical address for mail delivery., technical desc: Type: multilineText, field ID: fldZdR1CQkEUt737X, readonly field: false']
+    website richText [note: 'business desc: The company’s website., technical desc: Type: richText, field ID: fldfjJ0QZlgjL7wQ2, readonly field: false']
+    main_poc_name_and_title singleLineText [note: 'business desc: Point of Contacts name, technical desc: Type: singleLineText, field ID: fldUfddxd2Wsj4BfS, readonly field: false']
+    main_poc_email email [note: 'business desc: Point of Contacts email, technical desc: Type: email, field ID: fldQBqHeEpCaMED77, readonly field: false']
+    main_poc_phone phoneNumber [note: 'business desc: Point of Contacts phone, technical desc: Type: phoneNumber, field ID: fldlZgKFSeh3xPoxi, readonly field: false']
+    main_poc_time_zone singleSelect [note: 'business desc: Point of Contacts time zone, technical desc: Type: singleSelect, Options: EST, CST, MST, PST, Other, CST,PST, EST,PST, EST,CST, PST,EST, field ID: fldReTkMC3hhPZ1p7, readonly field: false']
+    alternate_contact_info multilineText [note: 'business desc: nal label: If this person is not the best point of contact... Stores alternate contact details., technical desc: Type: multilineText, field ID: fldzWPzRxYh8YODWV, readonly field: false']
+    is_authorized_signer singleSelect [note: 'business desc: Indicates whether this person is authorized to sign documents., technical desc: Type: singleSelect, Options: Yes, No, field ID: fldPZitGY1W1FYOEO, readonly field: false']
+    authorized_signer_name multilineText [note: 'business desc: Name of the authorized signer., technical desc: Type: multilineText, field ID: fldOGK4KwFZLbZvAW, readonly field: false']
+    authorized_signer_email singleLineText [note: 'business desc: Email of the authorized signer., technical desc: Type: singleLineText, field ID: fldkLVXTULf2Jz8Bu, readonly field: false']
+    authorized_signer_phone phoneNumber [note: 'business desc: Phone number of the authorized signer., technical desc: Type: phoneNumber, field ID: fldCRI8xZPzqfc2TW, readonly field: false']
+    other_contacts multilineText [note: 'business desc: Contacts outside the main customer or project team., technical desc: Type: multilineText, field ID: fldG9t7O2Cs43DxLM, readonly field: false']
+    company_summary multilineText [note: 'business desc: A brief description of the company’s activities., technical desc: Type: multilineText, field ID: fldVIaQAr6zEkLY9U, readonly field: false']
+    estimated_annual_income currency [note: 'business desc: Estimated yearly gross income., technical desc: Type: currency, Precision: 2, Symbol: $, field ID: fld6GxefTAQFsVaU2, readonly field: false']
+    project_goals multilineText [note: 'business desc: Describes objectives for the project., technical desc: Type: multilineText, field ID: fldpunTE96PRXsyrO, readonly field: false']
+    demo_info multilineText [note: 'business desc: Descriptive information about a demo., technical desc: Type: multilineText, field ID: fldROy3jTmMsC6nIO, readonly field: false']
+    company_logo multipleAttachments [note: 'business desc: Upload of company logo., technical desc: Type: multipleAttachments, field ID: fldBYOtjSuf1RxU28, readonly field: false']
+    social_media_handles multilineText [note: 'business desc: What are your company social media handles...? Stores social handles and hashtags., technical desc: Type: multilineText, field ID: fldvEWTfZvAV0XCzg, readonly field: false']
+    grade_levels multipleSelects [note: 'business desc: Targeted student grade levels., technical desc: Type: multipleSelects, Options: Early childhood, K-5, 6-8, 9-12, Higher Ed, Adult Learning, Prenatal to PreK, N/A, HigherEd, Early Chidhood, PreNatal to PreK, field ID: fldk1xhgcvqheCb4f, readonly field: false']
+    fax phoneNumber [note: 'business desc: Company fax number., technical desc: Type: phoneNumber, field ID: fldriwjKI6CuRrfEi, readonly field: false']
+    fein singleLineText [note: 'business desc: Federal Employer Identification Number (EIN)., technical desc: Type: singleLineText, field ID: fldDglDiqtcv1XL4b, readonly field: false']
+    duns singleLineText [note: 'business desc: DUNS number for business., technical desc: Type: singleLineText, field ID: fldSd7WnsJgoKe7lj, readonly field: false']
+    everify_number singleLineText [note: 'business desc: E-Verify confirmation number., technical desc: Type: singleLineText, field ID: fldTBZpK8uFPKrLTV, readonly field: false']
+    corporate_structure singleSelect [note: 'business desc: Company’s legal structure., technical desc: Type: singleSelect, Options: C Corp, LLC, Partnership, 501c3, S Corp, Sole proprietorship, Sole-Proprietorship, LLC,Partnership, LLC,Sole-Proprietorship, field ID: flddBuWD8gA9nAiLo, readonly field: false']
+    date_of_establishment date [note: 'business desc: Founding date of the business., technical desc: Type: date, Format: l, field ID: fldriegJX30nglkyy, readonly field: false']
+    years_selling number [note: 'business desc: Number of years in operation., technical desc: Type: number, field ID: fldS8Cn7u1JrzGVGF, readonly field: false']
+    state_incorporated singleLineText [note: 'business desc: State of incorporation., technical desc: Type: singleLineText, field ID: fldYWwNG78Y6iwT3L, readonly field: false']
+    num_employees number [note: 'business desc: Total number of employees., technical desc: Type: number, field ID: fldFtgyz0SVEurnFY, readonly field: false']
+    num_women_employees number [note: 'business desc: Number of female employees., technical desc: Type: number, field ID: fldGHnvTFYzmMNwJJ, readonly field: false']
+    num_minority_employees number [note: 'business desc: Number of minority-identifying employees., technical desc: Type: number, field ID: fldCedUOWm3mn8zoO, readonly field: false']
+    registrations multipleSelects [note: 'business desc: Business registrations/certifications., technical desc: Type: multipleSelects, Options: SBE (Small Business Enterprise), WBE (Women Business Enterprise), MBE (Minority Business Enterprise), HUB (Historically Underutilized Business), Veteran-owned, N/A, field ID: fldZVne9FPMEKuEZI, readonly field: false']
+    registration_certificates multipleAttachments [note: 'business desc: Uploads for registration documentation., technical desc: Type: multipleAttachments, field ID: fldfDjsRvkZcxrI3i, readonly field: false']
+    w9_document multipleAttachments [note: 'business desc: W9 tax form., technical desc: Type: multipleAttachments, field ID: fldMtGjTerPnaNWgE, readonly field: false']
+    purchasing_cooperatives multipleSelects [note: 'business desc: Participating purchasing cooperatives., technical desc: Type: multipleSelects, Options: DIR, EPCNT, HCDE, PSABuy, BuyBoard, TCPN, TIPS, TPASS, TXMAS, USD Communities, N/A, field ID: fldsNr5IB6s4r8zKc, readonly field: false']
+    sales_via_cooperatives singleSelect [note: 'business desc: Have you made any sales as a result... Indicates if sales were made through cooperatives., technical desc: Type: singleSelect, Options: Yes, No, field ID: flduzwqgUk5q9Iu32, readonly field: false']
+    contract_number_from_sales multilineText [note: 'business desc: Contract number tied to cooperative sales., technical desc: Type: multilineText, field ID: fldCcDNJlGe6Ym53h, readonly field: false']
+    legal_counsel singleSelect [note: 'business desc: Type of legal counsel the company has., technical desc: Type: singleSelect, Options: In-house counsel, Contracted counsel, I have a resource as needed, Not currently, Don’t know, field ID: fldkWPZ4aQyjG0neP, readonly field: false']
+    refund_policy multilineText [note: 'business desc: Text of the company’s refund policy., technical desc: Type: multilineText, field ID: fldYGqBqALpQxlOCL, readonly field: false']
+    pricing_model multilineText [note: 'business desc: Pricing methodology or approach., technical desc: Type: multilineText, field ID: fldNOjDTfah4DAina, readonly field: false']
+    payment_methods multipleSelects [note: 'business desc: Accepted payment methods., technical desc: Type: multipleSelects, Options: Google and Apple app stores, ACH, EFT, Credit card, PO, Check, Amazon, Other, field ID: fld9lVUTd9ePhD8cs, readonly field: false']
+    internal_notes multilineText [note: 'business desc: General context and notes., technical desc: Type: multilineText, field ID: fld4jbwrTWWYGOe1j, readonly field: false']
+    standing_meeting_schedule multilineText [note: 'business desc: Original label: Is there a standing day and time...? Stores team meeting schedule., technical desc: Type: multilineText, field ID: fldc29xdUkrGKgTeM, readonly field: false']
+    privacy_policy_doc multipleAttachments [note: 'business desc: Company privacy policy document., technical desc: Type: multipleAttachments, field ID: fldHZEgr0DUEmYuiz, readonly field: false']
+    terms_and_conditions_doc multipleAttachments [note: 'business desc: Terms and conditions document., technical desc: Type: multipleAttachments, field ID: fldu3VszQmQ7Np62r, readonly field: false']
+    data_privacy_agreement_doc multipleAttachments [note: 'business desc: Customer’s signed data privacy agreement., technical desc: Type: multipleAttachments, field ID: fld2QBl6D4I0bnNtE, readonly field: false']
+    out_of_office_1 singleLineText [note: 'business desc: Primary out-of-office note., technical desc: Type: singleLineText, field ID: fld5Rrg2Jr5vseHoE, readonly field: false']
+    out_of_office_2 singleLineText [note: 'business desc: Secondary out-of-office note., technical desc: Type: singleLineText, field ID: fldmvNckZoxapNRM3, readonly field: false']
+    contact_info_for_rfp_forms singleSelect [note: 'business desc: Original label: RYE will help your company populate... Whose contact info to use in RFP forms?, technical desc: Type: singleSelect, Options: The person noted above, Someone else, field ID: fldF5lNghlQKQWxoX, readonly field: false']
+    market_strategy_offering singleSelect [note: 'business desc: Market strategy focus of the company., technical desc: Type: singleSelect, Options: Funding Language, Storytelling: Case Studies, Landscape Analysis, Other, field ID: fldlBkJffgdSNwBfb, readonly field: false']
+    customer_interview_link multilineText [note: 'business desc: Link to customer interview recording., technical desc: Type: multilineText, field ID: fld4oystVVdKOONRJ, readonly field: false']
+    customer_info richText [note: 'business desc: Detailed customer description., technical desc: Type: richText, field ID: fldYFrwvm2V0xUint, readonly field: false']
+    customer_interview_attachments multipleAttachments [note: 'business desc: Files from customer interview sessions., technical desc: Type: multipleAttachments, field ID: fldZCDH6fmJDVMKgR, readonly field: false']
+    key_data_points richText [note: 'business desc: Summary of important data points., technical desc: Type: richText, field ID: fldO7RzNKMk3qq78X, readonly field: false']
+    pii_sensitivity_level singleSelect [note: 'business desc: Classifies the sensitivity level of personal data fields according to GDPR standards., technical desc: Type: singleSelect, Options: Non-Sensitive, Sensitive, Confidential, Highly Confidential, field ID: fldYyHQyJ3AkGBGG8, readonly field: false']
+    record_id formula [note: 'business desc: System-generated identifier for cross-reference., technical desc: Type: formula, field ID: fldY1zsErx7z7iFOF, readonly field: true']
+    created createdTime [note: 'business desc: Timestamp when the record was first created., technical desc: Type: createdTime, field ID: fldnfpjCRx6sdpj3P, readonly field: true']
+    last_modified lastModifiedTime [note: 'business desc: Timestamp of last update to this record., technical desc: Type: lastModifiedTime, field ID: fldxY0xzaI4uNn2vU, readonly field: true']
+    last_modified_by lastModifiedBy [note: 'business desc: User who last modified this record., technical desc: Type: lastModifiedBy, field ID: fldVTxSHVHOTAvjCt, readonly field: true']
+    pars_new_instance multipleRecordLinks [note: 'business desc: pars_new_instance - Link field connecting to multiple records, technical desc: Type: multipleRecordLinks, Reference to pars_new_instance table, field ID: fldvl5h92u1qt7JwQ, readonly field: false']
+    client_specific_fields multipleRecordLinks [note: 'business desc: client_specific_fields - Link field connecting to multiple records, technical desc: Type: multipleRecordLinks, Reference to client_specific_fields table, field ID: fld810hWfxNjMPYaP, readonly field: false']
+    user_roles multipleRecordLinks [note: 'business desc: user_roles - Link field connecting to multiple records, technical desc: Type: multipleRecordLinks, Reference to user_roles table, field ID: fldycnsEkWuIVFuq5, readonly field: false']
+    users multipleRecordLinks [note: 'business desc: users - Link field connecting to multiple records, technical desc: Type: multipleRecordLinks, Reference to users table, field ID: fldpFPs1NkUYHpG0c, readonly field: false']
+    user_roles_from_users multipleLookupValues [note: 'business desc: user_roles_from_users - Field for storing user_roles_from_users data, technical desc: Type: multipleLookupValues, field ID: fldINCIiKodPMSOp0, readonly field: true']
+    client_type singleSelect [note: 'business desc: Classifies clients by service type: Procurement Sourcing Only, Procurement Full Service, Market Strategy, Advisory, Professional Learning, Curriculum, enabling tailored segmentation., technical desc: Type: singleSelect, Options: Procurement Sourcing Only (PSO), Procurement Full Service (PFS), Market Strategy (MKS), Advisory (ADV) - Procurement other, Advisory (ADV) - Advisory is ongoing work, Professional Learning (PL), Curriculum (CURR) , field ID: fldLVx4xpEvETwxAA, readonly field: false']
+    note: '### clients Table (airtable id: tblefXpekCam1DGRd) - clients - Table for managing clients information'
+}
+
+Table pars {
+    id autoNumber [note: 'business desc: id - Auto-incrementing number field, technical desc: Type: autoNumber, field ID: fld2wF4dyFiYRPTqg, readonly field: true']
+    record_id singleLineText [note: 'business desc: record_id - Text field for storing single line data, technical desc: Type: singleLineText, field ID: fldF9cKBzTRXrWZ7Z, readonly field: false']
+    created createdTime [note: 'business desc: created - System field recording creation timestamp, technical desc: Type: createdTime, field ID: fld1EqUOZ5sdYQR8K, readonly field: true']
+    last_modified lastModifiedTime [note: 'business desc: last_modified - System field recording last modification, technical desc: Type: lastModifiedTime, field ID: fldDVCii8DyzhySID, readonly field: true']
+    last_modified_by lastModifiedBy [note: 'business desc: last_modified_by - System field recording last modifier, technical desc: Type: lastModifiedBy, field ID: fld3tBJk4gnPcTKO9, readonly field: true']
+    title_of_rfp singleLineText [note: 'business desc: title_of_rfp - Text field for storing single line data, technical desc: Type: singleLineText, field ID: fldmtg1Fyt7XOy6iF, readonly field: false']
+    number_of_rfp singleLineText [note: 'business desc: number_of_rfp - Text field for storing single line data, technical desc: Type: singleLineText, field ID: fld7ugq2isk3XGMdJ, readonly field: false']
+    name_of_school_district singleLineText [note: 'business desc: name_of_school_district - Text field for storing single line data, technical desc: Type: singleLineText, field ID: fld7a6DUEKaJ9x92C, readonly field: false']
+    city singleLineText [note: 'business desc: city - Text field for storing single line data, technical desc: Type: singleLineText, field ID: fldRsdpxEp4LVft7Z, readonly field: false']
+    state singleSelect [note: 'business desc: state - Selection field with predefined options, technical desc: Type: singleSelect, Options: AL, AK, AZ, AR, CA, CO, CT, DE, FL, GA, HI, ID, IL, IN, IA, KS, KY, LA, ME, MD, MA, MI, MN, MS, MO, MT, NE, NV, NH, NJ, NM, NY, NC, ND, OH, OK, OR, PA, RI, SC, SD, TN, TX, UT, VT, VA, WA, WV, WI, WY, field ID: fldXcohtKM2V1I3GR, readonly field: false']
+    district_size singleSelect [note: 'business desc: district_size - Selection field with predefined options, technical desc: Type: singleSelect, Options: Small District (<5,000 students), Medium District (5,000–25,000 students), Large District (25,000+ students), State Level, Other, field ID: fld1DQOKf7zDETyfl, readonly field: false']
+    rfp_due_date date [note: 'business desc: rfp_due_date - Date field for temporal information, technical desc: Type: date, Format: l, field ID: fld9zcqMRUn8imCWj, readonly field: false']
+    rfp_due_time singleLineText [note: 'business desc: rfp_due_time - Text field for storing single line data, technical desc: Type: singleLineText, field ID: fldI6DaT9e4IeloE3, readonly field: false']
+    rfp_due_timezone singleLineText [note: 'business desc: rfp_due_timezone - Text field for storing single line data, technical desc: Type: singleLineText, field ID: fldxfq7K2QRMdc1oD, readonly field: false']
+    qna_due_date date [note: 'business desc: qna_due_date - Date field for temporal information, technical desc: Type: date, Format: l, field ID: fldEi7GFPjfC3dISv, readonly field: false']
+    qna_due_time singleLineText [note: 'business desc: qna_due_time - Text field for storing single line data, technical desc: Type: singleLineText, field ID: fldUThw5oOz2Qpdli, readonly field: false']
+    qna_due_timezone singleLineText [note: 'business desc: qna_due_timezone - Text field for storing single line data, technical desc: Type: singleLineText, field ID: fldAyXhXDV7ZgDlpJ, readonly field: false']
+    term_of_contract multilineText [note: 'business desc: term_of_contract - Text field for storing multi-line content, technical desc: Type: multilineText, field ID: fldkG0GMGBhD959PM, readonly field: false']
+    reference_requirements multilineText [note: 'business desc: reference_requirements - Text field for storing multi-line content, technical desc: Type: multilineText, field ID: fldIQN0q9vhRx8eGM, readonly field: false']
+    scope_of_work multilineText [note: 'business desc: scope_of_work - Text field for storing multi-line content, technical desc: Type: multilineText, field ID: flddyHmRxHIkrvik0, readonly field: false']
+    rye_response_deadline date [note: 'business desc: rye_response_deadline - Date field for temporal information, technical desc: Type: date, Format: l, field ID: fld80eYjmroscbiCv, readonly field: false']
+    rye_response_time singleLineText [note: 'business desc: rye_response_time - Text field for storing single line data, technical desc: Type: singleLineText, field ID: fld0pMiKuI0iOjaLP, readonly field: false']
+    rye_recommended_submission_date date [note: 'business desc: rye_recommended_submission_date - Date field for temporal information, technical desc: Type: date, Format: l, field ID: fldqiLiK5UeawJ9vw, readonly field: false']
+    rye_recommended_submission_time singleLineText [note: 'business desc: rye_recommended_submission_time - Text field for storing single line data, technical desc: Type: singleLineText, field ID: flduWgCF2I4hujSj2, readonly field: false']
+    anticipated_award_date date [note: 'business desc: anticipated_award_date - Date field for temporal information, technical desc: Type: date, Format: l, field ID: fldBinasTcpJd4z5C, readonly field: false']
+    anticipated_award_time singleLineText [note: 'business desc: anticipated_award_time - Text field for storing single line data, technical desc: Type: singleLineText, field ID: fldvMhrTU2hnrMJy3, readonly field: false']
+    grade_level multipleSelects [note: 'business desc: grade_level - Multi-selection field with predefined options, technical desc: Type: multipleSelects, Options: PreK, K-2, 3-5, 6-8, 9-12, K-12, Higher Ed, field ID: fldp6LXn9oE4YDEQE, readonly field: false']
+    submission_type multipleSelects [note: 'business desc: submission_type - Multi-selection field with predefined options, technical desc: Type: multipleSelects, Options: Online Submission via Portal, Email Submission, Mail-in Submission, Online and Mail-in, Online and Email, Mail-in and Email, field ID: fldShyM3TkSaLyseg, readonly field: false']
+    signatures multilineText [note: 'business desc: signatures - Text field for storing multi-line content, technical desc: Type: multilineText, field ID: fld6z8sRByyXBChDo, readonly field: false']
+    pre_proposal_conference_info multilineText [note: 'business desc: pre_proposal_conference_info - Text field for storing multi-line content, technical desc: Type: multilineText, field ID: fld6Gbv9tYpc8rPNf, readonly field: false']
+    qna_details multilineText [note: 'business desc: qna_details - Text field for storing multi-line content, technical desc: Type: multilineText, field ID: fld2W1NA1xs0Ym2PR, readonly field: false']
+    addendum_information multilineText [note: 'business desc: addendum_information - Text field for storing multi-line content, technical desc: Type: multilineText, field ID: fldQukxjGqgJ3wgro, readonly field: false']
+    submission_status singleSelect [note: 'business desc: submission_status - Selection field with predefined options, technical desc: Type: singleSelect, Options: Not Responding, Not Yet Submitted, Submitted, field ID: fldH6AWRvQBb5FLKk, readonly field: false']
+    contract_or_bid singleSelect [note: 'business desc: contract_or_bid - Selection field with predefined options, technical desc: Type: singleSelect, Options: Contract, Bid, field ID: fldl4ruOPgdXN8laB, readonly field: false']
+    award_status singleSelect [note: 'business desc: award_status - Selection field with predefined options, technical desc: Type: singleSelect, Options: Won, Lost, RFP Cancelled / Not Awarding, Did Not Submit, field ID: fldRYEhWh43lm2ubI, readonly field: false']
+    award_notes multilineText [note: 'business desc: award_notes - Text field for storing multi-line content, technical desc: Type: multilineText, field ID: fldkHszWIOUMzUZ9Y, readonly field: false']
+    google_drive_link url [note: 'business desc: google_drive_link - URL field for web links, technical desc: Type: url, field ID: fld1nKRD4FgEs8Fwa, readonly field: false']
+    keywords multipleSelects [note: 'business desc: keywords - Multi-selection field with predefined options, technical desc: Type: multipleSelects, Options: Curriculum, Professional Development, Tech, Other, field ID: fldCJirQE67Vk4Iz2, readonly field: false']
+    pars_new_instance multipleRecordLinks [note: 'business desc: pars_new_instance - Link field connecting to multiple records, technical desc: Type: multipleRecordLinks, Reference to pars_new_instance table, field ID: fldvejYotnnl00vMj, readonly field: false']
+    users multipleRecordLinks [note: 'business desc: users - Link field connecting to multiple records, technical desc: Type: multipleRecordLinks, Reference to users table, field ID: fldIJk60cZ3FtyNFp, readonly field: false']
+    user_roles_from_users multipleLookupValues [note: 'business desc: user_roles_from_users - Field for storing user_roles_from_users data, technical desc: Type: multipleLookupValues, field ID: fldp55Oi74qZCxiqF, readonly field: true']
+    note: '### pars Table (airtable id: tblNXtlbC9tHx78Aq) - pars - Table for managing pars information'
+}
+
+Table pars_new_instance {
+    id autoNumber [note: 'business desc: id - Auto-incrementing number field, technical desc: Type: autoNumber, field ID: fldcQ5L1q1y8DOsgt, readonly field: true']
+    record_id singleLineText [note: 'business desc: record_id - Text field for storing single line data, technical desc: Type: singleLineText, field ID: fld1kW8T5YKs8mBJ3, readonly field: false']
+    par_template_id multipleRecordLinks [note: 'business desc: par_template_id - Link field connecting to multiple records, technical desc: Type: multipleRecordLinks, Reference to pars table, field ID: fldRZqcyNXfcHdbKD, readonly field: false']
+    client_id multipleRecordLinks [note: 'business desc: client_id - Link field connecting to multiple records, technical desc: Type: multipleRecordLinks, Reference to clients table, field ID: fldZ5yftU76BJBUeG, readonly field: false']
+    sourcer_id singleCollaborator [note: 'business desc: sourcer_id - Field for storing sourcer_id data, technical desc: Type: singleCollaborator, field ID: fldIuxzKPzMjk7I9h, readonly field: false']
+    implementation_type singleSelect [note: 'business desc: implementation_type - Selection field with predefined options, technical desc: Type: singleSelect, Options: Full Implementation, Pilot Program, Phased Rollout, trining Only, field ID: fldRUF85g5PcbrWUV, readonly field: false']
+    applicable_offerings multipleSelects [note: 'business desc: applicable_offerings - Multi-selection field with predefined options, technical desc: Type: multipleSelects, Options: Offering A, Offering B, Offering C, Other, field ID: fldrAGKcjb11Ndird, readonly field: false']
+    submission_method singleSelect [note: 'business desc: submission_method - Selection field with predefined options, technical desc: Type: singleSelect, Options: Email, Portal, Web Form, field ID: fldIrTGyPyZ1o6IKU, readonly field: false']
+    special_instructions multilineText [note: 'business desc: special_instructions - Text field for storing multi-line content, technical desc: Type: multilineText, field ID: fldmI1dgDcswUyHvp, readonly field: false']
+    pricing_format_template multipleAttachments [note: 'business desc: pricing_format_template - Field for storing pricing_format_template data, technical desc: Type: multipleAttachments, field ID: fld5zRQ465CtkycRt, readonly field: false']
+    pricing_format_notes multilineText [note: 'business desc: pricing_format_notes - Text field for storing multi-line content, technical desc: Type: multilineText, field ID: fldHIYJ6W7SDkjOwT, readonly field: false']
+    additional_attachments multipleAttachments [note: 'business desc: additional_attachments - Field for storing additional_attachments data, technical desc: Type: multipleAttachments, field ID: flduI9rldWKfF5o8E, readonly field: false']
+    internal_notes multilineText [note: 'business desc: internal_notes - Text field for storing multi-line content, technical desc: Type: multilineText, field ID: fldNKiVtB9U6EA5Kh, readonly field: false']
+    email_blurb multilineText [note: 'business desc: email_blurb - Text field for storing multi-line content, technical desc: Type: multilineText, field ID: fldnSXkIfwfEiPSgG, readonly field: false']
+    send_option singleSelect [note: 'business desc: send_option - Selection field with predefined options, technical desc: Type: singleSelect, Options: Send Now, Schedule Send, field ID: fldMdHpkGLjnj4NBa, readonly field: false']
+    status singleSelect [note: 'business desc: status - Selection field with predefined options, technical desc: Type: singleSelect, Options: Draft, Scheduled, Awaiting Client Response, Submitted, YES (Sourcing Only), YES (Handling Internally), YES (RYE Writing), NO, Monitor for Award, field ID: fldUjlKYfb3I7qipI, readonly field: false']
+    scheduled_send_date date [note: 'business desc: scheduled_send_date - Date field for temporal information, technical desc: Type: date, Format: l, field ID: fldqsmVHxfG51iVDt, readonly field: false']
+    actual_send_date date [note: 'business desc: actual_send_date - Date field for temporal information, technical desc: Type: date, Format: l, field ID: fldd1XaBgqVK7pcaq, readonly field: false']
+    created date [note: 'business desc: created - Date field for temporal information, technical desc: Type: date, Format: l, field ID: fldTqDuyv136DJeVI, readonly field: false']
+    last_modified date [note: 'business desc: last_modified - Date field for temporal information, technical desc: Type: date, Format: l, field ID: fldZpk2JcNXuXQ2pp, readonly field: false']
+    last_modified_by singleCollaborator [note: 'business desc: last_modified_by - Field for storing last_modified_by data, technical desc: Type: singleCollaborator, field ID: fldgeWQmwY1eVwoOb, readonly field: false']
+    status_pars_tracking multipleRecordLinks [note: 'business desc: status_pars_tracking - Link field connecting to multiple records, technical desc: Type: multipleRecordLinks, Reference to status_pars_tracking table, field ID: fldVSc1Hv07nQFbrX, readonly field: false']
+    client_specific_values multipleRecordLinks [note: 'business desc: client_specific_values - Link field connecting to multiple records, technical desc: Type: multipleRecordLinks, Reference to client_specific_values table, field ID: fld0lrmjektDQeeyn, readonly field: false']
+    users multipleRecordLinks [note: 'business desc: users - Link field connecting to multiple records, technical desc: Type: multipleRecordLinks, Reference to users table, field ID: fldzBQlGR0UP74J3v, readonly field: false']
+    user_roles_from_users multipleLookupValues [note: 'business desc: user_roles_from_users - Field for storing user_roles_from_users data, technical desc: Type: multipleLookupValues, field ID: fld92tC2u3U2eg7kW, readonly field: true']
+    par_comments multipleRecordLinks [note: 'business desc: par_comments - Link field connecting to multiple records, technical desc: Type: multipleRecordLinks, Reference to par_comments table, field ID: fldUY0pVuM9jb36Xl, readonly field: false']
+    note: '### pars_new_instance Table (airtable id: tblSU7FyyFT0jVpmM) - pars_new_instance - Table for managing pars_new_instance information'
+}
+
+Table status_pars_tracking {
+    id autoNumber [note: 'business desc: id - Auto-incrementing number field, technical desc: Type: autoNumber, field ID: fldMcrgLDQHmAoepm, readonly field: true']
+    record_id formula [note: 'business desc: record_id - Formula field with computed values, technical desc: Type: formula, field ID: fldoBRfOGrMNfYGJs, readonly field: true']
+    par_instance multipleRecordLinks [note: 'business desc: par_instance - Link field connecting to multiple records, technical desc: Type: multipleRecordLinks, Reference to pars_new_instance table, field ID: fldrfMDdcUsxTH1tv, readonly field: false']
+    new_status singleSelect [note: 'business desc: new_status - Selection field with predefined options, technical desc: Type: singleSelect, Options: Draft, Scheduled, Sent, Archived, Rejected, field ID: fldt1fiYUSfoJ0W7D, readonly field: false']
+    comment multilineText [note: 'business desc: comment - Text field for storing multi-line content, technical desc: Type: multilineText, field ID: fld9lmuAQLkGuEonL, readonly field: false']
+    comment_required checkbox [note: 'business desc: comment_required - Boolean field for true/false values, technical desc: Type: checkbox, field ID: fldGkxhX05xHGkH5P, readonly field: false']
+    changed_at createdTime [note: 'business desc: changed_at - System field recording creation timestamp, technical desc: Type: createdTime, field ID: flde7XogLSV22bhbu, readonly field: true']
+    last_modified lastModifiedTime [note: 'business desc: last_modified - System field recording last modification, technical desc: Type: lastModifiedTime, field ID: fldoLI78AbVMIyq8I, readonly field: true']
+    last_modified_by lastModifiedBy [note: 'business desc: last_modified_by - System field recording last modifier, technical desc: Type: lastModifiedBy, field ID: fldGdDxSTBc5VuSeR, readonly field: true']
+    par_comments multipleRecordLinks [note: 'business desc: par_comments - Link field connecting to multiple records, technical desc: Type: multipleRecordLinks, Reference to par_comments table, field ID: fldAACsasNJ1qHslL, readonly field: false']
+    note: '### status_pars_tracking Table (airtable id: tblCWwYSWARHqxsup) - status_pars_tracking - Table for managing status_pars_tracking information'
+}
+
+Table client_specific_fields {
+    field_label singleLineText [note: 'business desc: field_label - Text field for storing single line data, technical desc: Type: singleLineText, field ID: fldfprm3HdAl4LrGF, readonly field: false']
+    client multipleRecordLinks [note: 'business desc: client - Link field connecting to multiple records, technical desc: Type: multipleRecordLinks, Reference to clients table, field ID: fldphhSUV75341WOd, readonly field: false']
+    data_type singleSelect [note: 'business desc: data_type - Selection field with predefined options, technical desc: Type: singleSelect, Options: singleLineText, longText, checkbox, singleSelect, multipleSelects, email, phoneNumber, url, date, createdTime, lastModifiedTime, lastModifiedBy, formula, linkedRecord, multipleRecordLinks, autoNumber, attachments, number, currency, percent, field ID: fldGGrBVGMdCND3KD, readonly field: false']
+    is_required checkbox [note: 'business desc: is_required - Boolean field for true/false values, technical desc: Type: checkbox, field ID: fldHqgfGwxgVL02PS, readonly field: false']
+    help_text multilineText [note: 'business desc: help_text - Text field for storing multi-line content, technical desc: Type: multilineText, field ID: fldiNwAXNGeaERVZT, readonly field: false']
+    options_json multilineText [note: 'business desc: options_json - Text field for storing multi-line content, technical desc: Type: multilineText, field ID: fldh1uUu3fXVppZ1K, readonly field: false']
+    record_id formula [note: 'business desc: record_id - Formula field with computed values, technical desc: Type: formula, field ID: fldc0G9988RxvanYt, readonly field: true']
+    created createdTime [note: 'business desc: created - System field recording creation timestamp, technical desc: Type: createdTime, field ID: fldhmSnhAGACMndvQ, readonly field: true']
+    last_modified lastModifiedTime [note: 'business desc: last_modified - System field recording last modification, technical desc: Type: lastModifiedTime, field ID: fldi9ifdxLz1ecGNO, readonly field: true']
+    last_modified_by lastModifiedBy [note: 'business desc: last_modified_by - System field recording last modifier, technical desc: Type: lastModifiedBy, field ID: fldgSQvhMr9A7iGYC, readonly field: true']
+    client_specific_values multipleRecordLinks [note: 'business desc: client_specific_values - Link field connecting to multiple records, technical desc: Type: multipleRecordLinks, Reference to client_specific_values table, field ID: fldJFve0tMWyZZN0o, readonly field: false']
+    note: '### client_specific_fields Table (airtable id: tblkPfdQWdWIAxpkZ) - client_specific_fields - Table for managing client_specific_fields information'
+}
+
+Table client_specific_values {
+    id autoNumber [note: 'business desc: id - Auto-incrementing number field, technical desc: Type: autoNumber, field ID: fldY2ryI0gBptlhnw, readonly field: true']
+    par_instance multipleRecordLinks [note: 'business desc: par_instance - Link field connecting to multiple records, technical desc: Type: multipleRecordLinks, Reference to pars_new_instance table, field ID: fldXnYSUWrQmNht0i, readonly field: false']
+    custom_field multipleRecordLinks [note: 'business desc: custom_field - Link field connecting to multiple records, technical desc: Type: multipleRecordLinks, Reference to client_specific_fields table, field ID: fldoPReoR7FfWJntC, readonly field: false']
+    value multilineText [note: 'business desc: value - Text field for storing multi-line content, technical desc: Type: multilineText, field ID: fldVJ2FoHe62RtlDV, readonly field: false']
+    record_id singleLineText [note: 'business desc: record_id - Text field for storing single line data, technical desc: Type: singleLineText, field ID: fldoXML0YGmWyXjE4, readonly field: false']
+    created createdTime [note: 'business desc: created - System field recording creation timestamp, technical desc: Type: createdTime, field ID: fld36FG2G51H95QHH, readonly field: true']
+    last_modified lastModifiedTime [note: 'business desc: last_modified - System field recording last modification, technical desc: Type: lastModifiedTime, field ID: fldUzQdHrm6SaA7OW, readonly field: true']
+    last_modified_by lastModifiedBy [note: 'business desc: last_modified_by - System field recording last modifier, technical desc: Type: lastModifiedBy, field ID: fldhrg0B5JH5ABJTz, readonly field: true']
+    note: '### client_specific_values Table (airtable id: tbl8PMswEdZWlI2as) - client_specific_values - Table for managing client_specific_values information'
+}
+
+Table users {
+    email email [note: 'business desc: email - Email address field for contact information, technical desc: Type: email, field ID: fld6u7eZcEm14eVVY, readonly field: false']
+    full_name singleLineText [note: 'business desc: full_name - Text field for storing single line data, technical desc: Type: singleLineText, field ID: fldRu3dxoyEFCZij4, readonly field: false']
+    hashed_password singleLineText [note: 'business desc: hashed_password - Text field for storing single line data, technical desc: Type: singleLineText, field ID: fldfgIC9cRpeK4Ji2, readonly field: false']
+    active checkbox [note: 'business desc: active - Boolean field for true/false values, technical desc: Type: checkbox, field ID: fldCcMcoVSU4cajbi, readonly field: false']
+    created createdTime [note: 'business desc: created - System field recording creation timestamp, technical desc: Type: createdTime, field ID: flddu9JDkFWmrh4ai, readonly field: true']
+    last_modified lastModifiedTime [note: 'business desc: last_modified - System field recording last modification, technical desc: Type: lastModifiedTime, field ID: fld9la4xwR01S5dwK, readonly field: true']
+    last_modified_by lastModifiedBy [note: 'business desc: last_modified_by - System field recording last modifier, technical desc: Type: lastModifiedBy, field ID: fldjgOBYERNApxW6Z, readonly field: true']
+    record_id formula [note: 'business desc: record_id - Formula field with computed values, technical desc: Type: formula, field ID: fldoQQVls7N75wKZt, readonly field: true']
+    user_roles multipleRecordLinks [note: 'business desc: user_roles - Link field connecting to multiple records, technical desc: Type: multipleRecordLinks, Reference to user_roles table, field ID: fldEWwJRoZL2G8xjp, readonly field: false']
+    pars multipleRecordLinks [note: 'business desc: pars - Link field connecting to multiple records, technical desc: Type: multipleRecordLinks, Reference to pars table, field ID: fldnvl2xJrMWpi7Ba, readonly field: false']
+    pars_new_instance multipleRecordLinks [note: 'business desc: pars_new_instance - Link field connecting to multiple records, technical desc: Type: multipleRecordLinks, Reference to pars_new_instance table, field ID: fldwFnGJFkKnqtJ0U, readonly field: false']
+    clients multipleRecordLinks [note: 'business desc: clients - Link field connecting to multiple records, technical desc: Type: multipleRecordLinks, Reference to clients table, field ID: fldCbcV5wAZCXElQN, readonly field: false']
+    par_comments multipleRecordLinks [note: 'business desc: par_comments - Link field connecting to multiple records, technical desc: Type: multipleRecordLinks, Reference to par_comments table, field ID: fldeOuU6hRrH1qtdy, readonly field: false']
+    note: '### users Table (airtable id: tbl4QCvILPYFFZlHr) - users - Table for managing users information'
+}
+
+Table roles {
+    Id autoNumber [note: 'business desc: Id - Auto-incrementing number field, technical desc: Type: autoNumber, field ID: fldBwHqeT9Q1Sb9ZI, readonly field: true']
+    created createdTime [note: 'business desc: created - System field recording creation timestamp, technical desc: Type: createdTime, field ID: fldwqvB4Xh6VnCr2M, readonly field: true']
+    last_modified lastModifiedTime [note: 'business desc: last_modified - System field recording last modification, technical desc: Type: lastModifiedTime, field ID: fldaU7bLTHlkJvmvs, readonly field: true']
+    last_modified_by lastModifiedBy [note: 'business desc: last_modified_by - System field recording last modifier, technical desc: Type: lastModifiedBy, field ID: fldwl1Mwh440AIFBd, readonly field: true']
+    record_id formula [note: 'business desc: record_id - Formula field with computed values, technical desc: Type: formula, field ID: fldoHYvg0FzjHaOf3, readonly field: true']
+    role_name singleSelect [note: 'business desc: role_name - Selection field with predefined options, technical desc: Type: singleSelect, Options: client, sourcer, writer, award_manager, field ID: fldq3a1KG6vNO97LU, readonly field: false']
+    user_roles multipleRecordLinks [note: 'business desc: user_roles - Link field connecting to multiple records, technical desc: Type: multipleRecordLinks, Reference to user_roles table, field ID: fldhgvlf9TsVyXhp3, readonly field: false']
+    note: '### roles Table (airtable id: tblxzPh17e49q0VmV) - roles - Table for managing roles information'
+}
+
+Table user_roles {
+    Id autoNumber [note: 'business desc: Id - Auto-incrementing number field, technical desc: Type: autoNumber, field ID: fldQVs8RLh5cswQLj, readonly field: true']
+    role multipleRecordLinks [note: 'business desc: role - Link field connecting to multiple records, technical desc: Type: multipleRecordLinks, Reference to roles table, field ID: fldI2sBjjUsYX3UdK, readonly field: false']
+    client multipleRecordLinks [note: 'business desc: client - Link field connecting to multiple records, technical desc: Type: multipleRecordLinks, Reference to clients table, field ID: fldn0CguaWVg3HT0a, readonly field: false']
+    created createdTime [note: 'business desc: created - System field recording creation timestamp, technical desc: Type: createdTime, field ID: fldWqANLFYbclXY04, readonly field: true']
+    last_modified lastModifiedTime [note: 'business desc: last_modified - System field recording last modification, technical desc: Type: lastModifiedTime, field ID: fldc8zs6RAvOjgDxe, readonly field: true']
+    last_modified_by lastModifiedBy [note: 'business desc: last_modified_by - System field recording last modifier, technical desc: Type: lastModifiedBy, field ID: flduk8mqFi5Q8iUzO, readonly field: true']
+    record_id formula [note: 'business desc: record_id - Formula field with computed values, technical desc: Type: formula, field ID: fldnReZK0H2VtoQG9, readonly field: true']
+    user multipleRecordLinks [note: 'business desc: user - Link field connecting to multiple records, technical desc: Type: multipleRecordLinks, Reference to users table, field ID: fldalvRvZtUAlkSA8, readonly field: false']
+    note: '### user_roles Table (airtable id: tblVWcNHhr94oDQF4) - user_roles - Table for managing user_roles information'
+}
+
+Table par_comments {
+    id autoNumber [note: 'business desc: id - Auto-incrementing number field, technical desc: Type: autoNumber, field ID: fldkG3QuKYCdunI4m, readonly field: true']
+    par_instance multipleRecordLinks [note: 'business desc: par_instance - Link field connecting to multiple records, technical desc: Type: multipleRecordLinks, Reference to pars_new_instance table, field ID: fld0KJKz6CiNzxu8K, readonly field: false']
+    status_change_ref multipleRecordLinks [note: 'business desc: status_change_ref - Link field connecting to multiple records, technical desc: Type: multipleRecordLinks, Reference to status_pars_tracking table, field ID: fld2lzEGzUgOd6u6q, readonly field: false']
+    parent_comment multipleRecordLinks [note: 'business desc: parent_comment - Link field connecting to multiple records, technical desc: Type: multipleRecordLinks, Reference to par_comments table, field ID: fld40d76bKpZyxbBi, readonly field: false']
+    comment_type singleSelect [note: 'business desc: comment_type - Selection field with predefined options, technical desc: Type: singleSelect, Options: question, clarification, status_related, general_feedback, client_follow_up, field ID: fldVN8wduvsIpgyHw, readonly field: false']
+    content multilineText [note: 'business desc: content - Text field for storing multi-line content, technical desc: Type: multilineText, field ID: fldsQr0HGrDCghLmX, readonly field: false']
+    commented_by_user multipleRecordLinks [note: 'business desc: commented_by_user - Link field connecting to multiple records, technical desc: Type: multipleRecordLinks, Reference to users table, field ID: fldu3aCnYA9rnWct3, readonly field: false']
+    is_from_client checkbox [note: 'business desc: is_from_client - Boolean field for true/false values, technical desc: Type: checkbox, field ID: fldd50c4rDPoiHoPu, readonly field: false']
+    attachments multipleAttachments [note: 'business desc: attachments - Field for storing attachments data, technical desc: Type: multipleAttachments, field ID: fldpD1THVRzuG9NR2, readonly field: false']
+    comment_required checkbox [note: 'business desc: comment_required - Boolean field for true/false values, technical desc: Type: checkbox, field ID: fldTqHF9uB5LsS7jt, readonly field: false']
+    record_id formula [note: 'business desc: record_id - Formula field with computed values, technical desc: Type: formula, field ID: fld1BQBaNVjFVnwNu, readonly field: true']
+    created createdTime [note: 'business desc: created - System field recording creation timestamp, technical desc: Type: createdTime, field ID: fldO5z63NW5zTP4Sw, readonly field: true']
+    last_modified lastModifiedTime [note: 'business desc: last_modified - System field recording last modification, technical desc: Type: lastModifiedTime, field ID: fldluCzhWtzflLv2H, readonly field: true']
+    last_modified_by lastModifiedBy [note: 'business desc: last_modified_by - System field recording last modifier, technical desc: Type: lastModifiedBy, field ID: fldi5vrOl5po84FbK, readonly field: true']
+    From_field_parent_comment multipleRecordLinks [note: 'business desc: From_field_parent_comment - Link field connecting to multiple records, technical desc: Type: multipleRecordLinks, Reference to par_comments table, field ID: fldfBiOnO2WzVThhI, readonly field: false']
+    note: '### par_comments Table (airtable id: tbluL4PjOHNFs04m1) - par_comments - Table for managing par_comments information'
+}
+
+Ref: clients.pars_new_instance < pars_new_instance.client_id
+Ref: clients.client_specific_fields < client_specific_fields.client
+Ref: clients.user_roles < user_roles.client
+Ref: clients.users <> users.clients
+Ref: pars.pars_new_instance < pars_new_instance.par_template_id
+Ref: pars.users <> users.pars
+Ref: pars_new_instance.status_pars_tracking < status_pars_tracking.par_instance
+Ref: pars_new_instance.client_specific_values < client_specific_values.par_instance
+Ref: pars_new_instance.users <> users.pars_new_instance
+Ref: pars_new_instance.par_comments < par_comments.par_instance
+Ref: status_pars_tracking.par_comments < par_comments.status_change_ref
+Ref: client_specific_fields.client_specific_values < client_specific_values.custom_field
+Ref: users.user_roles < user_roles.user
+Ref: users.par_comments < par_comments.commented_by_user
+Ref: roles.user_roles < user_roles.role
+Ref: par_comments.parent_comment > par_comments.From_field_parent_comment

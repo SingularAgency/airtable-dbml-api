@@ -1,0 +1,53 @@
+Table source_documents {
+    name singleLineText [note: 'business desc: Stores the name of a person or item., technical desc: Type: singleLineText, field ID: fldbUvP3cBdvfNj93']
+    document_photo multipleAttachments [note: 'business desc: A digital image of the document., technical desc: Type: multipleAttachments, field ID: fldyEbeV9CwKxSVuv']
+    attachment_style multipleAttachments [note: 'business desc: Describes the attachment style of a customer/user. Stores a category like secure, anxious, etc., technical desc: Type: multipleAttachments, field ID: fldkEzCseu4rPhdSR']
+    cv multipleAttachments [note: 'business desc: Curriculum vitae; stores applicants resume., technical desc: Type: multipleAttachments, field ID: fldS8yo3b7jdDyxYZ']
+    extracted_cv_text aiText [note: 'business desc: Extracts and displays the full text from the CV document., technical desc: Type: aiText, field ID: fldQDRQxEnOLN28AK']
+    cv_topic_analysis aiText [note: 'business desc: Analyzes the extracted CV text to identify the main topics covered., technical desc: Type: aiText, field ID: fld1mMGGOKLD5LbU1']
+    full_text aiText [note: 'business desc: Extracts the full text from the document attachments in the attachment_style column., technical desc: Type: aiText, field ID: fld568cciSzp72bnT']
+    style_dna_analysis aiText [note: 'business desc: Analyzes the text from the attachment to identify the writers style DNA, modisms, and imperfections., technical desc: Type: aiText, field ID: fldSQtTAVTWy5IHUm']
+    writing_Style_Insights aiText [note: 'business desc: Analyzes writing style for content improvement. Stores insights like tone, clarity, and voice., technical desc: Type: aiText, field ID: fldjzl37rA1Xwf2MY']
+    topic singleSelect [note: 'business desc: The topic field stores the subject matter of a record., technical desc: Type: singleSelect, Options: Marketing, AI, Operations, field ID: fldd6Zu8jvxI7TX8f']
+    topics multipleRecordLinks [note: 'business desc: Connects records with associated topics, allowing categorization and filtering., technical desc: Type: multipleRecordLinks, Reference to topics table, field ID: fldealEbYhzQSkZZU']
+    document_word_count formula [note: 'business desc: Number of words in a document., technical desc: Type: formula, field ID: fldLVpyKK8Ir7ZqkE']
+    draft_count count [note: 'business desc: Number of draft versions for a document., technical desc: Type: count, field ID: fldXJK31lNKHQuY4X']
+    drafts multipleRecordLinks [note: 'business desc: This relationship connects documents with their draft versions. It tracks revisions., technical desc: Type: multipleRecordLinks, Reference to drafts table, field ID: fldS1S01tG0rHw4MN']
+    related_drafts rollup [note: 'business desc: List of draft documents related to the record., technical desc: Type: rollup, field ID: flduP8iMQkd4IAHIs']
+    suggested_improvements aiText [note: 'business desc: User suggestions for product/service enhancements. Text-based feedback., technical desc: Type: aiText, field ID: fldAOOWEYvgBvSNEK']
+    Style_DNA multilineText [note: 'business desc: A unique identifier representing a products style characteristics., technical desc: Type: multilineText, field ID: fldMRId1rk4HLDGOX']
+    note: '### source_documents Table (airtable id: tblxZs8QX5OvDX0Kh) - The `source_documents` table stores raw data from various sources, used for processing and analysis. It holds the original, unprocessed documents.'
+}
+
+Table drafts {
+    name singleLineText [note: 'business desc: Stores the name of a person or entity., technical desc: Type: singleLineText, field ID: fldF8a3YjSRXbBCtt']
+    source_document multipleRecordLinks [note: 'business desc: This relationship connects a record to its source document, providing context and provenance., technical desc: Type: multipleRecordLinks, Reference to source_documents table, field ID: fldZ19Nyhfk9keVjs']
+    style_dna_analysis multipleLookupValues [note: 'business desc: Analysis of a customers style preferences for personalized recommendations., technical desc: Type: multipleLookupValues, field ID: fldRIycBcErAhOGOp']
+    draft_status singleSelect [note: 'business desc: Indicates the current status of a draft document (e.g., pending, approved)., technical desc: Type: singleSelect, Options: Idea, In Review, Published, field ID: fldQ88MTY0NjB4jQi']
+    prompt_seed multilineText [note: 'business desc: Initial text or instructions for a task or process., technical desc: Type: multilineText, field ID: fldDmxamJ34o7ivMB']
+    ai_generated_content aiText [note: 'business desc: AI-generated text/content., technical desc: Type: aiText, field ID: fldomZBKauMIb74J8']
+    type_of_writing singleSelect [note: 'business desc: Indicates the style of writing (e.g., report, memo)., technical desc: Type: singleSelect, Options: Article, Eassey, Novel, Techical article, field ID: fldTh8f1oDqGecxVT']
+    style_match_score number [note: 'business desc: A score from 1 to 5 indicating how closely the AI Generated Content matches the Style DNA Analysis., technical desc: Type: number, field ID: fldO3pzGl7vC9GmE0']
+    style_dna multipleLookupValues [note: 'business desc: A unique identifier for a products design characteristics., technical desc: Type: multipleLookupValues, field ID: fldiLMqmSzJKAxsV2']
+    writing_style_insights multipleLookupValues [note: 'business desc: Analyzes writing style, providing insights. Stores descriptive data., technical desc: Type: multipleLookupValues, field ID: fldlJVhnBurIXS1jX']
+    topic multipleLookupValues [note: 'business desc: The topic field stores the subject matter of a record., technical desc: Type: multipleLookupValues, field ID: fldP5NK7HPkDdsSGH']
+    draft_age formula [note: 'business desc: Age at which a draft eligible player becomes a professional., technical desc: Type: formula, field ID: fldVg8EapM5ux6r56']
+    status_change_date lastModifiedTime [note: 'business desc: Date of a status change in a record. Stores a date/time value., technical desc: Type: lastModifiedTime, field ID: fld2BiVUZTH8jGBMH']
+    style_consistency formula [note: 'business desc: Indicates how well a products design adheres to brand guidelines. Stores a rating or score., technical desc: Type: formula, field ID: fldEnVbQZHu9Uty6S']
+    draft_summary aiText [note: 'business desc: A concise summary of a draft document. Stores text., technical desc: Type: aiText, field ID: fld5KTbEvReCIbzrt']
+    improvement_suggestions aiText [note: 'business desc: User suggestions for product or service improvements. Text-based feedback., technical desc: Type: aiText, field ID: fldxP9LihHl7fznMj']
+    note: '### drafts Table (airtable id: tblNuKMRB8ZuCV2mx) - The drafts table stores unfinished documents, projects, or content awaiting finalization. It holds data needed for later revision and publication.'
+}
+
+Table topics {
+    topic_name singleLineText [note: 'business desc: The topic name field stores the subject matter of a record., technical desc: Type: singleLineText, field ID: fldtiWKlBfmbS6de9']
+    topic_description multilineText [note: 'business desc: A detailed description of the topics subject matter., technical desc: Type: multilineText, field ID: fld7JMPfCCLGkXqaI']
+    source_documents multipleRecordLinks [note: 'business desc: This field connects records, linking documents to their source. Provides context for the document., technical desc: Type: multipleRecordLinks, Reference to source_documents table, field ID: fldxyw3mkFeq5THr7']
+    total_source_documents formula [note: 'business desc: Muestra la cantidad total de documentos fuente vinculados a este tema., technical desc: Type: formula, field ID: fldGUhsWXToSceBbU']
+    Count__Source_Documents count [note: 'business desc: Number of source documents processed., technical desc: Type: count, field ID: fldlQUSBybeAyhSM6']
+    Document_Word_Count_Rollup__from_Source_Documents rollup [note: 'business desc: Total word count of documents from source documents, aggregated., technical desc: Type: rollup, field ID: fldFFFLAhkLSWIOlx']
+    note: '### topics Table (airtable id: tbl6YuhPy5vOKK2oO) - The topics table stores categories of information for the business, enabling organization and retrieval of related data.'
+}
+
+Ref: source_documents.topics > topics.source_documents
+Ref: source_documents.drafts < drafts.source_document

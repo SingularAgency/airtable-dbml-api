@@ -1,0 +1,53 @@
+Table source_documents {
+    name singleLineText [note: 'business desc: name information., technical desc: Type: singleLineText, field ID: fldbUvP3cBdvfNj93, readonly field: false']
+    document_photo multipleAttachments [note: 'business desc: document photo information., technical desc: Type: multipleAttachments, field ID: fldyEbeV9CwKxSVuv, readonly field: false']
+    attachment_style multipleAttachments [note: 'business desc: attachment style information., technical desc: Type: multipleAttachments, field ID: fldkEzCseu4rPhdSR, readonly field: false']
+    cv multipleAttachments [note: 'business desc: cv information., technical desc: Type: multipleAttachments, field ID: fldS8yo3b7jdDyxYZ, readonly field: false']
+    extracted_cv_text aiText [note: 'business desc: Extracts and displays the full text from the CV document., technical desc: Type: aiText, field ID: fldQDRQxEnOLN28AK, readonly field: false']
+    cv_topic_analysis aiText [note: 'business desc: Analyzes the extracted CV text to identify the main topics covered., technical desc: Type: aiText, field ID: fld1mMGGOKLD5LbU1, readonly field: false']
+    full_text aiText [note: 'business desc: Extracts the full text from the document attachments in the attachment_style column., technical desc: Type: aiText, field ID: fld568cciSzp72bnT, readonly field: false']
+    style_dna_analysis aiText [note: 'business desc: Analyzes the text from the attachment to identify the writers style DNA, modisms, and imperfections., technical desc: Type: aiText, field ID: fldSQtTAVTWy5IHUm, readonly field: false']
+    writing_Style_Insights aiText [note: 'business desc: writing Style Insights information., technical desc: Type: aiText, field ID: fldjzl37rA1Xwf2MY, readonly field: false']
+    topic singleSelect [note: 'business desc: topic information., technical desc: Type: singleSelect, Options: Marketing, AI, Operations, field ID: fldd6Zu8jvxI7TX8f, readonly field: false']
+    topics multipleRecordLinks [note: 'business desc: Generated description not available due to API limitations., technical desc: Type: multipleRecordLinks, Reference to topics table, field ID: fldealEbYhzQSkZZU, readonly field: false']
+    document_word_count formula [note: 'business desc: document word count information., technical desc: Type: formula, field ID: fldLVpyKK8Ir7ZqkE, readonly field: true']
+    draft_count count [note: 'business desc: draft count information., technical desc: Type: count, field ID: fldXJK31lNKHQuY4X, readonly field: true']
+    drafts multipleRecordLinks [note: 'business desc: Generated description not available due to API limitations., technical desc: Type: multipleRecordLinks, Reference to drafts table, field ID: fldS1S01tG0rHw4MN, readonly field: false']
+    related_drafts rollup [note: 'business desc: related drafts information., technical desc: Type: rollup, field ID: flduP8iMQkd4IAHIs, readonly field: true']
+    suggested_improvements aiText [note: 'business desc: suggested improvements information., technical desc: Type: aiText, field ID: fldAOOWEYvgBvSNEK, readonly field: false']
+    Style_DNA multilineText [note: 'business desc: Style DNA information., technical desc: Type: multilineText, field ID: fldMRId1rk4HLDGOX, readonly field: false']
+    note: '### source_documents Table (airtable id: tblxZs8QX5OvDX0Kh) - Table storing source documents data.'
+}
+
+Table drafts {
+    name singleLineText [note: 'business desc: name information., technical desc: Type: singleLineText, field ID: fldF8a3YjSRXbBCtt, readonly field: false']
+    source_document multipleRecordLinks [note: 'business desc: Generated description not available due to API limitations., technical desc: Type: multipleRecordLinks, Reference to source_documents table, field ID: fldZ19Nyhfk9keVjs, readonly field: false']
+    style_dna_analysis multipleLookupValues [note: 'business desc: style dna analysis information., technical desc: Type: multipleLookupValues, field ID: fldRIycBcErAhOGOp, readonly field: true']
+    draft_status singleSelect [note: 'business desc: draft status information., technical desc: Type: singleSelect, Options: Idea, In Review, Published, field ID: fldQ88MTY0NjB4jQi, readonly field: false']
+    prompt_seed multilineText [note: 'business desc: prompt seed information., technical desc: Type: multilineText, field ID: fldDmxamJ34o7ivMB, readonly field: false']
+    ai_generated_content aiText [note: 'business desc: ai generated content information., technical desc: Type: aiText, field ID: fldomZBKauMIb74J8, readonly field: false']
+    type_of_writing singleSelect [note: 'business desc: type of writing information., technical desc: Type: singleSelect, Options: Article, Eassey, Novel, Techical article, field ID: fldTh8f1oDqGecxVT, readonly field: false']
+    style_match_score number [note: 'business desc: A score from 1 to 5 indicating how closely the AI Generated Content matches the Style DNA Analysis., technical desc: Type: number, field ID: fldO3pzGl7vC9GmE0, readonly field: false']
+    style_dna multipleLookupValues [note: 'business desc: style dna information., technical desc: Type: multipleLookupValues, field ID: fldiLMqmSzJKAxsV2, readonly field: true']
+    writing_style_insights multipleLookupValues [note: 'business desc: writing style insights information., technical desc: Type: multipleLookupValues, field ID: fldlJVhnBurIXS1jX, readonly field: true']
+    topic multipleLookupValues [note: 'business desc: topic information., technical desc: Type: multipleLookupValues, field ID: fldP5NK7HPkDdsSGH, readonly field: true']
+    draft_age formula [note: 'business desc: draft age information., technical desc: Type: formula, field ID: fldVg8EapM5ux6r56, readonly field: true']
+    status_change_date lastModifiedTime [note: 'business desc: status change date information., technical desc: Type: lastModifiedTime, field ID: fld2BiVUZTH8jGBMH, readonly field: true']
+    style_consistency formula [note: 'business desc: style consistency information., technical desc: Type: formula, field ID: fldEnVbQZHu9Uty6S, readonly field: true']
+    draft_summary aiText [note: 'business desc: draft summary information., technical desc: Type: aiText, field ID: fld5KTbEvReCIbzrt, readonly field: false']
+    improvement_suggestions aiText [note: 'business desc: improvement suggestions information., technical desc: Type: aiText, field ID: fldxP9LihHl7fznMj, readonly field: false']
+    note: '### drafts Table (airtable id: tblNuKMRB8ZuCV2mx) - Table storing drafts data.'
+}
+
+Table topics {
+    topic_name singleLineText [note: 'business desc: topic name information., technical desc: Type: singleLineText, field ID: fldtiWKlBfmbS6de9, readonly field: false']
+    topic_description multilineText [note: 'business desc: topic description information., technical desc: Type: multilineText, field ID: fld7JMPfCCLGkXqaI, readonly field: false']
+    source_documents multipleRecordLinks [note: 'business desc: Generated description not available due to API limitations., technical desc: Type: multipleRecordLinks, Reference to source_documents table, field ID: fldxyw3mkFeq5THr7, readonly field: false']
+    total_source_documents formula [note: 'business desc: Muestra la cantidad total de documentos fuente vinculados a este tema., technical desc: Type: formula, field ID: fldGUhsWXToSceBbU, readonly field: true']
+    Count__Source_Documents count [note: 'business desc: Count (Source Documents) information., technical desc: Type: count, field ID: fldlQUSBybeAyhSM6, readonly field: true']
+    Document_Word_Count_Rollup__from_Source_Documents rollup [note: 'business desc: Document Word Count Rollup (from Source Documents) information., technical desc: Type: rollup, field ID: fldFFFLAhkLSWIOlx, readonly field: true']
+    note: '### topics Table (airtable id: tbl6YuhPy5vOKK2oO) - Table storing topics data.'
+}
+
+Ref: source_documents.topics > topics.source_documents
+Ref: source_documents.drafts < drafts.source_document

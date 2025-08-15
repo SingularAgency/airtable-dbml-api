@@ -1,0 +1,766 @@
+{
+  "tables": [
+    {
+      "id": "tblTdsdmU6AEMDI2w",
+      "name": "sales_prep",
+      "primaryFieldId": "fldgyUKj5nyJBIbRS",
+      "fields": [
+        {
+          "type": "singleLineText",
+          "id": "fldgyUKj5nyJBIbRS",
+          "name": "sales_rep_name"
+        },
+        {
+          "type": "singleLineText",
+          "id": "fldVnysHGAN9yHYX7",
+          "name": "primary_contact_name"
+        },
+        {
+          "type": "email",
+          "id": "fldlBkP7iEC92Tbvv",
+          "name": "contact_email"
+        },
+        {
+          "type": "phoneNumber",
+          "id": "fld7vRmOGZPG864d2",
+          "name": "contact_phone"
+        },
+        {
+          "type": "singleSelect",
+          "options": {
+            "choices": [
+              {
+                "id": "selJJWogMSmKFeI4U",
+                "name": "K-12",
+                "color": "blueLight2"
+              },
+              {
+                "id": "selMjFgUGnO7B5BoF",
+                "name": "HigherEd",
+                "color": "cyanLight2"
+              },
+              {
+                "id": "selrZSWtTFC269Mbg",
+                "name": "Corporate Training",
+                "color": "tealLight2"
+              }
+            ]
+          },
+          "id": "fld3fGg2xgGEsZeOa",
+          "name": "sector"
+        },
+        {
+          "type": "aiText",
+          "options": {
+            "referencedFieldIds": [
+              "fldgyUKj5nyJBIbRS"
+            ],
+            "prompt": [
+              "You are a professional researcher specializing in gathering information about sales representatives from LinkedIn.\n\nSearch the internet for the sales representative's LinkedIn profile using the name provided. Gather relevant professional details such as current position, company, and any notable achievements.\n\nOutput the information as a concise note in plain text, without any additional text or formatting. If you cannot find any information, output \"No LinkedIn information found.\"\n\nContext and Data:\nSales Representative Name: ",
+              {
+                "field": {
+                  "fieldId": "fldgyUKj5nyJBIbRS"
+                }
+              },
+              "\n\nOutput:"
+            ]
+          },
+          "id": "fldSki7Ck4AIjjDRE",
+          "name": "notes",
+          "description": "Generates notes about the sales representative by searching LinkedIn for additional information."
+        },
+        {
+          "type": "multipleAttachments",
+          "options": {
+            "isReversed": false
+          },
+          "id": "fldayI7iXUnWtnNHE",
+          "name": "Attachments"
+        },
+        {
+          "type": "aiText",
+          "options": {
+            "referencedFieldIds": [
+              "fldayI7iXUnWtnNHE"
+            ],
+            "prompt": [
+              "You are a professional document analyst specializing in summarizing content from various file types. Your task is to extract key points and provide a concise summary of the content found in the attached files. Ensure that the summary captures the main ideas and any important details without including unnecessary information.\n\nAnalyze the content of the attached files to identify the main themes and significant details. Summarize these points clearly and concisely, ensuring that the summary is informative and relevant to the document's purpose.\n\nFormat your response as plain text, keeping it concise and to the point. If you cannot summarize the content, output \"Unable to summarize the content.\" Example: \"The document discusses the impact of climate change on polar bears, highlighting the loss of habitat and food sources.\" (Real examples should be longer and more detailed.)\n\nFiles:\n",
+              {
+                "field": {
+                  "fieldId": "fldayI7iXUnWtnNHE"
+                }
+              }
+            ]
+          },
+          "id": "fldFtvxbqVS97WT4n",
+          "name": "Attachment Summary",
+          "description": "An AI generated summary of the Attachments field. Upload files to Attachments to generate a summary."
+        },
+        {
+          "type": "multipleRecordLinks",
+          "options": {
+            "linkedTableId": "tblwFTawNSJitdQtj",
+            "isReversed": false,
+            "prefersSingleRecordLink": false,
+            "inverseLinkFieldId": "fldjdqg3k8mrWrU7r"
+          },
+          "id": "fldtHm7F1ffW1FHxD",
+          "name": "rfps"
+        },
+        {
+          "type": "multipleLookupValues",
+          "options": {
+            "isValid": true,
+            "recordLinkFieldId": "fldtHm7F1ffW1FHxD",
+            "fieldIdInLinkedTable": "fldZE8C6lsxeHQy6c",
+            "result": {
+              "type": "singleSelect",
+              "options": {
+                "choices": [
+                  {
+                    "id": "selma54Y57UBDtEug",
+                    "name": "Yes",
+                    "color": "greenBright"
+                  },
+                  {
+                    "id": "selYV5x9BDMN0IaOv",
+                    "name": "No",
+                    "color": "purpleLight1"
+                  },
+                  {
+                    "id": "sely7Q0cpohPDd1Pw",
+                    "name": "Monitor",
+                    "color": "yellowBright"
+                  },
+                  {
+                    "id": "selMocuikIgIqwwls",
+                    "name": "Needs_Clarification",
+                    "color": "grayLight1"
+                  },
+                  {
+                    "id": "sel5DlnBGsL6Fumko",
+                    "name": "Not answer",
+                    "color": "blueLight2"
+                  }
+                ]
+              }
+            }
+          },
+          "id": "fldLlw0kXs204svKd",
+          "name": "Status (from rfps)"
+        },
+        {
+          "type": "multipleLookupValues",
+          "options": {
+            "isValid": true,
+            "recordLinkFieldId": "fldtHm7F1ffW1FHxD",
+            "fieldIdInLinkedTable": "fld6nP7I9Zpj7Psi4",
+            "result": {
+              "type": "url"
+            }
+          },
+          "id": "fld7ma5acF7B2fTZn",
+          "name": "opportunity_url (from rfps)"
+        },
+        {
+          "type": "multipleLookupValues",
+          "options": {
+            "isValid": true,
+            "recordLinkFieldId": "fldtHm7F1ffW1FHxD",
+            "fieldIdInLinkedTable": "fldoUfdNOKvKlI6Ww",
+            "result": {
+              "type": "multipleAttachments",
+              "options": {
+                "isReversed": false
+              }
+            }
+          },
+          "id": "fld4oI3J6meqxFtZW",
+          "name": "rfp_base_url (from rfps)"
+        },
+        {
+          "type": "multipleLookupValues",
+          "options": {
+            "isValid": true,
+            "recordLinkFieldId": "fldtHm7F1ffW1FHxD",
+            "fieldIdInLinkedTable": "fldqrWFM2co64NIUE",
+            "result": {
+              "type": "currency",
+              "options": {
+                "precision": 2,
+                "symbol": "$"
+              }
+            }
+          },
+          "id": "fld3rVzosSsAHHuZ6",
+          "name": "estimated_value (from rfps)"
+        },
+        {
+          "type": "multipleLookupValues",
+          "options": {
+            "isValid": true,
+            "recordLinkFieldId": "fldtHm7F1ffW1FHxD",
+            "fieldIdInLinkedTable": "flddDB5r2L77wECWg",
+            "result": {
+              "type": "dateTime",
+              "options": {
+                "dateFormat": {
+                  "name": "local",
+                  "format": "l"
+                },
+                "timeFormat": {
+                  "name": "12hour",
+                  "format": "h:mma"
+                },
+                "timeZone": "client"
+              }
+            }
+          },
+          "id": "fldYx504BvCtRJDK3",
+          "name": "decision_timestamp (from rfps)"
+        },
+        {
+          "type": "multipleLookupValues",
+          "options": {
+            "isValid": true,
+            "recordLinkFieldId": "fldtHm7F1ffW1FHxD",
+            "fieldIdInLinkedTable": "fldXYhcEkk1oYOsWJ",
+            "result": {
+              "type": "date",
+              "options": {
+                "dateFormat": {
+                  "name": "local",
+                  "format": "l"
+                }
+              }
+            }
+          },
+          "id": "fld9jWfkOCT51VWRd",
+          "name": "deadline (from rfps)"
+        },
+        {
+          "type": "autoNumber",
+          "id": "fldbJ028mq5uIeRvz",
+          "name": "id"
+        },
+        {
+          "type": "formula",
+          "options": {
+            "isValid": true,
+            "formula": "RECORD_ID()",
+            "referencedFieldIds": [],
+            "result": {
+              "type": "singleLineText"
+            }
+          },
+          "id": "fldB2PYINHBkYxiiy",
+          "name": "record_id"
+        }
+      ],
+      "views": [
+        {
+          "id": "viwq4hZmT7hDX9aCF",
+          "name": "Grid view",
+          "type": "grid"
+        }
+      ]
+    },
+    {
+      "id": "tblwFTawNSJitdQtj",
+      "name": "rfps",
+      "primaryFieldId": "fldbhH9Ht8MBodZ3L",
+      "fields": [
+        {
+          "type": "singleLineText",
+          "id": "fldbhH9Ht8MBodZ3L",
+          "name": "title",
+          "description": "Short descriptive title of the RFP opportunity."
+        },
+        {
+          "type": "singleSelect",
+          "options": {
+            "choices": [
+              {
+                "id": "selma54Y57UBDtEug",
+                "name": "Yes",
+                "color": "greenBright"
+              },
+              {
+                "id": "selYV5x9BDMN0IaOv",
+                "name": "No",
+                "color": "purpleLight1"
+              },
+              {
+                "id": "sely7Q0cpohPDd1Pw",
+                "name": "Monitor",
+                "color": "yellowBright"
+              },
+              {
+                "id": "selMocuikIgIqwwls",
+                "name": "Needs_Clarification",
+                "color": "grayLight1"
+              },
+              {
+                "id": "sel5DlnBGsL6Fumko",
+                "name": "Not answer",
+                "color": "blueLight2"
+              }
+            ]
+          },
+          "id": "fldZE8C6lsxeHQy6c",
+          "name": "status",
+          "description": "Current pursuit decision for this RFP."
+        },
+        {
+          "type": "singleSelect",
+          "options": {
+            "choices": [
+              {
+                "id": "seliZAf7xITgYbxx3",
+                "name": "Pending",
+                "color": "grayLight1"
+              },
+              {
+                "id": "selqWg36cOUpLhUU9",
+                "name": "In process",
+                "color": "yellowBright"
+              },
+              {
+                "id": "selQfS0cjrwmEGr7U",
+                "name": "Finished",
+                "color": "greenBright"
+              }
+            ]
+          },
+          "id": "fldTxGlv4PBtERB11",
+          "name": "procurement_process"
+        },
+        {
+          "type": "singleSelect",
+          "options": {
+            "choices": [
+              {
+                "id": "selKl7nk2hk3FFLpn",
+                "name": "Pending",
+                "color": "blueLight2"
+              },
+              {
+                "id": "selv5S8DNC62DJVdI",
+                "name": "Email sent",
+                "color": "cyanLight2"
+              }
+            ]
+          },
+          "id": "fldRlquhZaNjIakBw",
+          "name": "notify",
+          "description": "Send a notification"
+        },
+        {
+          "type": "multipleRecordLinks",
+          "options": {
+            "linkedTableId": "tblTdsdmU6AEMDI2w",
+            "isReversed": false,
+            "prefersSingleRecordLink": true,
+            "inverseLinkFieldId": "fldtHm7F1ffW1FHxD"
+          },
+          "id": "fldjdqg3k8mrWrU7r",
+          "name": "sales_rep",
+          "description": "Sales Rep related"
+        },
+        {
+          "type": "multipleLookupValues",
+          "options": {
+            "isValid": true,
+            "recordLinkFieldId": "fldjdqg3k8mrWrU7r",
+            "fieldIdInLinkedTable": "fldgyUKj5nyJBIbRS",
+            "result": {
+              "type": "singleLineText"
+            }
+          },
+          "id": "fld1EJRHHEhxbAXYM",
+          "name": "sales_rep_name (from sales_rep)"
+        },
+        {
+          "type": "multipleLookupValues",
+          "options": {
+            "isValid": true,
+            "recordLinkFieldId": "fldjdqg3k8mrWrU7r",
+            "fieldIdInLinkedTable": "fldVnysHGAN9yHYX7",
+            "result": {
+              "type": "singleLineText"
+            }
+          },
+          "id": "fldzGzcsE6Pmd1NG8",
+          "name": "primary_contact_name (from sales_rep)"
+        },
+        {
+          "type": "multipleLookupValues",
+          "options": {
+            "isValid": true,
+            "recordLinkFieldId": "fldjdqg3k8mrWrU7r",
+            "fieldIdInLinkedTable": "fldayI7iXUnWtnNHE",
+            "result": {
+              "type": "multipleAttachments",
+              "options": {
+                "isReversed": false
+              }
+            }
+          },
+          "id": "fldXwr7QsvHIuV6pp",
+          "name": "Attachments (from sales_rep)"
+        },
+        {
+          "type": "multipleLookupValues",
+          "options": {
+            "isValid": true,
+            "recordLinkFieldId": "fldjdqg3k8mrWrU7r",
+            "fieldIdInLinkedTable": "fld9jWfkOCT51VWRd",
+            "result": {
+              "type": "date",
+              "options": {
+                "dateFormat": {
+                  "name": "local",
+                  "format": "l"
+                }
+              }
+            }
+          },
+          "id": "fldQnN27q8U3H10xT",
+          "name": "deadline (from rfps) (from sales_rep)"
+        },
+        {
+          "type": "url",
+          "id": "fld6nP7I9Zpj7Psi4",
+          "name": "opportunity_url",
+          "description": "External link to the official solicitation or bid portal."
+        },
+        {
+          "type": "multipleAttachments",
+          "options": {
+            "isReversed": false
+          },
+          "id": "fldoUfdNOKvKlI6Ww",
+          "name": "rfp_base",
+          "description": "Link to the generated base RFP document or template."
+        },
+        {
+          "type": "aiText",
+          "options": {
+            "referencedFieldIds": [
+              "fldoUfdNOKvKlI6Ww",
+              "fldZE8C6lsxeHQy6c"
+            ],
+            "prompt": [
+              "You are a data extraction specialist tasked with extracting specific information from RFP documents and supplementing missing details with internet research.\n\nExtract the following information from the RFP base attachment: Title and Number of RFP, Name of School District, City, State, District Size, Number of Students, Number of Schools, Size (categorized as Small, Medium, Large), State Level, Individual School, RFP Due Date with Time Zone, Q&A Due Date with Time Zone, Term of Contract, Reference Requirements, and Keywords. If any information is missing, search the internet to find it and include the source of the information. Only execute this task if the status is 'Yes'.\n\nOutput the extracted and supplemented information as a JSON object with key:value pairs. Ensure the JSON is concise and only includes the necessary information. If you cannot complete the request, output \"Unable to generate JSON.\" Do not include any additional text or formatting beyond the JSON structure.\n\nContext and Data:\nRFP Base: ",
+              {
+                "field": {
+                  "fieldId": "fldoUfdNOKvKlI6Ww"
+                }
+              },
+              "\nStatus: ",
+              {
+                "field": {
+                  "fieldId": "fldZE8C6lsxeHQy6c"
+                }
+              },
+              "\n\nOutput:"
+            ]
+          },
+          "id": "fldg2S1jRAimCTSCL",
+          "name": "rfp_info_extract",
+          "description": "Generates a customized RFP document based on the RFP base, sales representative name, primary contact name, and deadline."
+        },
+        {
+          "type": "currency",
+          "options": {
+            "precision": 2,
+            "symbol": "$"
+          },
+          "id": "fldqrWFM2co64NIUE",
+          "name": "estimated_value",
+          "description": "Estimated contract value if awarded."
+        },
+        {
+          "type": "createdTime",
+          "options": {
+            "result": {
+              "type": "dateTime",
+              "options": {
+                "dateFormat": {
+                  "name": "local",
+                  "format": "l"
+                },
+                "timeFormat": {
+                  "name": "12hour",
+                  "format": "h:mma"
+                },
+                "timeZone": "client"
+              }
+            }
+          },
+          "id": "flddDB5r2L77wECWg",
+          "name": "decision_timestamp"
+        },
+        {
+          "type": "date",
+          "options": {
+            "dateFormat": {
+              "name": "us",
+              "format": "M/D/YYYY"
+            }
+          },
+          "id": "fldXYhcEkk1oYOsWJ",
+          "name": "deadline",
+          "description": "Submission deadline date for the RFP."
+        },
+        {
+          "type": "multilineText",
+          "id": "fldESVs975fUP6346",
+          "name": "internal_notes",
+          "description": "Additional context, strategy, or risk flags related to this RFP."
+        },
+        {
+          "type": "aiText",
+          "options": {
+            "referencedFieldIds": [
+              "fldESVs975fUP6346"
+            ],
+            "prompt": [
+              "You are a risk assessment analyst specializing in identifying potential risks in project proposals. Your task is to analyze internal notes to extract and highlight any risk flags that may impact the RFP process.\n\nTask description:\nReview the internal notes carefully to identify any statements or information that suggest potential risks. Consider factors such as deadlines, resource availability, compliance issues, or any other concerns that could affect the RFP. Summarize these risk flags in a concise manner.\n\nOutput format:\nList the identified risk flags as bullet points, each starting with a dash. If no risks are identified, output \"No risk flags identified.\" Do not include any additional text or explanations.\n\nContext and Data:\nInternal Notes: ",
+              {
+                "field": {
+                  "fieldId": "fldESVs975fUP6346"
+                }
+              },
+              "\n\nOutput:\n"
+            ]
+          },
+          "id": "fldEEn4FYcLkx5gLu",
+          "name": "risk_flags",
+          "description": "Generates risk flags related to the RFP based on the internal notes."
+        },
+        {
+          "type": "formula",
+          "options": {
+            "isValid": true,
+            "formula": "RECORD_ID()",
+            "referencedFieldIds": [],
+            "result": {
+              "type": "singleLineText"
+            }
+          },
+          "id": "fldSSWtEuACvWcncC",
+          "name": "record_id"
+        },
+        {
+          "type": "multipleAttachments",
+          "options": {
+            "isReversed": false
+          },
+          "id": "fldUlccvKD57jETN7",
+          "name": "Attachments"
+        },
+        {
+          "type": "aiText",
+          "options": {
+            "referencedFieldIds": [
+              "fldUlccvKD57jETN7"
+            ],
+            "prompt": [
+              "You are a professional document analyst specializing in summarizing content from various file types. Your task is to extract key points and provide a concise summary of the content found in the attached files. Ensure that the summary captures the main ideas and any important details without including unnecessary information.\n\nAnalyze the content of the attached files to identify the main themes and significant details. Summarize these points clearly and concisely, ensuring that the summary is informative and relevant to the document's purpose.\n\nFormat your response as plain text, keeping it concise and to the point. If you cannot summarize the content, output \"Unable to summarize the content.\" Example: \"The document discusses the impact of climate change on polar bears, highlighting the loss of habitat and food sources.\" (Real examples should be longer and more detailed.)\n\nFiles:\n",
+              {
+                "field": {
+                  "fieldId": "fldUlccvKD57jETN7"
+                }
+              }
+            ]
+          },
+          "id": "fld2F9EGku383x1sT",
+          "name": "Attachment Summary",
+          "description": "An AI generated summary of the Attachments field. Upload files to Attachments to generate a summary."
+        }
+      ],
+      "views": [
+        {
+          "id": "viwGu8iv6Kwz6mnAu",
+          "name": "Grid view",
+          "type": "grid"
+        },
+        {
+          "id": "viwtDXoOwE512FEQF",
+          "name": "Emails sent",
+          "type": "grid"
+        },
+        {
+          "id": "viwJOVUeIYf59HVim",
+          "name": "RFPs Accepted",
+          "type": "grid"
+        }
+      ]
+    },
+    {
+      "id": "tbl0e25zWJujBlVQZ",
+      "name": "RYE Consulting Project",
+      "primaryFieldId": "fldaaMXpv340H4igA",
+      "fields": [
+        {
+          "type": "singleLineText",
+          "id": "fldaaMXpv340H4igA",
+          "name": "Name"
+        },
+        {
+          "type": "singleLineText",
+          "id": "fldERB0FiMtFR2Or0",
+          "name": "File Path"
+        },
+        {
+          "type": "button",
+          "id": "fldJDT5HhZNTDePS2",
+          "name": "Open in Google Drive"
+        },
+        {
+          "type": "multipleAttachments",
+          "options": {
+            "isReversed": true
+          },
+          "id": "fld5xDh2I4RHQfZN5",
+          "name": "Thumbnail"
+        },
+        {
+          "type": "multipleAttachments",
+          "options": {
+            "isReversed": true
+          },
+          "id": "fld3Nuhl1y5BLAVI5",
+          "name": "File Content"
+        },
+        {
+          "type": "dateTime",
+          "options": {
+            "dateFormat": {
+              "name": "local",
+              "format": "l"
+            },
+            "timeFormat": {
+              "name": "12hour",
+              "format": "h:mma"
+            },
+            "timeZone": "client"
+          },
+          "id": "fldyilqaLznv2JyVn",
+          "name": "Created"
+        },
+        {
+          "type": "dateTime",
+          "options": {
+            "dateFormat": {
+              "name": "local",
+              "format": "l"
+            },
+            "timeFormat": {
+              "name": "12hour",
+              "format": "h:mma"
+            },
+            "timeZone": "client"
+          },
+          "id": "fldJ5BAHOgFabcbjx",
+          "name": "Last Viewed By Me"
+        },
+        {
+          "type": "dateTime",
+          "options": {
+            "dateFormat": {
+              "name": "local",
+              "format": "l"
+            },
+            "timeFormat": {
+              "name": "12hour",
+              "format": "h:mma"
+            },
+            "timeZone": "client"
+          },
+          "id": "fldMRNKV3wocr5qw8",
+          "name": "Last Modified"
+        },
+        {
+          "type": "singleLineText",
+          "id": "fldQSjXF3uEr73YP4",
+          "name": "Last Modified By"
+        },
+        {
+          "type": "singleLineText",
+          "id": "fldvuPLHKBl4oRcqz",
+          "name": "File Owner(s)"
+        },
+        {
+          "type": "singleSelect",
+          "options": {
+            "choices": [
+              {
+                "id": "selAFS3H1eIh0CZlg",
+                "name": "png",
+                "color": "blueLight2"
+              }
+            ]
+          },
+          "id": "fldqDkCZmGDtBHYxK",
+          "name": "File Type"
+        },
+        {
+          "type": "number",
+          "options": {
+            "precision": 0
+          },
+          "id": "flduJiBVS947d6D2J",
+          "name": "File Size (in bytes)"
+        },
+        {
+          "type": "singleLineText",
+          "id": "fldcHq7ChdQsFE90P",
+          "name": "Parent Folder"
+        },
+        {
+          "type": "url",
+          "id": "fldrXZR4O8AH7oJra",
+          "name": "Link"
+        },
+        {
+          "type": "singleLineText",
+          "id": "fldFIN4UaROGtp8wg",
+          "name": "File ID"
+        },
+        {
+          "type": "aiText",
+          "options": {
+            "referencedFieldIds": [
+              "fld3Nuhl1y5BLAVI5"
+            ],
+            "prompt": [
+              "You are an expert document analyst tasked with reviewing file attachments to extract a concise and relevant title that best summarizes the main subject or purpose. Maintain a professional and objective tone, ensuring the title is informative and clear.\n\nTask description:\nCarefully examine the attached file(s) for key phrases, headings, or content that indicate the primary topic, objective, or main focus. If there are multiple files, select a title that accurately represents the overarching theme or purpose shared among them. The title should be brief, specific, and informative, avoiding generic terms or redundancy. If a clear title cannot be identified, use your judgment to create the most representative one possible.\n\nOutput format:\nOutput a single, concise title in plain text containing only the relevant keywords or phrase. Do not include any additional text, explanations, the file name, or formatting. If no reasonable title can be generated from the file(s), output \"Unable to determine title from file content.\" Example: \"Employee Onboarding Checklist\" (real examples may vary in length/content depending on the file subject).\n\nContext and Data:\nFile Content: ",
+              {
+                "field": {
+                  "fieldId": "fld3Nuhl1y5BLAVI5"
+                }
+              },
+              "\n\nOutput:\n"
+            ]
+          },
+          "id": "fldHgjsUktcToAorE",
+          "name": "Extracted Title (File Content)"
+        }
+      ],
+      "views": [
+        {
+          "id": "viwq9C1YadRFiKOG5",
+          "name": "Grid view",
+          "type": "grid"
+        },
+        {
+          "id": "viwf520aMM6nRK5I7",
+          "name": "Gallery",
+          "type": "gallery"
+        }
+      ]
+    }
+  ]
+}

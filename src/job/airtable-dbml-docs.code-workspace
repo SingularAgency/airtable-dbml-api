@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "../.."
+		},
+		{
+			"path": "../../../../airtable-dbml-web"
+		}
+	],
+	"settings": {}
+}

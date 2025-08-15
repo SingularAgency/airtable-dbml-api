@@ -1,0 +1,2616 @@
+{
+  "tables": [
+    {
+      "id": "tblkmpqL98s7MydEh",
+      "name": "project_brief",
+      "description": "This table consolidates all necessary data for evaluating and processing campaign briefs submitted by clients. It includes contact information, campaign details, target demographics, media preferences, geography targeting, and workflow status. This structure ensures standardized data collection, review, and collaboration for streamlined campaign approval   and execution workflows within the Grassroots CRM platform.",
+      "primaryFieldId": "fldd8EhKwRISulQMO",
+      "fields": [
+        {
+          "type": "formula",
+          "options": {
+            "isValid": true,
+            "formula": "\"#PB\"&\r\nREPT(\"0\",6-LEN(CONCATENATE({fldgoRDCTyjheljsZ})))&{fldgoRDCTyjheljsZ}&\" - \"&{fldOdcfdsDixT6anD}&\" - \"&DATETIME_FORMAT({fld1zjTrLvhT86dVi},\"YYYY/MM/DD\")",
+            "referencedFieldIds": [
+              "fldgoRDCTyjheljsZ",
+              "fldOdcfdsDixT6anD",
+              "fld1zjTrLvhT86dVi"
+            ],
+            "result": {
+              "type": "singleLineText"
+            }
+          },
+          "id": "fldd8EhKwRISulQMO",
+          "name": "project_brief_id",
+          "description": "Unique identifier for each project brief, (autonumber + company name + created date) ."
+        },
+        {
+          "type": "multilineText",
+          "id": "fldpWTAo3v2vtznYX",
+          "name": "client_name",
+          "description": "Name of the client submitting the brief."
+        },
+        {
+          "type": "formula",
+          "options": {
+            "isValid": true,
+            "formula": "RECORD_ID()",
+            "referencedFieldIds": [],
+            "result": {
+              "type": "singleLineText"
+            }
+          },
+          "id": "fldb37QIeICev3hBy",
+          "name": "record_id",
+          "description": "System-generated unique identifier used for referencing this record across the platform and integrations."
+        },
+        {
+          "type": "multilineText",
+          "id": "fldOdcfdsDixT6anD",
+          "name": "company_name",
+          "description": "Company name associated with the campaign."
+        },
+        {
+          "type": "email",
+          "id": "fldyO7K6RioLNErDU",
+          "name": "email",
+          "description": "Contact email for the client."
+        },
+        {
+          "type": "phoneNumber",
+          "id": "fld82RDbL0XUFW6LC",
+          "name": "phone",
+          "description": "Contact number for the client."
+        },
+        {
+          "type": "singleSelect",
+          "options": {
+            "choices": [
+              {
+                "id": "selKhPj6Bq0rNhPfd",
+                "name": "United States",
+                "color": "blueLight2"
+              }
+            ]
+          },
+          "id": "fldQ1Zg2RUV9kOYCM",
+          "name": "country",
+          "description": "Country of origin for the campaign. Options: United States."
+        },
+        {
+          "type": "singleSelect",
+          "options": {
+            "choices": [
+              {
+                "id": "selg5M7lUHvVk5uZM",
+                "name": "Alabama",
+                "color": "blueLight2"
+              },
+              {
+                "id": "sel11FiYI50Oa2cMW",
+                "name": "Alaska",
+                "color": "cyanLight2"
+              },
+              {
+                "id": "selmmzAhjL6FSHcJf",
+                "name": "Arizona",
+                "color": "tealLight2"
+              },
+              {
+                "id": "selIMAyQc8hmQPzDk",
+                "name": "Arkansas",
+                "color": "greenLight2"
+              },
+              {
+                "id": "selXxEpRIarUNvGl7",
+                "name": "California",
+                "color": "yellowLight2"
+              },
+              {
+                "id": "selW09Xdub4VGAjWQ",
+                "name": "Colorado",
+                "color": "orangeLight2"
+              },
+              {
+                "id": "selOhYNZ0Kdfh4xNP",
+                "name": "Connecticut",
+                "color": "redLight2"
+              },
+              {
+                "id": "selHy9z461TRoVqY6",
+                "name": "Delaware",
+                "color": "pinkLight2"
+              },
+              {
+                "id": "selvMAOBRf20gcJtR",
+                "name": "Florida",
+                "color": "purpleLight2"
+              },
+              {
+                "id": "selhYx3Uw0fi7z1l9",
+                "name": "Georgia",
+                "color": "grayLight2"
+              },
+              {
+                "id": "selIM0sB7apPvkUr4",
+                "name": "Hawaii",
+                "color": "blueLight1"
+              },
+              {
+                "id": "selZmzCAv3wccvgdQ",
+                "name": "Idaho",
+                "color": "cyanLight1"
+              },
+              {
+                "id": "selqW7EbIV17NfaYc",
+                "name": "Illinois",
+                "color": "tealLight1"
+              },
+              {
+                "id": "selUPxFb2iVck8epV",
+                "name": "Indiana",
+                "color": "greenLight1"
+              },
+              {
+                "id": "selqlLBWMnG5iTneR",
+                "name": "Iowa",
+                "color": "yellowLight1"
+              },
+              {
+                "id": "selB2R2qJJzAKJr6l",
+                "name": "Kansas",
+                "color": "orangeLight1"
+              },
+              {
+                "id": "sel9B9CvROpcxJCxS",
+                "name": "Kentucky",
+                "color": "redLight1"
+              },
+              {
+                "id": "seliNXaxumrG1OaN4",
+                "name": "Louisiana",
+                "color": "pinkLight1"
+              },
+              {
+                "id": "selmQPkg63f3jhsxO",
+                "name": "Maine",
+                "color": "purpleLight1"
+              },
+              {
+                "id": "sel0gEtJhpuYpqrDc",
+                "name": "Maryland",
+                "color": "grayLight1"
+              },
+              {
+                "id": "selj4jFRLYdF7sujh",
+                "name": "Massachusetts",
+                "color": "blueBright"
+              },
+              {
+                "id": "selOGA3T6jeWckjAI",
+                "name": "Michigan",
+                "color": "cyanBright"
+              },
+              {
+                "id": "selD4IHupwt06nJKw",
+                "name": "Minnesota",
+                "color": "tealBright"
+              },
+              {
+                "id": "selxadUCdn6u8KXYj",
+                "name": "Mississippi",
+                "color": "greenBright"
+              },
+              {
+                "id": "selSbqCqwqVW9PCQD",
+                "name": "Missouri",
+                "color": "yellowBright"
+              },
+              {
+                "id": "selqjG9Gl5EjvAc2t",
+                "name": "Montana",
+                "color": "orangeBright"
+              },
+              {
+                "id": "selOKkkHRlWfNydjq",
+                "name": "Nebraska",
+                "color": "redBright"
+              },
+              {
+                "id": "seltYfzzZYpWVs4M8",
+                "name": "Nevada",
+                "color": "pinkBright"
+              },
+              {
+                "id": "selzstEiFiO8f7OGG",
+                "name": "New Hampshire",
+                "color": "purpleBright"
+              },
+              {
+                "id": "selioeYyGWJVgWnGj",
+                "name": "New Jersey",
+                "color": "grayBright"
+              },
+              {
+                "id": "selPMl5vtSIv1lWjE",
+                "name": "New Mexico",
+                "color": "blueDark1"
+              },
+              {
+                "id": "sel1Y5l8yrtZKQpSA",
+                "name": "New York",
+                "color": "cyanDark1"
+              },
+              {
+                "id": "sel74zu2xYPlyexgT",
+                "name": "North Carolina",
+                "color": "tealDark1"
+              },
+              {
+                "id": "selvdF0c2lLP7TKz2",
+                "name": "North Dakota",
+                "color": "greenDark1"
+              },
+              {
+                "id": "selZ28Ab2BLGt4Yk9",
+                "name": "Ohio",
+                "color": "yellowDark1"
+              },
+              {
+                "id": "selHB4nH3nHkmy1U2",
+                "name": "Oklahoma",
+                "color": "orangeDark1"
+              },
+              {
+                "id": "selWldRH4cG8VslFI",
+                "name": "Oregon",
+                "color": "redDark1"
+              },
+              {
+                "id": "selUg2Fcfy7tPGaI7",
+                "name": "Pennsylvania",
+                "color": "pinkDark1"
+              },
+              {
+                "id": "selGo9bwakwMZQ4WS",
+                "name": "Rhode Island",
+                "color": "purpleDark1"
+              },
+              {
+                "id": "selJ4Zp3Pwf8CUsCe",
+                "name": "South Carolina",
+                "color": "grayDark1"
+              },
+              {
+                "id": "selcl3EzBW4WaiwYr",
+                "name": "South Dakota",
+                "color": "blueLight2"
+              },
+              {
+                "id": "sel9sXHdp3ZckozXv",
+                "name": "Tennessee",
+                "color": "cyanLight2"
+              },
+              {
+                "id": "selD5VPpOjmqzQidS",
+                "name": "Texas",
+                "color": "tealLight2"
+              },
+              {
+                "id": "sel2BoInr1UBYzzx3",
+                "name": "Utah",
+                "color": "greenLight2"
+              },
+              {
+                "id": "selciWHC2QHS7Jioz",
+                "name": "Vermont",
+                "color": "yellowLight2"
+              },
+              {
+                "id": "selBcYmmK0BF5mmmu",
+                "name": "Virginia",
+                "color": "orangeLight2"
+              },
+              {
+                "id": "selMwKbOnl0JryOeH",
+                "name": "Washington",
+                "color": "redLight2"
+              },
+              {
+                "id": "selW4IvYtzbGHsMdH",
+                "name": "West Virginia",
+                "color": "pinkLight2"
+              },
+              {
+                "id": "selBw1YMiofG1eMwj",
+                "name": "Wisconsin",
+                "color": "purpleLight2"
+              },
+              {
+                "id": "selhERscRcFYlnnqu",
+                "name": "Wyoming",
+                "color": "grayLight2"
+              }
+            ]
+          },
+          "id": "fld4DMGJCCrSWKUkR",
+          "name": "state_province",
+          "description": "U.S. state or province of the client. Options: Alabama, Alaska, Arizona, Arkansas, California, Colorado, Connecticut, Delaware, Florida, Georgia, Hawaii, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana, Maine, Maryland, Massachusetts, Michigan, Minnesota, Mississippi, Missouri, Montana, Nebraska, Nevada, New Hampshire, New Jersey, New Mexico, New York, North Carolina, North Dakota, Ohio, Oklahoma, Oregon, Pennsylvania, Rhode Island, South Carolina, South Dakota, Tennessee, Texas, Utah, Vermont, Virginia, Washington, West Virginia, Wisconsin, Wyoming."
+        },
+        {
+          "type": "multilineText",
+          "id": "fld5thsP74HlOEFHf",
+          "name": "city",
+          "description": "City where the client is located."
+        },
+        {
+          "type": "url",
+          "id": "fldBqgWxlsN1Y3gsy",
+          "name": "website",
+          "description": "Optional website link provided by the client."
+        },
+        {
+          "type": "multilineText",
+          "id": "fldDMrRgz0Ihg58br",
+          "name": "campaign_title",
+          "description": "Name/title of the campaign."
+        },
+        {
+          "type": "multilineText",
+          "id": "fld8ZFCdfHHRfmBm6",
+          "name": "primary_objective",
+          "description": "Primary goal or objective of the campaign."
+        },
+        {
+          "type": "currency",
+          "options": {
+            "precision": 2,
+            "symbol": "$"
+          },
+          "id": "fldkR1adM2ETcjGIQ",
+          "name": "budget",
+          "description": "Estimated campaign budget in USD."
+        },
+        {
+          "type": "date",
+          "options": {
+            "dateFormat": {
+              "name": "iso",
+              "format": "YYYY-MM-DD"
+            }
+          },
+          "id": "fldplbOOkinzWAbfO",
+          "name": "start_date",
+          "description": "Planned start date of the campaign."
+        },
+        {
+          "type": "date",
+          "options": {
+            "dateFormat": {
+              "name": "iso",
+              "format": "YYYY-MM-DD"
+            }
+          },
+          "id": "fldQ3CDax6MO4xViW",
+          "name": "end_date",
+          "description": "Planned end date of the campaign."
+        },
+        {
+          "type": "number",
+          "options": {
+            "precision": 0
+          },
+          "id": "fldOPc7TaJVKjkZbu",
+          "name": "age_range_min",
+          "description": "Minimum age of the campaign target audience."
+        },
+        {
+          "type": "number",
+          "options": {
+            "precision": 0
+          },
+          "id": "fldq0wvsziVXD891Y",
+          "name": "age_range_max",
+          "description": "Maximum age of the campaign target audience."
+        },
+        {
+          "type": "singleSelect",
+          "options": {
+            "choices": [
+              {
+                "id": "selzwWBDCchf56hyh",
+                "name": "Alabama",
+                "color": "blueLight2"
+              },
+              {
+                "id": "selFYnOYe3uOFOUOO",
+                "name": "Alaska",
+                "color": "cyanLight2"
+              },
+              {
+                "id": "selTaCnnsFG5TguJW",
+                "name": "Arizona",
+                "color": "tealLight2"
+              },
+              {
+                "id": "selw8KU1Aiz8AIcWk",
+                "name": "Arkansas",
+                "color": "greenLight2"
+              },
+              {
+                "id": "selUM9JrVRNLOojjG",
+                "name": "California",
+                "color": "yellowLight2"
+              },
+              {
+                "id": "sel4UPuiUBt7DPrU2",
+                "name": "Colorado",
+                "color": "orangeLight2"
+              },
+              {
+                "id": "selVHgAf3HzzyjKMJ",
+                "name": "Connecticut",
+                "color": "redLight2"
+              },
+              {
+                "id": "selzKCL3KQwtdjFe8",
+                "name": "Delaware",
+                "color": "pinkLight2"
+              },
+              {
+                "id": "sel61p1zF1ZXUoTnh",
+                "name": "Florida",
+                "color": "purpleLight2"
+              },
+              {
+                "id": "selhfjbJYNsXG4GlP",
+                "name": "Georgia",
+                "color": "grayLight2"
+              },
+              {
+                "id": "seld3dKKT3IOqu9UF",
+                "name": "Hawaii",
+                "color": "blueLight1"
+              },
+              {
+                "id": "sel1iEaiIZ9PIODXR",
+                "name": "Idaho",
+                "color": "cyanLight1"
+              },
+              {
+                "id": "selqV27MKhKE07CNu",
+                "name": "Illinois",
+                "color": "tealLight1"
+              },
+              {
+                "id": "seldT35aAsLBxpmoR",
+                "name": "Indiana",
+                "color": "greenLight1"
+              },
+              {
+                "id": "selnSG1UUS3LTA4JZ",
+                "name": "Iowa",
+                "color": "yellowLight1"
+              },
+              {
+                "id": "selPJOXiVXrcNJbjh",
+                "name": "Kansas",
+                "color": "orangeLight1"
+              },
+              {
+                "id": "selND3twzab9MWOPo",
+                "name": "Kentucky",
+                "color": "redLight1"
+              },
+              {
+                "id": "selYgfrbFFzgemIBq",
+                "name": "Louisiana",
+                "color": "pinkLight1"
+              },
+              {
+                "id": "selH8PaLfRmD42hpw",
+                "name": "Maine",
+                "color": "purpleLight1"
+              },
+              {
+                "id": "selAFb3fGxI9PCtCo",
+                "name": "Maryland",
+                "color": "grayLight1"
+              },
+              {
+                "id": "seldVbQT9YSczsD0V",
+                "name": "Massachusetts",
+                "color": "blueBright"
+              },
+              {
+                "id": "selajEPH419muscIm",
+                "name": "Michigan",
+                "color": "cyanBright"
+              },
+              {
+                "id": "selE4QFDGNlH0lJcR",
+                "name": "Minnesota",
+                "color": "tealBright"
+              },
+              {
+                "id": "selbzuFzghx2Rak4q",
+                "name": "Mississippi",
+                "color": "greenBright"
+              },
+              {
+                "id": "selzpP22CxTIrIBK1",
+                "name": "Missouri",
+                "color": "yellowBright"
+              },
+              {
+                "id": "selD1XT7vrRSnd8K9",
+                "name": "Montana",
+                "color": "orangeBright"
+              },
+              {
+                "id": "selcH7gU3o1J6zQyg",
+                "name": "Nebraska",
+                "color": "redBright"
+              },
+              {
+                "id": "selrEkLnKYKZWtEFQ",
+                "name": "Nevada",
+                "color": "pinkBright"
+              },
+              {
+                "id": "selrgqMVhNEErMqnz",
+                "name": "New Hampshire",
+                "color": "purpleBright"
+              },
+              {
+                "id": "selG0wj8QryUymlni",
+                "name": "New Jersey",
+                "color": "grayBright"
+              },
+              {
+                "id": "selF6MtE7JcN6Gg3B",
+                "name": "New Mexico",
+                "color": "blueDark1"
+              },
+              {
+                "id": "selwO0XH6pVB2DgwK",
+                "name": "New York",
+                "color": "cyanDark1"
+              },
+              {
+                "id": "selWHZX0Lm5Gq45CN",
+                "name": "North Carolina",
+                "color": "tealDark1"
+              },
+              {
+                "id": "selN625mI80mySoyY",
+                "name": "North Dakota",
+                "color": "greenDark1"
+              },
+              {
+                "id": "sel0SOU3DddwCU1N6",
+                "name": "Ohio",
+                "color": "yellowDark1"
+              },
+              {
+                "id": "selWcUecYL8dO5iBP",
+                "name": "Oklahoma",
+                "color": "orangeDark1"
+              },
+              {
+                "id": "selEylM5D3dtwngt7",
+                "name": "Oregon",
+                "color": "redDark1"
+              },
+              {
+                "id": "selOCt9r7bqelbpII",
+                "name": "Pennsylvania",
+                "color": "pinkDark1"
+              },
+              {
+                "id": "sel9VI5nLl9AI97jT",
+                "name": "Rhode Island",
+                "color": "purpleDark1"
+              },
+              {
+                "id": "selVZSinY27RVQXJA",
+                "name": "South Carolina",
+                "color": "grayDark1"
+              },
+              {
+                "id": "selG4hPh1eXpGDOin",
+                "name": "South Dakota",
+                "color": "blueLight2"
+              },
+              {
+                "id": "selTX8VRzhdpfVANB",
+                "name": "Tennessee",
+                "color": "cyanLight2"
+              },
+              {
+                "id": "selnaXrE5h02dgnJT",
+                "name": "Texas",
+                "color": "tealLight2"
+              },
+              {
+                "id": "seldoGK0kOPUCIOvQ",
+                "name": "Utah",
+                "color": "greenLight2"
+              },
+              {
+                "id": "selavMYLs48dmRyWB",
+                "name": "Vermont",
+                "color": "yellowLight2"
+              },
+              {
+                "id": "selPtigNcaaG2KFuH",
+                "name": "Virginia",
+                "color": "orangeLight2"
+              },
+              {
+                "id": "selUe13IxnHni73xD",
+                "name": "Washington",
+                "color": "redLight2"
+              },
+              {
+                "id": "selYfRhFJ6mdnIBOq",
+                "name": "West Virginia",
+                "color": "pinkLight2"
+              },
+              {
+                "id": "selH4MFMGSOgVnSTv",
+                "name": "Wisconsin",
+                "color": "purpleLight2"
+              },
+              {
+                "id": "selvtWWTSw7sOzm2Y",
+                "name": "Wyoming",
+                "color": "grayLight2"
+              }
+            ]
+          },
+          "id": "fld1YJeEfDgUKlU9e",
+          "name": "target_geography_state",
+          "description": "U.S. state targeted by the campaign. Options: Alabama, Alaska, Arizona, Arkansas, California, Colorado, Connecticut, Delaware, Florida, Georgia, Hawaii, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana, Maine, Maryland, Massachusetts, Michigan, Minnesota, Mississippi, Missouri, Montana, Nebraska, Nevada, New Hampshire, New Jersey, New Mexico, New York, North Carolina, North Dakota, Ohio, Oklahoma, Oregon, Pennsylvania, Rhode Island, South Carolina, South Dakota, Tennessee, Texas, Utah, Vermont, Virginia, Washington, West Virginia, Wisconsin, Wyoming."
+        },
+        {
+          "type": "multilineText",
+          "id": "fldwZmKKwYJP467J3",
+          "name": "target_geography_city",
+          "description": "City targeted by the campaign."
+        },
+        {
+          "type": "multipleSelects",
+          "options": {
+            "choices": [
+              {
+                "id": "selrFJMze3htwMoYo",
+                "name": "African American",
+                "color": "blueLight2"
+              },
+              {
+                "id": "selYp3CZNH9xQWOnw",
+                "name": "Caribbean",
+                "color": "cyanLight2"
+              },
+              {
+                "id": "selhP5tdPYvHEH6Dx",
+                "name": "Arab",
+                "color": "tealLight2"
+              },
+              {
+                "id": "selRY1Ck3wIdBxgkA",
+                "name": "East Asian",
+                "color": "greenLight2"
+              },
+              {
+                "id": "selIm7B5gM8A6zuzx",
+                "name": "U.S. Indigenous",
+                "color": "yellowLight2"
+              },
+              {
+                "id": "selU0q7VHBDyYsMbR",
+                "name": "Indian American",
+                "color": "orangeLight2"
+              },
+              {
+                "id": "sel0j7UvwxT9xYyhd",
+                "name": "Latino/Hispanic Russian",
+                "color": "redLight2"
+              },
+              {
+                "id": "selJuptx4eUDQdVAo",
+                "name": "South Asian",
+                "color": "pinkLight2"
+              },
+              {
+                "id": "selPv3Jg6WI4clKwY",
+                "name": "Southeast Asian",
+                "color": "purpleLight2"
+              },
+              {
+                "id": "selUFABDCxWnD501y",
+                "name": "Jewish",
+                "color": "grayLight2"
+              },
+              {
+                "id": "selB5xKsgczSqy6Bz",
+                "name": "Pacific Islander",
+                "color": "blueLight1"
+              },
+              {
+                "id": "selwLm05DkjQRGsDl",
+                "name": "East Slavic",
+                "color": "cyanLight1"
+              },
+              {
+                "id": "sel6YYDYC5sinnV6U",
+                "name": "West European",
+                "color": "tealLight1"
+              },
+              {
+                "id": "selvXOwJY03qjRDEV",
+                "name": "West African",
+                "color": "greenLight1"
+              },
+              {
+                "id": "selfp0ErQRrW2YHqw",
+                "name": "Other",
+                "color": "yellowLight1"
+              },
+              {
+                "id": "selWGvzPkdJCzfZgW",
+                "name": "Russian",
+                "color": "blueLight2"
+              },
+              {
+                "id": "selOuegXDYyHDnxgo",
+                "name": "Latino/Hispanic",
+                "color": "cyanLight2"
+              }
+            ]
+          },
+          "id": "fldpACPXF0jVRlEKR",
+          "name": "target_communities",
+          "description": "Demographic communities targeted by the campaign. Options: African American, Caribbean, Arab, East Asian, U.S. Indigenous, Indian American, Latino/Hispanic, Russian, South Asian, Southeast Asian, Jewish, Pacific Islander, East Slavic, West European, West African, Other."
+        },
+        {
+          "type": "multipleSelects",
+          "options": {
+            "choices": [
+              {
+                "id": "sel2iDnbHXhZJYr2Y",
+                "name": "Digital",
+                "color": "blueLight2"
+              },
+              {
+                "id": "selj67yPvEcBUKDD7",
+                "name": "Print",
+                "color": "cyanLight2"
+              },
+              {
+                "id": "sel5K8t74rI3C4aE6",
+                "name": "Radio",
+                "color": "tealLight2"
+              },
+              {
+                "id": "selp7Gy4eH5mu5nsR",
+                "name": "TV",
+                "color": "greenLight2"
+              },
+              {
+                "id": "selVxAsdaDN5cOk07",
+                "name": "Unconventional",
+                "color": "yellowLight2"
+              },
+              {
+                "id": "sel9dFUIx9kFmIHz8",
+                "name": "Other",
+                "color": "orangeLight2"
+              }
+            ]
+          },
+          "id": "fldOeMTg5OeQH7UCQ",
+          "name": "preferred_media_placements",
+          "description": "Types of media preferred for ad placement. Options: Digital, Print, Radio, TV, Unconventional, Other."
+        },
+        {
+          "type": "multilineText",
+          "id": "fldopT6JQbKMWOopp",
+          "name": "target_audience_details",
+          "description": "Additional details about audience demographics or behaviors."
+        },
+        {
+          "type": "multipleAttachments",
+          "options": {
+            "isReversed": false
+          },
+          "id": "fldhmFcXIAT0GaZsv",
+          "name": "uploaded_documents",
+          "description": "Supporting files for the campaign brief."
+        },
+        {
+          "type": "singleSelect",
+          "options": {
+            "choices": [
+              {
+                "id": "selbgc2zmj3LrIC3f",
+                "name": "Pending Review",
+                "color": "yellowLight1"
+              },
+              {
+                "id": "sel8gFrwZZGZwuNeN",
+                "name": "Approved",
+                "color": "greenLight1"
+              },
+              {
+                "id": "selynlbQYAHL9yxEx",
+                "name": "Rejected",
+                "color": "redLight1"
+              }
+            ]
+          },
+          "id": "fldv6J8hLAFYs86lx",
+          "name": "status",
+          "description": "Current review status (Options: Pending Review, Approved, Rejected)."
+        },
+        {
+          "type": "richText",
+          "id": "fldUCwNbON6q9J5qj",
+          "name": "review_notes",
+          "description": "Internal notes added by reviewer."
+        },
+        {
+          "type": "checkbox",
+          "options": {
+            "icon": "check",
+            "color": "greenBright"
+          },
+          "id": "fldY0c3snhZkTJg9m",
+          "name": "use_digital",
+          "description": "Indicates whether the campaign intends to use Digital media."
+        },
+        {
+          "type": "checkbox",
+          "options": {
+            "icon": "check",
+            "color": "greenBright"
+          },
+          "id": "fldYFhulETK12NIcO",
+          "name": "use_tv",
+          "description": "Indicates whether the campaign intends to use TV media."
+        },
+        {
+          "type": "checkbox",
+          "options": {
+            "icon": "check",
+            "color": "greenBright"
+          },
+          "id": "fldBwaNwZ2u4Gc7Q8",
+          "name": "use_radio",
+          "description": "Indicates whether the campaign intends to use Radio media."
+        },
+        {
+          "type": "checkbox",
+          "options": {
+            "icon": "check",
+            "color": "greenBright"
+          },
+          "id": "fldDBrFY6Gbth8ysF",
+          "name": "use_print",
+          "description": "Indicates whether the campaign intends to use Print media."
+        },
+        {
+          "type": "checkbox",
+          "options": {
+            "icon": "check",
+            "color": "greenBright"
+          },
+          "id": "fld1jARxgeO5Xtiju",
+          "name": "use_unconventional",
+          "description": "Indicates whether the campaign intends to use Unconventional media."
+        },
+        {
+          "type": "checkbox",
+          "options": {
+            "icon": "check",
+            "color": "greenBright"
+          },
+          "id": "fldA0gfi6estfxXDA",
+          "name": "use_other",
+          "description": "Indicates whether the campaign intends to use Other types of media."
+        },
+        {
+          "type": "richText",
+          "id": "fldIRygAjeTPotKby",
+          "name": "other_media_types",
+          "description": "Optional field where the client can specify any additional media types not covered in the standard media placement options. Enables flexibility for unconventional requests and ensures the campaign brief captures all relevant execution preferences."
+        },
+        {
+          "type": "percent",
+          "options": {
+            "precision": 0
+          },
+          "id": "fldBSVcsp7Oqs49aS",
+          "name": "digital_percentage",
+          "description": "Percentage of the total budget allocated to Digital media."
+        },
+        {
+          "type": "percent",
+          "options": {
+            "precision": 0
+          },
+          "id": "fldtZZ9ECtV089iBj",
+          "name": "tv_percentage",
+          "description": "Percentage of the total budget allocated to TV media."
+        },
+        {
+          "type": "percent",
+          "options": {
+            "precision": 0
+          },
+          "id": "fldfpcTb6P4Wo4guT",
+          "name": "radio_percentage",
+          "description": "Percentage of the total budget allocated to Radio media."
+        },
+        {
+          "type": "percent",
+          "options": {
+            "precision": 0
+          },
+          "id": "fld1PRpriQEuHvmAY",
+          "name": "print_percentage",
+          "description": "Percentage of the total budget allocated to Print media."
+        },
+        {
+          "type": "percent",
+          "options": {
+            "precision": 0
+          },
+          "id": "fldNGvvvIe6cWWVKU",
+          "name": "unconventional_percentage",
+          "description": "Percentage of the total budget allocated to Unconventional media."
+        },
+        {
+          "type": "percent",
+          "options": {
+            "precision": 0
+          },
+          "id": "fldkBJlHJzxw4SEaA",
+          "name": "other_percentage",
+          "description": "Percentage of the total budget allocated to Other media."
+        },
+        {
+          "type": "singleCollaborator",
+          "id": "fldZAaINXkQj2c3LB",
+          "name": "reviewed_by",
+          "description": "User who reviewed and updated the project brief."
+        },
+        {
+          "type": "createdTime",
+          "options": {
+            "result": {
+              "type": "date",
+              "options": {
+                "dateFormat": {
+                  "name": "us",
+                  "format": "M/D/YYYY"
+                }
+              }
+            }
+          },
+          "id": "fld1zjTrLvhT86dVi",
+          "name": "created",
+          "description": "Timestamp automatically captured when the record is first created, supporting audit trails and chronological tracking."
+        },
+        {
+          "type": "formula",
+          "options": {
+            "isValid": true,
+            "formula": "SUM({fldBSVcsp7Oqs49aS},{fld1PRpriQEuHvmAY}, {fldfpcTb6P4Wo4guT}, {fldNGvvvIe6cWWVKU}, {fldkBJlHJzxw4SEaA}, {fldtZZ9ECtV089iBj})",
+            "referencedFieldIds": [
+              "fldBSVcsp7Oqs49aS",
+              "fld1PRpriQEuHvmAY",
+              "fldfpcTb6P4Wo4guT",
+              "fldNGvvvIe6cWWVKU",
+              "fldkBJlHJzxw4SEaA",
+              "fldtZZ9ECtV089iBj"
+            ],
+            "result": {
+              "type": "percent",
+              "options": {
+                "precision": 0
+              }
+            }
+          },
+          "id": "fldiMvR9NmkMLlftz",
+          "name": "media_allocation_validation",
+          "description": "Validates whether the total media allocation exceeds 100%. Displays a red warning if the combined percentages of all selected media types surpass 100%. Used for preventing over-allocation of campaign budgets."
+        },
+        {
+          "type": "lastModifiedBy",
+          "id": "fldnpuzHDn822OSDK",
+          "name": "last_modified_by",
+          "description": "Automatically records the user who made the most recent update to the project brief. Useful for tracking collaboration and accountability."
+        },
+        {
+          "type": "checkbox",
+          "options": {
+            "icon": "check",
+            "color": "greenBright"
+          },
+          "id": "fldHa98n7CGFUtRP8",
+          "name": "campaign_creative_assets",
+          "description": "Indicates whether the client will provide creative assets for the campaign. If not selected, the internal design team will generate artwork based on campaign requirements."
+        },
+        {
+          "type": "lastModifiedTime",
+          "options": {
+            "isValid": true,
+            "referencedFieldIds": [],
+            "result": {
+              "type": "dateTime",
+              "options": {
+                "dateFormat": {
+                  "name": "local",
+                  "format": "l"
+                },
+                "timeFormat": {
+                  "name": "12hour",
+                  "format": "h:mma"
+                },
+                "timeZone": "client"
+              }
+            }
+          },
+          "id": "fldjNeKge7EwhD3Le",
+          "name": "last_modified",
+          "description": "Timestamp that reflects the most recent update to the record, enabling version tracking and operational visibility."
+        },
+        {
+          "type": "autoNumber",
+          "id": "fldgoRDCTyjheljsZ",
+          "name": "id",
+          "description": "Unique identifier."
+        },
+        {
+          "type": "formula",
+          "options": {
+            "isValid": true,
+            "formula": "IF(\r\n  YEAR({fldplbOOkinzWAbfO}) = YEAR(TODAY()),\r\n  SWITCH(\r\n    CEILING(MONTH({fldplbOOkinzWAbfO}) / 3) - CEILING(MONTH(TODAY()) / 3),\r\n    0,  \"Q0\",\r\n    -1, \"Q-1\",\r\n    -2, \"Q-2\",\r\n    -3, \"Q-3\",\r\n    \"\"\r\n  )\r\n)",
+            "referencedFieldIds": [
+              "fldplbOOkinzWAbfO"
+            ],
+            "result": {
+              "type": "singleLineText"
+            }
+          },
+          "id": "fldzuVqYAYDlwIoA8",
+          "name": "actual_q",
+          "description": "This formula compares the quarter of {start_date} to the current quarter (based on TODAY()) within the same year. It returns:\n\nQ0 if the date is in the same quarter as the current one.\n\nQ-1, Q-2, or Q-3 if it is 1, 2, or 3 quarters earlier, respectively.\n\nAn empty value if it falls outside that range or in a different year.\n\nUse this to determine which quarter (relative to the current quarter) a record belongs to—helpful for segmenting or tracking past events within the current year.\n\n"
+        },
+        {
+          "type": "formula",
+          "options": {
+            "isValid": true,
+            "formula": "SWITCH(\r\n    CEILING(MONTH({fldplbOOkinzWAbfO}) / 3),\r\n    1, \"Q1\",\r\n    2, \"Q2\",\r\n    3, \"Q3\",\r\n    4, \"Q4\"\r\n)\r\n& \" \" &\r\nYEAR({fldplbOOkinzWAbfO})",
+            "referencedFieldIds": [
+              "fldplbOOkinzWAbfO"
+            ],
+            "result": {
+              "type": "singleLineText"
+            }
+          },
+          "id": "fldjLnAk3DgCMNG3l",
+          "name": "quarter_of_the_year",
+          "description": "his formula determines the quarter (Q1, Q2, Q3, or Q4) for the date in {start_date} and appends the respective year. The first part uses the month to calculate which quarter the date falls into; the second part adds the four-digit year. As a result, regardless of whether the date is in a past, current, or future year, you’ll see the quarter followed by the year, such as “Q3 2022” or “Q1 2025.” This is useful for quickly identifying the specific quarter and year of any given date."
+        },
+        {
+          "type": "multipleRecordLinks",
+          "options": {
+            "linkedTableId": "tbl466Ejx5NqsO1mB",
+            "isReversed": false,
+            "prefersSingleRecordLink": false,
+            "inverseLinkFieldId": "fldkCCTDpCpN1VOua"
+          },
+          "id": "fldF9LH2bpo56VWSR",
+          "name": "active_campaign"
+        },
+        {
+          "type": "aiText",
+          "options": {
+            "referencedFieldIds": [
+              "fldOdcfdsDixT6anD",
+              "fldpWTAo3v2vtznYX",
+              "fldQ1Zg2RUV9kOYCM",
+              "fld4DMGJCCrSWKUkR",
+              "fld5thsP74HlOEFHf",
+              "fldDMrRgz0Ihg58br",
+              "fldBqgWxlsN1Y3gsy",
+              "fld8ZFCdfHHRfmBm6",
+              "fldkR1adM2ETcjGIQ",
+              "fldplbOOkinzWAbfO",
+              "fldQ3CDax6MO4xViW",
+              "fldOPc7TaJVKjkZbu",
+              "fldq0wvsziVXD891Y",
+              "fld1YJeEfDgUKlU9e",
+              "fldwZmKKwYJP467J3",
+              "fldpACPXF0jVRlEKR",
+              "fldOeMTg5OeQH7UCQ",
+              "fldopT6JQbKMWOopp",
+              "fldBSVcsp7Oqs49aS",
+              "fldtZZ9ECtV089iBj",
+              "fldfpcTb6P4Wo4guT",
+              "fld1PRpriQEuHvmAY",
+              "fldNGvvvIe6cWWVKU",
+              "fldkBJlHJzxw4SEaA"
+            ],
+            "prompt": [
+              "You are a data processor tasked with creating a JSON object from specific fields in a campaign brief. Your role is to accurately compile the data into a structured format.\n\nFollow these steps to complete the task: Extract the values from the specified columns in the current row and organize them into a JSON object. Ensure that each field is correctly labeled and formatted according to JSON standards. Do not include any additional data or fields not specified. If the 'review_notes' field is empty, proceed without it and do not halt the process.\n\nOutput format: The output should be a JSON object with key-value pairs corresponding to the specified fields. Ensure the JSON is valid and properly formatted. If you cannot complete the request, output \"Unable to generate JSON object.\" If there are empty fields, fill them with 'EMPTY'.\n\nContext and Data:\nCompany Name: ",
+              {
+                "field": {
+                  "fieldId": "fldOdcfdsDixT6anD"
+                }
+              },
+              "\nClient Name: ",
+              {
+                "field": {
+                  "fieldId": "fldpWTAo3v2vtznYX"
+                }
+              },
+              "\nCountry: ",
+              {
+                "field": {
+                  "fieldId": "fldQ1Zg2RUV9kOYCM"
+                }
+              },
+              "\nState/Province: ",
+              {
+                "field": {
+                  "fieldId": "fld4DMGJCCrSWKUkR"
+                }
+              },
+              "\nCity: ",
+              {
+                "field": {
+                  "fieldId": "fld5thsP74HlOEFHf"
+                }
+              },
+              "\nCampaign Title: ",
+              {
+                "field": {
+                  "fieldId": "fldDMrRgz0Ihg58br"
+                }
+              },
+              "\nWebsite: ",
+              {
+                "field": {
+                  "fieldId": "fldBqgWxlsN1Y3gsy"
+                }
+              },
+              "\nPrimary Objective: ",
+              {
+                "field": {
+                  "fieldId": "fld8ZFCdfHHRfmBm6"
+                }
+              },
+              "\nBudget: ",
+              {
+                "field": {
+                  "fieldId": "fldkR1adM2ETcjGIQ"
+                }
+              },
+              "\nStart Date: ",
+              {
+                "field": {
+                  "fieldId": "fldplbOOkinzWAbfO"
+                }
+              },
+              "\nEnd Date: ",
+              {
+                "field": {
+                  "fieldId": "fldQ3CDax6MO4xViW"
+                }
+              },
+              "\nAge Range Min: ",
+              {
+                "field": {
+                  "fieldId": "fldOPc7TaJVKjkZbu"
+                }
+              },
+              "\nAge Range Max: ",
+              {
+                "field": {
+                  "fieldId": "fldq0wvsziVXD891Y"
+                }
+              },
+              "\nTarget Geography State: ",
+              {
+                "field": {
+                  "fieldId": "fld1YJeEfDgUKlU9e"
+                }
+              },
+              "\nTarget Geography City: ",
+              {
+                "field": {
+                  "fieldId": "fldwZmKKwYJP467J3"
+                }
+              },
+              "\nTarget Communities: ",
+              {
+                "field": {
+                  "fieldId": "fldpACPXF0jVRlEKR"
+                }
+              },
+              "\nPreferred Media Placements: ",
+              {
+                "field": {
+                  "fieldId": "fldOeMTg5OeQH7UCQ"
+                }
+              },
+              "\nTarget Audience Details: ",
+              {
+                "field": {
+                  "fieldId": "fldopT6JQbKMWOopp"
+                }
+              },
+              "\nDigital Percentage: ",
+              {
+                "field": {
+                  "fieldId": "fldBSVcsp7Oqs49aS"
+                }
+              },
+              "\nTV Percentage: ",
+              {
+                "field": {
+                  "fieldId": "fldtZZ9ECtV089iBj"
+                }
+              },
+              "\nRadio Percentage: ",
+              {
+                "field": {
+                  "fieldId": "fldfpcTb6P4Wo4guT"
+                }
+              },
+              "\nPrint Percentage: ",
+              {
+                "field": {
+                  "fieldId": "fld1PRpriQEuHvmAY"
+                }
+              },
+              "\nUnconventional Percentage: ",
+              {
+                "field": {
+                  "fieldId": "fldNGvvvIe6cWWVKU"
+                }
+              },
+              "\nOther Percentage: ",
+              {
+                "field": {
+                  "fieldId": "fldkBJlHJzxw4SEaA"
+                }
+              },
+              "\n\nOutput:\n"
+            ]
+          },
+          "id": "fldRkQ6VkcfWTWvtp",
+          "name": "ai_context",
+          "description": "Generates a JSON object containing key campaign details from specified fields."
+        },
+        {
+          "type": "multipleRecordLinks",
+          "options": {
+            "linkedTableId": "tblchWDOuPzJczwMZ",
+            "isReversed": false,
+            "prefersSingleRecordLink": false,
+            "inverseLinkFieldId": "fldbokg9mWK3KVZS1"
+          },
+          "id": "fldyVuxzYgthhEE4D",
+          "name": "clients"
+        }
+      ],
+      "views": [
+        {
+          "id": "viwSvK88Lo1kRDs7r",
+          "name": "Grid view",
+          "type": "grid"
+        },
+        {
+          "id": "viwNdL3klwEaabt4L",
+          "name": "Grid view copy",
+          "type": "grid"
+        }
+      ]
+    },
+    {
+      "id": "tbl466Ejx5NqsO1mB",
+      "name": "active_campaign",
+      "primaryFieldId": "fldXSlviUO3baBEu8",
+      "fields": [
+        {
+          "type": "formula",
+          "options": {
+            "isValid": true,
+            "formula": "\"#AC\"&\r\nREPT(\"0\",6-LEN(CONCATENATE({fld08yRahvEAUB7aj})))&{fld08yRahvEAUB7aj}&\" - \"&{fldyXTtLQADQzmY5X}&\" - \"&DATETIME_FORMAT({fldLj07Z9sCcOm1DC},\"YYYY/MM/DD\")",
+            "referencedFieldIds": [
+              "fld08yRahvEAUB7aj",
+              "fldyXTtLQADQzmY5X",
+              "fldLj07Z9sCcOm1DC"
+            ],
+            "result": {
+              "type": "singleLineText"
+            }
+          },
+          "id": "fldXSlviUO3baBEu8",
+          "name": "active_campaign_id",
+          "description": "Unique identifier for each project brief, (autonumber + company name + created date) ."
+        },
+        {
+          "type": "formula",
+          "options": {
+            "isValid": true,
+            "formula": "RECORD_ID()",
+            "referencedFieldIds": [],
+            "result": {
+              "type": "singleLineText"
+            }
+          },
+          "id": "fldVNO4gCFXxbj5jS",
+          "name": "record_id",
+          "description": "System-generated unique identifier used for referencing this record across the platform and integrations."
+        },
+        {
+          "type": "multilineText",
+          "id": "fldyXTtLQADQzmY5X",
+          "name": "company_name",
+          "description": "Company name associated with the campaign."
+        },
+        {
+          "type": "multilineText",
+          "id": "fldnw85OXX3AWlWTL",
+          "name": "campaign_title",
+          "description": "Name/title of the campaign."
+        },
+        {
+          "type": "multilineText",
+          "id": "fldSJmQLDE2aVCp4q",
+          "name": "primary_objective",
+          "description": "Primary goal or objective of the campaign."
+        },
+        {
+          "type": "currency",
+          "options": {
+            "precision": 2,
+            "symbol": "$"
+          },
+          "id": "fld4BIoLaZZcSzuqa",
+          "name": "budget",
+          "description": "Estimated campaign budget in USD."
+        },
+        {
+          "type": "date",
+          "options": {
+            "dateFormat": {
+              "name": "iso",
+              "format": "YYYY-MM-DD"
+            }
+          },
+          "id": "fld95S2mIfISCQZX8",
+          "name": "start_date",
+          "description": "Planned start date of the campaign."
+        },
+        {
+          "type": "date",
+          "options": {
+            "dateFormat": {
+              "name": "iso",
+              "format": "YYYY-MM-DD"
+            }
+          },
+          "id": "fldANjRIV377KNJ0g",
+          "name": "end_date",
+          "description": "Planned end date of the campaign."
+        },
+        {
+          "type": "number",
+          "options": {
+            "precision": 0
+          },
+          "id": "fldyzTlryGg3ZANTO",
+          "name": "age_range_min",
+          "description": "Minimum age of the campaign target audience."
+        },
+        {
+          "type": "number",
+          "options": {
+            "precision": 0
+          },
+          "id": "fldaKdJ0XfggjoXJi",
+          "name": "age_range_max",
+          "description": "Maximum age of the campaign target audience."
+        },
+        {
+          "type": "singleSelect",
+          "options": {
+            "choices": [
+              {
+                "id": "selzwWBDCchf56hyh",
+                "name": "Alabama",
+                "color": "blueLight2"
+              },
+              {
+                "id": "selFYnOYe3uOFOUOO",
+                "name": "Alaska",
+                "color": "cyanLight2"
+              },
+              {
+                "id": "selTaCnnsFG5TguJW",
+                "name": "Arizona",
+                "color": "tealLight2"
+              },
+              {
+                "id": "selw8KU1Aiz8AIcWk",
+                "name": "Arkansas",
+                "color": "greenLight2"
+              },
+              {
+                "id": "selUM9JrVRNLOojjG",
+                "name": "California",
+                "color": "yellowLight2"
+              },
+              {
+                "id": "sel4UPuiUBt7DPrU2",
+                "name": "Colorado",
+                "color": "orangeLight2"
+              },
+              {
+                "id": "selVHgAf3HzzyjKMJ",
+                "name": "Connecticut",
+                "color": "redLight2"
+              },
+              {
+                "id": "selzKCL3KQwtdjFe8",
+                "name": "Delaware",
+                "color": "pinkLight2"
+              },
+              {
+                "id": "sel61p1zF1ZXUoTnh",
+                "name": "Florida",
+                "color": "purpleLight2"
+              },
+              {
+                "id": "selhfjbJYNsXG4GlP",
+                "name": "Georgia",
+                "color": "grayLight2"
+              },
+              {
+                "id": "seld3dKKT3IOqu9UF",
+                "name": "Hawaii",
+                "color": "blueLight1"
+              },
+              {
+                "id": "sel1iEaiIZ9PIODXR",
+                "name": "Idaho",
+                "color": "cyanLight1"
+              },
+              {
+                "id": "selqV27MKhKE07CNu",
+                "name": "Illinois",
+                "color": "tealLight1"
+              },
+              {
+                "id": "seldT35aAsLBxpmoR",
+                "name": "Indiana",
+                "color": "greenLight1"
+              },
+              {
+                "id": "selnSG1UUS3LTA4JZ",
+                "name": "Iowa",
+                "color": "yellowLight1"
+              },
+              {
+                "id": "selPJOXiVXrcNJbjh",
+                "name": "Kansas",
+                "color": "orangeLight1"
+              },
+              {
+                "id": "selND3twzab9MWOPo",
+                "name": "Kentucky",
+                "color": "redLight1"
+              },
+              {
+                "id": "selYgfrbFFzgemIBq",
+                "name": "Louisiana",
+                "color": "pinkLight1"
+              },
+              {
+                "id": "selH8PaLfRmD42hpw",
+                "name": "Maine",
+                "color": "purpleLight1"
+              },
+              {
+                "id": "selAFb3fGxI9PCtCo",
+                "name": "Maryland",
+                "color": "grayLight1"
+              },
+              {
+                "id": "seldVbQT9YSczsD0V",
+                "name": "Massachusetts",
+                "color": "blueBright"
+              },
+              {
+                "id": "selajEPH419muscIm",
+                "name": "Michigan",
+                "color": "cyanBright"
+              },
+              {
+                "id": "selE4QFDGNlH0lJcR",
+                "name": "Minnesota",
+                "color": "tealBright"
+              },
+              {
+                "id": "selbzuFzghx2Rak4q",
+                "name": "Mississippi",
+                "color": "greenBright"
+              },
+              {
+                "id": "selzpP22CxTIrIBK1",
+                "name": "Missouri",
+                "color": "yellowBright"
+              },
+              {
+                "id": "selD1XT7vrRSnd8K9",
+                "name": "Montana",
+                "color": "orangeBright"
+              },
+              {
+                "id": "selcH7gU3o1J6zQyg",
+                "name": "Nebraska",
+                "color": "redBright"
+              },
+              {
+                "id": "selrEkLnKYKZWtEFQ",
+                "name": "Nevada",
+                "color": "pinkBright"
+              },
+              {
+                "id": "selrgqMVhNEErMqnz",
+                "name": "New Hampshire",
+                "color": "purpleBright"
+              },
+              {
+                "id": "selG0wj8QryUymlni",
+                "name": "New Jersey",
+                "color": "grayBright"
+              },
+              {
+                "id": "selF6MtE7JcN6Gg3B",
+                "name": "New Mexico",
+                "color": "blueDark1"
+              },
+              {
+                "id": "selwO0XH6pVB2DgwK",
+                "name": "New York",
+                "color": "cyanDark1"
+              },
+              {
+                "id": "selWHZX0Lm5Gq45CN",
+                "name": "North Carolina",
+                "color": "tealDark1"
+              },
+              {
+                "id": "selN625mI80mySoyY",
+                "name": "North Dakota",
+                "color": "greenDark1"
+              },
+              {
+                "id": "sel0SOU3DddwCU1N6",
+                "name": "Ohio",
+                "color": "yellowDark1"
+              },
+              {
+                "id": "selWcUecYL8dO5iBP",
+                "name": "Oklahoma",
+                "color": "orangeDark1"
+              },
+              {
+                "id": "selEylM5D3dtwngt7",
+                "name": "Oregon",
+                "color": "redDark1"
+              },
+              {
+                "id": "selOCt9r7bqelbpII",
+                "name": "Pennsylvania",
+                "color": "pinkDark1"
+              },
+              {
+                "id": "sel9VI5nLl9AI97jT",
+                "name": "Rhode Island",
+                "color": "purpleDark1"
+              },
+              {
+                "id": "selVZSinY27RVQXJA",
+                "name": "South Carolina",
+                "color": "grayDark1"
+              },
+              {
+                "id": "selG4hPh1eXpGDOin",
+                "name": "South Dakota",
+                "color": "blueLight2"
+              },
+              {
+                "id": "selTX8VRzhdpfVANB",
+                "name": "Tennessee",
+                "color": "cyanLight2"
+              },
+              {
+                "id": "selnaXrE5h02dgnJT",
+                "name": "Texas",
+                "color": "tealLight2"
+              },
+              {
+                "id": "seldoGK0kOPUCIOvQ",
+                "name": "Utah",
+                "color": "greenLight2"
+              },
+              {
+                "id": "selavMYLs48dmRyWB",
+                "name": "Vermont",
+                "color": "yellowLight2"
+              },
+              {
+                "id": "selPtigNcaaG2KFuH",
+                "name": "Virginia",
+                "color": "orangeLight2"
+              },
+              {
+                "id": "selUe13IxnHni73xD",
+                "name": "Washington",
+                "color": "redLight2"
+              },
+              {
+                "id": "selYfRhFJ6mdnIBOq",
+                "name": "West Virginia",
+                "color": "pinkLight2"
+              },
+              {
+                "id": "selH4MFMGSOgVnSTv",
+                "name": "Wisconsin",
+                "color": "purpleLight2"
+              },
+              {
+                "id": "selvtWWTSw7sOzm2Y",
+                "name": "Wyoming",
+                "color": "grayLight2"
+              }
+            ]
+          },
+          "id": "fldLIqscDABdqBIRy",
+          "name": "target_geography_state",
+          "description": "U.S. state targeted by the campaign. Options: Alabama, Alaska, Arizona, Arkansas, California, Colorado, Connecticut, Delaware, Florida, Georgia, Hawaii, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana, Maine, Maryland, Massachusetts, Michigan, Minnesota, Mississippi, Missouri, Montana, Nebraska, Nevada, New Hampshire, New Jersey, New Mexico, New York, North Carolina, North Dakota, Ohio, Oklahoma, Oregon, Pennsylvania, Rhode Island, South Carolina, South Dakota, Tennessee, Texas, Utah, Vermont, Virginia, Washington, West Virginia, Wisconsin, Wyoming."
+        },
+        {
+          "type": "multilineText",
+          "id": "fldgJ3YiUV48KmVrn",
+          "name": "target_geography_city",
+          "description": "City targeted by the campaign."
+        },
+        {
+          "type": "multipleSelects",
+          "options": {
+            "choices": [
+              {
+                "id": "selrFJMze3htwMoYo",
+                "name": "African American",
+                "color": "blueLight2"
+              },
+              {
+                "id": "selYp3CZNH9xQWOnw",
+                "name": "Caribbean",
+                "color": "cyanLight2"
+              },
+              {
+                "id": "selhP5tdPYvHEH6Dx",
+                "name": "Arab",
+                "color": "tealLight2"
+              },
+              {
+                "id": "selRY1Ck3wIdBxgkA",
+                "name": "East Asian",
+                "color": "greenLight2"
+              },
+              {
+                "id": "selIm7B5gM8A6zuzx",
+                "name": "U.S. Indigenous",
+                "color": "yellowLight2"
+              },
+              {
+                "id": "selU0q7VHBDyYsMbR",
+                "name": "Indian American",
+                "color": "orangeLight2"
+              },
+              {
+                "id": "sel0j7UvwxT9xYyhd",
+                "name": "Latino/Hispanic Russian",
+                "color": "redLight2"
+              },
+              {
+                "id": "selJuptx4eUDQdVAo",
+                "name": "South Asian",
+                "color": "pinkLight2"
+              },
+              {
+                "id": "selPv3Jg6WI4clKwY",
+                "name": "Southeast Asian",
+                "color": "purpleLight2"
+              },
+              {
+                "id": "selUFABDCxWnD501y",
+                "name": "Jewish",
+                "color": "grayLight2"
+              },
+              {
+                "id": "selB5xKsgczSqy6Bz",
+                "name": "Pacific Islander",
+                "color": "blueLight1"
+              },
+              {
+                "id": "selwLm05DkjQRGsDl",
+                "name": "East Slavic",
+                "color": "cyanLight1"
+              },
+              {
+                "id": "sel6YYDYC5sinnV6U",
+                "name": "West European",
+                "color": "tealLight1"
+              },
+              {
+                "id": "selvXOwJY03qjRDEV",
+                "name": "West African",
+                "color": "greenLight1"
+              },
+              {
+                "id": "selfp0ErQRrW2YHqw",
+                "name": "Other",
+                "color": "yellowLight1"
+              },
+              {
+                "id": "selWGvzPkdJCzfZgW",
+                "name": "Russian",
+                "color": "blueLight2"
+              },
+              {
+                "id": "selOuegXDYyHDnxgo",
+                "name": "Latino/Hispanic",
+                "color": "cyanLight2"
+              }
+            ]
+          },
+          "id": "fld9kj3v3XEexBssb",
+          "name": "target_communities",
+          "description": "Demographic communities targeted by the campaign. Options: African American, Caribbean, Arab, East Asian, U.S. Indigenous, Indian American, Latino/Hispanic, Russian, South Asian, Southeast Asian, Jewish, Pacific Islander, East Slavic, West European, West African, Other."
+        },
+        {
+          "type": "multipleSelects",
+          "options": {
+            "choices": [
+              {
+                "id": "sel2iDnbHXhZJYr2Y",
+                "name": "Digital",
+                "color": "blueLight2"
+              },
+              {
+                "id": "selj67yPvEcBUKDD7",
+                "name": "Print",
+                "color": "cyanLight2"
+              },
+              {
+                "id": "sel5K8t74rI3C4aE6",
+                "name": "Radio",
+                "color": "tealLight2"
+              },
+              {
+                "id": "selp7Gy4eH5mu5nsR",
+                "name": "TV",
+                "color": "greenLight2"
+              },
+              {
+                "id": "selVxAsdaDN5cOk07",
+                "name": "Unconventional",
+                "color": "yellowLight2"
+              },
+              {
+                "id": "sel9dFUIx9kFmIHz8",
+                "name": "Other",
+                "color": "orangeLight2"
+              }
+            ]
+          },
+          "id": "fldyYt7OtLz9nnIka",
+          "name": "preferred_media_placements",
+          "description": "Types of media preferred for ad placement. Options: Digital, Print, Radio, TV, Unconventional, Other."
+        },
+        {
+          "type": "multilineText",
+          "id": "fld89Akhe855C4c7J",
+          "name": "target_audience_details",
+          "description": "Additional details about audience demographics or behaviors."
+        },
+        {
+          "type": "multipleAttachments",
+          "options": {
+            "isReversed": false
+          },
+          "id": "fld16mqv6xejmqNaP",
+          "name": "uploaded_documents",
+          "description": "Supporting files for the campaign brief."
+        },
+        {
+          "type": "singleSelect",
+          "options": {
+            "choices": [
+              {
+                "id": "selbgc2zmj3LrIC3f",
+                "name": "Pending Review",
+                "color": "yellowLight1"
+              },
+              {
+                "id": "sel8gFrwZZGZwuNeN",
+                "name": "Approved",
+                "color": "greenLight1"
+              },
+              {
+                "id": "selynlbQYAHL9yxEx",
+                "name": "Rejected",
+                "color": "redLight1"
+              }
+            ]
+          },
+          "id": "fldfQqmP9x0h8oU3R",
+          "name": "status",
+          "description": "Current review status (Options: Pending Review, Approved, Rejected)."
+        },
+        {
+          "type": "richText",
+          "id": "fldEmd1JcKrJPZT8D",
+          "name": "review_notes",
+          "description": "Internal notes added by reviewer."
+        },
+        {
+          "type": "lastModifiedTime",
+          "options": {
+            "isValid": true,
+            "referencedFieldIds": [],
+            "result": {
+              "type": "dateTime",
+              "options": {
+                "dateFormat": {
+                  "name": "local",
+                  "format": "l"
+                },
+                "timeFormat": {
+                  "name": "12hour",
+                  "format": "h:mma"
+                },
+                "timeZone": "client"
+              }
+            }
+          },
+          "id": "fld3xVYOC4ZPXTRty",
+          "name": "last_modified",
+          "description": "Timestamp that reflects the most recent update to the record, enabling version tracking and operational visibility."
+        },
+        {
+          "type": "autoNumber",
+          "id": "fld08yRahvEAUB7aj",
+          "name": "id",
+          "description": "Unique identifier."
+        },
+        {
+          "type": "richText",
+          "id": "fldsBfu8Hbe84JyTS",
+          "name": "other_media_types",
+          "description": "Optional field where the client can specify any additional media types not covered in the standard media placement options. Enables flexibility for unconventional requests and ensures the campaign brief captures all relevant execution preferences."
+        },
+        {
+          "type": "singleCollaborator",
+          "id": "fldJkRWllhbCIsRtV",
+          "name": "reviewed_by",
+          "description": "User who reviewed and updated the project brief."
+        },
+        {
+          "type": "createdTime",
+          "options": {
+            "result": {
+              "type": "date",
+              "options": {
+                "dateFormat": {
+                  "name": "us",
+                  "format": "M/D/YYYY"
+                }
+              }
+            }
+          },
+          "id": "fldLj07Z9sCcOm1DC",
+          "name": "created",
+          "description": "Timestamp automatically captured when the record is first created, supporting audit trails and chronological tracking."
+        },
+        {
+          "type": "lastModifiedBy",
+          "id": "fld79bNf1ktlI4Gl4",
+          "name": "last_modified_by",
+          "description": "Automatically records the user who made the most recent update to the project brief. Useful for tracking collaboration and accountability."
+        },
+        {
+          "type": "checkbox",
+          "options": {
+            "icon": "check",
+            "color": "greenBright"
+          },
+          "id": "fldrUQmVvz1YAJFxs",
+          "name": "campaign_creative_assets",
+          "description": "Indicates whether the client will provide creative assets for the campaign. If not selected, the internal design team will generate artwork based on campaign requirements."
+        },
+        {
+          "type": "formula",
+          "options": {
+            "isValid": true,
+            "formula": "IF(\r\n  YEAR({fld95S2mIfISCQZX8}) = YEAR(TODAY()),\r\n  SWITCH(\r\n    CEILING(MONTH({fld95S2mIfISCQZX8}) / 3) - CEILING(MONTH(TODAY()) / 3),\r\n    0,  \"Q0\",\r\n    -1, \"Q-1\",\r\n    -2, \"Q-2\",\r\n    -3, \"Q-3\",\r\n    \"\"\r\n  )\r\n)",
+            "referencedFieldIds": [
+              "fld95S2mIfISCQZX8"
+            ],
+            "result": {
+              "type": "singleLineText"
+            }
+          },
+          "id": "fldjeCEwYVYEcYcis",
+          "name": "actual_q",
+          "description": "This formula compares the quarter of {start_date} to the current quarter (based on TODAY()) within the same year. It returns:\n\nQ0 if the date is in the same quarter as the current one.\n\nQ-1, Q-2, or Q-3 if it is 1, 2, or 3 quarters earlier, respectively.\n\nAn empty value if it falls outside that range or in a different year.\n\nUse this to determine which quarter (relative to the current quarter) a record belongs to—helpful for segmenting or tracking past events within the current year.\n\n"
+        },
+        {
+          "type": "formula",
+          "options": {
+            "isValid": true,
+            "formula": "SWITCH(\r\n    CEILING(MONTH({fld95S2mIfISCQZX8}) / 3),\r\n    1, \"Q1\",\r\n    2, \"Q2\",\r\n    3, \"Q3\",\r\n    4, \"Q4\"\r\n)\r\n& \" \" &\r\nYEAR({fld95S2mIfISCQZX8})",
+            "referencedFieldIds": [
+              "fld95S2mIfISCQZX8"
+            ],
+            "result": {
+              "type": "singleLineText"
+            }
+          },
+          "id": "fld3v4OSrABVs3uLF",
+          "name": "quarter_of_the_year",
+          "description": "This formula determines the quarter (Q1, Q2, Q3, or Q4) for the date in {start_date} and appends the respective year. The first part uses the month to calculate which quarter the date falls into; the second part adds the four-digit year. As a result, regardless of whether the date is in a past, current, or future year, you’ll see the quarter followed by the year, such as “Q3 2022” or “Q1 2025.” This is useful for quickly identifying the specific quarter and year of any given date."
+        },
+        {
+          "type": "multipleRecordLinks",
+          "options": {
+            "linkedTableId": "tblkmpqL98s7MydEh",
+            "isReversed": false,
+            "prefersSingleRecordLink": true,
+            "inverseLinkFieldId": "fldF9LH2bpo56VWSR"
+          },
+          "id": "fldkCCTDpCpN1VOua",
+          "name": "project_brief_rel",
+          "description": "Connects projects to their brief documents.  Provides context."
+        },
+        {
+          "type": "multipleRecordLinks",
+          "options": {
+            "linkedTableId": "tblchWDOuPzJczwMZ",
+            "isReversed": false,
+            "prefersSingleRecordLink": false,
+            "inverseLinkFieldId": "fldR9PHX7rz7DSVRW"
+          },
+          "id": "fldFHUKnZjBLeaPnM",
+          "name": "clients"
+        },
+        {
+          "type": "multipleRecordLinks",
+          "options": {
+            "linkedTableId": "tblyugS6YRaq9Iipf",
+            "isReversed": false,
+            "prefersSingleRecordLink": false,
+            "inverseLinkFieldId": "fldZ00L5RbsrQXTEE"
+          },
+          "id": "fldngEpNKUc3XwB00",
+          "name": "media_placements"
+        }
+      ],
+      "views": [
+        {
+          "id": "viwCfrmG9lmDxTgPL",
+          "name": "Grid view",
+          "type": "grid"
+        }
+      ]
+    },
+    {
+      "id": "tblchWDOuPzJczwMZ",
+      "name": "clients",
+      "description": "This table stores information about clients submitting campaign briefs, including their contact details and organizational context. It serves as a master registry to link client identity with submitted and approved campaign records across the CRM system.",
+      "primaryFieldId": "fldyNBA0trS3bgYQP",
+      "fields": [
+        {
+          "type": "singleLineText",
+          "id": "fldyNBA0trS3bgYQP",
+          "name": "company_name",
+          "description": "Name of the company the client represents."
+        },
+        {
+          "type": "singleLineText",
+          "id": "fldZVET5TuecVfHVr",
+          "name": "client_name",
+          "description": "Full name of the client."
+        },
+        {
+          "type": "email",
+          "id": "fldfAP3xT0WVtrgLO",
+          "name": "email",
+          "description": "Contact email for the client."
+        },
+        {
+          "type": "phoneNumber",
+          "id": "fldGeQjk0iLMUPuWh",
+          "name": "phone",
+          "description": "Contact phone number for the client."
+        },
+        {
+          "type": "singleSelect",
+          "options": {
+            "choices": [
+              {
+                "id": "selmXkN9IsQvekMxk",
+                "name": "United States",
+                "color": "blueLight2"
+              }
+            ]
+          },
+          "id": "fldEOvQb6ccY7psGz",
+          "name": "country",
+          "description": "Clients country of origin. Options: United States"
+        },
+        {
+          "type": "singleSelect",
+          "options": {
+            "choices": [
+              {
+                "id": "seli1AYD26FqUKNVX",
+                "name": "Alabama",
+                "color": "blueLight2"
+              },
+              {
+                "id": "selAW9ItcByFXZxvK",
+                "name": "Alaska",
+                "color": "cyanLight2"
+              },
+              {
+                "id": "selTmqID6N1jzMBvC",
+                "name": "Arizona",
+                "color": "tealLight2"
+              },
+              {
+                "id": "sel5N5TdMXKEBpPrp",
+                "name": "Arkansas",
+                "color": "greenLight2"
+              },
+              {
+                "id": "sely9Lf44huA5i8NQ",
+                "name": "California",
+                "color": "yellowLight2"
+              },
+              {
+                "id": "selTBCBbUsTdzIarn",
+                "name": "Colorado",
+                "color": "orangeLight2"
+              },
+              {
+                "id": "sel0i63oHOxipgNVC",
+                "name": "Connecticut",
+                "color": "redLight2"
+              },
+              {
+                "id": "seludU2h2NlygMJd2",
+                "name": "Delaware",
+                "color": "pinkLight2"
+              },
+              {
+                "id": "selJLDsfHbOEPO7G0",
+                "name": "Florida",
+                "color": "purpleLight2"
+              },
+              {
+                "id": "selmkUA5lpIkpiGbr",
+                "name": "Georgia",
+                "color": "grayLight2"
+              },
+              {
+                "id": "selN3ldrL2hXNKKhi",
+                "name": "Hawaii",
+                "color": "blueLight1"
+              },
+              {
+                "id": "selG9YuvuqxSDJCAR",
+                "name": "Idaho",
+                "color": "cyanLight1"
+              },
+              {
+                "id": "selKZfUsMGbU6b9JV",
+                "name": "Illinois",
+                "color": "tealLight1"
+              },
+              {
+                "id": "selXeuFu8vfd30jlK",
+                "name": "Indiana",
+                "color": "greenLight1"
+              },
+              {
+                "id": "selH0OWhzM7prSABV",
+                "name": "Iowa",
+                "color": "yellowLight1"
+              },
+              {
+                "id": "sels1mKBampN6osBR",
+                "name": "Kansas",
+                "color": "orangeLight1"
+              },
+              {
+                "id": "selISkXDgXWHf1cOD",
+                "name": "Kentucky",
+                "color": "redLight1"
+              },
+              {
+                "id": "selPVFGlesFoHZsN2",
+                "name": "Louisiana",
+                "color": "pinkLight1"
+              },
+              {
+                "id": "sel80fGIhAU6NpeYm",
+                "name": "Maine",
+                "color": "purpleLight1"
+              },
+              {
+                "id": "selJQ95pQs5DMPlAa",
+                "name": "Maryland",
+                "color": "grayLight1"
+              },
+              {
+                "id": "selT7pTogyYgBAUaM",
+                "name": "Massachusetts",
+                "color": "blueBright"
+              },
+              {
+                "id": "selYiY8n3AlnrWB5V",
+                "name": "Michigan",
+                "color": "cyanBright"
+              },
+              {
+                "id": "selqrCPfP75a3UGUB",
+                "name": "Minnesota",
+                "color": "tealBright"
+              },
+              {
+                "id": "selYnpXPCswNCXBoC",
+                "name": "Mississippi",
+                "color": "greenBright"
+              },
+              {
+                "id": "sel3ol5TOEZTZUr5c",
+                "name": "Missouri",
+                "color": "yellowBright"
+              },
+              {
+                "id": "sel5uPAQOEers0ho0",
+                "name": "Montana",
+                "color": "orangeBright"
+              },
+              {
+                "id": "selgRKIePXAbl86Z0",
+                "name": "Nebraska",
+                "color": "redBright"
+              },
+              {
+                "id": "sel2pKwKlptR2KemF",
+                "name": "Nevada",
+                "color": "pinkBright"
+              },
+              {
+                "id": "seledsVoT4uKo7k1N",
+                "name": "New Hampshire",
+                "color": "purpleBright"
+              },
+              {
+                "id": "sel4oGbUzuXGJkTK7",
+                "name": "New Jersey",
+                "color": "grayBright"
+              },
+              {
+                "id": "selkG93Ou3Fx1OsOC",
+                "name": "New Mexico",
+                "color": "blueDark1"
+              },
+              {
+                "id": "selANciznAzeHyPUN",
+                "name": "New York",
+                "color": "cyanDark1"
+              },
+              {
+                "id": "selJr94MfrIHKwWDH",
+                "name": "North Carolina",
+                "color": "tealDark1"
+              },
+              {
+                "id": "selpF1XD3hYdOHZlz",
+                "name": "North Dakota",
+                "color": "greenDark1"
+              },
+              {
+                "id": "selkPRVodeyZJHpR4",
+                "name": "Ohio",
+                "color": "yellowDark1"
+              },
+              {
+                "id": "selrUJ6rba1P8AwbE",
+                "name": "Oklahoma",
+                "color": "orangeDark1"
+              },
+              {
+                "id": "selMvhyLUSucts1Tt",
+                "name": "Oregon",
+                "color": "redDark1"
+              },
+              {
+                "id": "selV7hvXnoMe8MtqS",
+                "name": "Pennsylvania",
+                "color": "pinkDark1"
+              },
+              {
+                "id": "selXLMQYxKUl47S0n",
+                "name": "Rhode Island",
+                "color": "purpleDark1"
+              },
+              {
+                "id": "selV9n8sIZsb1D4oy",
+                "name": "South Carolina",
+                "color": "grayDark1"
+              },
+              {
+                "id": "sel4YMW52X3QNb9I8",
+                "name": "South Dakota",
+                "color": "blueLight2"
+              },
+              {
+                "id": "sel7PNr7BDsjTXkVT",
+                "name": "Tennessee",
+                "color": "cyanLight2"
+              },
+              {
+                "id": "selkMsy5oJLUwqPoi",
+                "name": "Texas",
+                "color": "tealLight2"
+              },
+              {
+                "id": "selqDpgrHHRecrj4r",
+                "name": "Utah",
+                "color": "greenLight2"
+              },
+              {
+                "id": "selSralSNJeqf2wD0",
+                "name": "Vermont",
+                "color": "yellowLight2"
+              },
+              {
+                "id": "selSw72vmJRJPv85z",
+                "name": "Virginia",
+                "color": "orangeLight2"
+              },
+              {
+                "id": "selQztoJmRnuF59kM",
+                "name": "Washington",
+                "color": "redLight2"
+              },
+              {
+                "id": "selaA1nSAh4iG0BIL",
+                "name": "West Virginia",
+                "color": "pinkLight2"
+              },
+              {
+                "id": "selIyeeePQ68W1tSW",
+                "name": "Wisconsin",
+                "color": "purpleLight2"
+              },
+              {
+                "id": "selezKXk9Z3Lo6ziL",
+                "name": "Wyoming",
+                "color": "grayLight2"
+              }
+            ]
+          },
+          "id": "fld23R9uPQesuPBKj",
+          "name": "state_province",
+          "description": "U.S. State of the client. Includes all 50 states."
+        },
+        {
+          "type": "singleLineText",
+          "id": "fldcgcaHlUlkIlBah",
+          "name": "city",
+          "description": "City where the client is based."
+        },
+        {
+          "type": "url",
+          "id": "fld7LJfC9F4IZoDQ5",
+          "name": "website",
+          "description": "Website of the clients company, if available."
+        },
+        {
+          "type": "createdTime",
+          "options": {
+            "result": {
+              "type": "dateTime",
+              "options": {
+                "dateFormat": {
+                  "name": "local",
+                  "format": "l"
+                },
+                "timeFormat": {
+                  "name": "12hour",
+                  "format": "h:mma"
+                },
+                "timeZone": "client"
+              }
+            }
+          },
+          "id": "fldPOolk92JYqOkoF",
+          "name": "created",
+          "description": "Timestamp automatically captured when the record is first created, supporting audit trails and chronological tracking."
+        },
+        {
+          "type": "lastModifiedTime",
+          "options": {
+            "isValid": true,
+            "referencedFieldIds": [],
+            "result": {
+              "type": "dateTime",
+              "options": {
+                "dateFormat": {
+                  "name": "local",
+                  "format": "l"
+                },
+                "timeFormat": {
+                  "name": "12hour",
+                  "format": "h:mma"
+                },
+                "timeZone": "client"
+              }
+            }
+          },
+          "id": "fldGKvNSucdjQdBew",
+          "name": "last_modified",
+          "description": "Timestamp that reflects the most recent update to the record, enabling version tracking and operational visibility."
+        },
+        {
+          "type": "lastModifiedBy",
+          "id": "fldsPr7goHTlblK7M",
+          "name": "last_modified_by",
+          "description": "Automatically records the user who made the most recent update to the client record. Useful for tracking collaboration and accountability."
+        },
+        {
+          "type": "multipleRecordLinks",
+          "options": {
+            "linkedTableId": "tblkmpqL98s7MydEh",
+            "isReversed": false,
+            "prefersSingleRecordLink": false,
+            "inverseLinkFieldId": "fldyVuxzYgthhEE4D"
+          },
+          "id": "fldbokg9mWK3KVZS1",
+          "name": "project_brief",
+          "description": "Connects projects to their detailed briefs, providing context."
+        },
+        {
+          "type": "multipleRecordLinks",
+          "options": {
+            "linkedTableId": "tbl466Ejx5NqsO1mB",
+            "isReversed": false,
+            "prefersSingleRecordLink": false,
+            "inverseLinkFieldId": "fldFHUKnZjBLeaPnM"
+          },
+          "id": "fldR9PHX7rz7DSVRW",
+          "name": "active_campaign",
+          "description": "This field connects orders to their associated active marketing campaign.  Provides campaign tracking."
+        },
+        {
+          "type": "autoNumber",
+          "id": "fld6DwWfSijqwBcEO",
+          "name": "id",
+          "description": "Unique identifier."
+        },
+        {
+          "type": "formula",
+          "options": {
+            "isValid": true,
+            "formula": "RECORD_ID()",
+            "referencedFieldIds": [],
+            "result": {
+              "type": "singleLineText"
+            }
+          },
+          "id": "fld7974ivOaW3eITT",
+          "name": "record_id",
+          "description": "System-generated unique identifier used for referencing this record across the platform and integrations."
+        }
+      ],
+      "views": [
+        {
+          "id": "viwpt3ysBW8Y9Kiik",
+          "name": "Grid view",
+          "type": "grid"
+        }
+      ]
+    },
+    {
+      "id": "tblyugS6YRaq9Iipf",
+      "name": "media_placements",
+      "description": "This table defines the distribution of campaign budgets across specific media types. It supports planning, tracking, and allocation transparency during campaign execution.",
+      "primaryFieldId": "fldKdUp445tfeNJ3b",
+      "fields": [
+        {
+          "type": "singleLineText",
+          "id": "fldKdUp445tfeNJ3b",
+          "name": "campaign_title",
+          "description": "The campaign title stores the name of a marketing campaign."
+        },
+        {
+          "type": "singleSelect",
+          "options": {
+            "choices": [
+              {
+                "id": "selduP7Aez1KJEsU1",
+                "name": "Digital",
+                "color": "blueLight2"
+              },
+              {
+                "id": "selP9Fxj14TPWevMK",
+                "name": "Print",
+                "color": "cyanLight2"
+              },
+              {
+                "id": "selh7oWNr17v7dkme",
+                "name": "Radio",
+                "color": "tealLight2"
+              },
+              {
+                "id": "sel0F3ZbHILKUGxmq",
+                "name": "TV",
+                "color": "greenLight2"
+              },
+              {
+                "id": "sel23JDW6TT2sZEH2",
+                "name": "Unconventional",
+                "color": "yellowLight2"
+              },
+              {
+                "id": "seliU9Z7pcIvHZzKE",
+                "name": "Other",
+                "color": "orangeLight2"
+              }
+            ]
+          },
+          "id": "fldlQVi7AK2SFaoO0",
+          "name": "media_type",
+          "description": "Stores the type of media (e.g., image, video)."
+        },
+        {
+          "type": "percent",
+          "options": {
+            "precision": 2
+          },
+          "id": "fldau6CSZsNL3KjXs",
+          "name": "media_budget_allocation_percent",
+          "description": "Percentage of media budget allocated to specific campaigns."
+        },
+        {
+          "type": "currency",
+          "options": {
+            "precision": 2,
+            "symbol": "$"
+          },
+          "id": "fldGLonfew9imVm3P",
+          "name": "media_budget_allocation_amount",
+          "description": "Amount allocated to media campaigns.  Numeric value."
+        },
+        {
+          "type": "multilineText",
+          "id": "fldTZjpb8lCSUatXD",
+          "name": "notes",
+          "description": "Free-form text notes about a record."
+        },
+        {
+          "type": "formula",
+          "options": {
+            "isValid": true,
+            "formula": "RECORD_ID()",
+            "referencedFieldIds": [],
+            "result": {
+              "type": "singleLineText"
+            }
+          },
+          "id": "fldPKJGVSIynoJsqf",
+          "name": "record_id",
+          "description": "Unique identifier for each record.  Stores integer values."
+        },
+        {
+          "type": "createdTime",
+          "options": {
+            "result": {
+              "type": "dateTime",
+              "options": {
+                "dateFormat": {
+                  "name": "local",
+                  "format": "l"
+                },
+                "timeFormat": {
+                  "name": "12hour",
+                  "format": "h:mma"
+                },
+                "timeZone": "client"
+              }
+            }
+          },
+          "id": "fldc8asVqbOmSPxch",
+          "name": "created",
+          "description": "Date and time when the record was created."
+        },
+        {
+          "type": "lastModifiedTime",
+          "options": {
+            "isValid": true,
+            "referencedFieldIds": [],
+            "result": {
+              "type": "dateTime",
+              "options": {
+                "dateFormat": {
+                  "name": "local",
+                  "format": "l"
+                },
+                "timeFormat": {
+                  "name": "12hour",
+                  "format": "h:mma"
+                },
+                "timeZone": "client"
+              }
+            }
+          },
+          "id": "fldE06NSo3Ysp5wlO",
+          "name": "last_modified",
+          "description": "Date and time the record was last updated."
+        },
+        {
+          "type": "lastModifiedBy",
+          "id": "fldePBICnpqKsvB4r",
+          "name": "last_modified_by",
+          "description": "User who last updated the record.  Stores a user ID."
+        },
+        {
+          "type": "multipleRecordLinks",
+          "options": {
+            "linkedTableId": "tbl466Ejx5NqsO1mB",
+            "isReversed": false,
+            "prefersSingleRecordLink": false,
+            "inverseLinkFieldId": "fldngEpNKUc3XwB00"
+          },
+          "id": "fldZ00L5RbsrQXTEE",
+          "name": "active_campaign",
+          "description": "This field connects an entity to its active marketing campaign, enabling campaign tracking and targeting."
+        }
+      ],
+      "views": [
+        {
+          "id": "viwTREMB1hzGJN5YO",
+          "name": "Grid view",
+          "type": "grid"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,169 @@
+Table project_brief {
+    project_brief_id varchar [note: 'business desc: Unique identifier for each project brief, (autonumber + company name + created date) ., technical desc: Type: formula, field ID: fldd8EhKwRISulQMO']
+    client_name text [note: 'business desc: Name of the client submitting the brief., technical desc: Type: multilineText, field ID: fldpWTAo3v2vtznYX']
+    record_id varchar [note: 'business desc: System-generated unique identifier used for referencing this record across the platform and integrations., technical desc: Type: formula, field ID: fldb37QIeICev3hBy']
+    company_name text [note: 'business desc: Company name associated with the campaign., technical desc: Type: multilineText, field ID: fldOdcfdsDixT6anD']
+    email varchar [note: 'business desc: Contact email for the client., technical desc: Type: email, field ID: fldyO7K6RioLNErDU']
+    phone varchar [note: 'business desc: Contact number for the client., technical desc: Type: phoneNumber, field ID: fld82RDbL0XUFW6LC']
+    country varchar [note: 'business desc: Country of origin for the campaign. Options: United States., technical desc: Type: singleSelect, Options: United States, field ID: fldQ1Zg2RUV9kOYCM']
+    state_province varchar [note: 'business desc: U.S. state or province of the client. Options: Alabama, Alaska, Arizona, Arkansas, California, Colorado, Connecticut, Delaware, Florida, Georgia, Hawaii, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana, Maine, Maryland, Massachusetts, Michigan, Minnesota, Mississippi, Missouri, Montana, Nebraska, Nevada, New Hampshire, New Jersey, New Mexico, New York, North Carolina, North Dakota, Ohio, Oklahoma, Oregon, Pennsylvania, Rhode Island, South Carolina, South Dakota, Tennessee, Texas, Utah, Vermont, Virginia, Washington, West Virginia, Wisconsin, Wyoming., technical desc: Type: singleSelect, Options: Alabama, Alaska, Arizona, Arkansas, California, Colorado, Connecticut, Delaware, Florida, Georgia, Hawaii, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana, Maine, Maryland, Massachusetts, Michigan, Minnesota, Mississippi, Missouri, Montana, Nebraska, Nevada, New Hampshire, New Jersey, New Mexico, New York, North Carolina, North Dakota, Ohio, Oklahoma, Oregon, Pennsylvania, Rhode Island, South Carolina, South Dakota, Tennessee, Texas, Utah, Vermont, Virginia, Washington, West Virginia, Wisconsin, Wyoming, field ID: fld4DMGJCCrSWKUkR']
+    city text [note: 'business desc: City where the client is located., technical desc: Type: multilineText, field ID: fld5thsP74HlOEFHf']
+    website varchar [note: 'business desc: Optional website link provided by the client., technical desc: Type: url, field ID: fldBqgWxlsN1Y3gsy']
+    campaign_title text [note: 'business desc: Name/title of the campaign., technical desc: Type: multilineText, field ID: fldDMrRgz0Ihg58br']
+    primary_objective text [note: 'business desc: Primary goal or objective of the campaign., technical desc: Type: multilineText, field ID: fld8ZFCdfHHRfmBm6']
+    budget decimal [note: 'business desc: Estimated campaign budget in USD., technical desc: Type: currency, Precision: 2, Symbol: $, field ID: fldkR1adM2ETcjGIQ']
+    start_date date [note: 'business desc: Planned start date of the campaign., technical desc: Type: date, Format: YYYY-MM-DD, field ID: fldplbOOkinzWAbfO']
+    end_date date [note: 'business desc: Planned end date of the campaign., technical desc: Type: date, Format: YYYY-MM-DD, field ID: fldQ3CDax6MO4xViW']
+    age_range_min float [note: 'business desc: Minimum age of the campaign target audience., technical desc: Type: number, field ID: fldOPc7TaJVKjkZbu']
+    age_range_max float [note: 'business desc: Maximum age of the campaign target audience., technical desc: Type: number, field ID: fldq0wvsziVXD891Y']
+    target_geography_state varchar [note: 'business desc: U.S. state targeted by the campaign. Options: Alabama, Alaska, Arizona, Arkansas, California, Colorado, Connecticut, Delaware, Florida, Georgia, Hawaii, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana, Maine, Maryland, Massachusetts, Michigan, Minnesota, Mississippi, Missouri, Montana, Nebraska, Nevada, New Hampshire, New Jersey, New Mexico, New York, North Carolina, North Dakota, Ohio, Oklahoma, Oregon, Pennsylvania, Rhode Island, South Carolina, South Dakota, Tennessee, Texas, Utah, Vermont, Virginia, Washington, West Virginia, Wisconsin, Wyoming., technical desc: Type: singleSelect, Options: Alabama, Alaska, Arizona, Arkansas, California, Colorado, Connecticut, Delaware, Florida, Georgia, Hawaii, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana, Maine, Maryland, Massachusetts, Michigan, Minnesota, Mississippi, Missouri, Montana, Nebraska, Nevada, New Hampshire, New Jersey, New Mexico, New York, North Carolina, North Dakota, Ohio, Oklahoma, Oregon, Pennsylvania, Rhode Island, South Carolina, South Dakota, Tennessee, Texas, Utah, Vermont, Virginia, Washington, West Virginia, Wisconsin, Wyoming, field ID: fld1YJeEfDgUKlU9e']
+    target_geography_city text [note: 'business desc: City targeted by the campaign., technical desc: Type: multilineText, field ID: fldwZmKKwYJP467J3']
+    target_communities varchar [note: 'business desc: Demographic communities targeted by the campaign. Options: African American, Caribbean, Arab, East Asian, U.S. Indigenous, Indian American, Latino/Hispanic, Russian, South Asian, Southeast Asian, Jewish, Pacific Islander, East Slavic, West European, West African, Other., technical desc: Type: multipleSelects, Options: African American, Caribbean, Arab, East Asian, U.S. Indigenous, Indian American, Latino/Hispanic Russian, South Asian, Southeast Asian, Jewish, Pacific Islander, East Slavic, West European, West African, Other, Russian, Latino/Hispanic, field ID: fldpACPXF0jVRlEKR']
+    preferred_media_placements varchar [note: 'business desc: Types of media preferred for ad placement. Options: Digital, Print, Radio, TV, Unconventional, Other., technical desc: Type: multipleSelects, Options: Digital, Print, Radio, TV, Unconventional, Other, field ID: fldOeMTg5OeQH7UCQ']
+    target_audience_details text [note: 'business desc: Additional details about audience demographics or behaviors., technical desc: Type: multilineText, field ID: fldopT6JQbKMWOopp']
+    uploaded_documents varchar [note: 'business desc: Supporting files for the campaign brief., technical desc: Type: multipleAttachments, field ID: fldhmFcXIAT0GaZsv']
+    status varchar [note: 'business desc: Current review status (Options: Pending Review, Approved, Rejected)., technical desc: Type: singleSelect, Options: Pending Review, Approved, Rejected, field ID: fldv6J8hLAFYs86lx']
+    review_notes text [note: 'business desc: Internal notes added by reviewer., technical desc: Type: richText, field ID: fldUCwNbON6q9J5qj']
+    use_digital boolean [note: 'business desc: Indicates whether the campaign intends to use Digital media., technical desc: Type: checkbox, field ID: fldY0c3snhZkTJg9m']
+    use_tv boolean [note: 'business desc: Indicates whether the campaign intends to use TV media., technical desc: Type: checkbox, field ID: fldYFhulETK12NIcO']
+    use_radio boolean [note: 'business desc: Indicates whether the campaign intends to use Radio media., technical desc: Type: checkbox, field ID: fldBwaNwZ2u4Gc7Q8']
+    use_print boolean [note: 'business desc: Indicates whether the campaign intends to use Print media., technical desc: Type: checkbox, field ID: fldDBrFY6Gbth8ysF']
+    use_unconventional boolean [note: 'business desc: Indicates whether the campaign intends to use Unconventional media., technical desc: Type: checkbox, field ID: fld1jARxgeO5Xtiju']
+    use_other boolean [note: 'business desc: Indicates whether the campaign intends to use Other types of media., technical desc: Type: checkbox, field ID: fldA0gfi6estfxXDA']
+    other_media_types text [note: 'business desc: Optional field where the client can specify any additional media types not covered in the standard media placement options. Enables flexibility for unconventional requests and ensures the campaign brief captures all relevant execution preferences., technical desc: Type: richText, field ID: fldIRygAjeTPotKby']
+    digital_percentage float [note: 'business desc: Percentage of the total budget allocated to Digital media., technical desc: Type: percent, field ID: fldBSVcsp7Oqs49aS']
+    tv_percentage float [note: 'business desc: Percentage of the total budget allocated to TV media., technical desc: Type: percent, field ID: fldtZZ9ECtV089iBj']
+    radio_percentage float [note: 'business desc: Percentage of the total budget allocated to Radio media., technical desc: Type: percent, field ID: fldfpcTb6P4Wo4guT']
+    print_percentage float [note: 'business desc: Percentage of the total budget allocated to Print media., technical desc: Type: percent, field ID: fld1PRpriQEuHvmAY']
+    unconventional_percentage float [note: 'business desc: Percentage of the total budget allocated to Unconventional media., technical desc: Type: percent, field ID: fldNGvvvIe6cWWVKU']
+    other_percentage float [note: 'business desc: Percentage of the total budget allocated to Other media., technical desc: Type: percent, field ID: fldkBJlHJzxw4SEaA']
+    reviewed_by varchar [note: 'business desc: User who reviewed and updated the project brief., technical desc: Type: singleCollaborator, field ID: fldZAaINXkQj2c3LB']
+    created varchar [note: 'business desc: Timestamp automatically captured when the record is first created, supporting audit trails and chronological tracking., technical desc: Type: createdTime, field ID: fld1zjTrLvhT86dVi']
+    media_allocation_validation varchar [note: 'business desc: Validates whether the total media allocation exceeds 100%. Displays a red warning if the combined percentages of all selected media types surpass 100%. Used for preventing over-allocation of campaign budgets., technical desc: Type: formula, field ID: fldiMvR9NmkMLlftz']
+    last_modified_by varchar [note: 'business desc: Automatically records the user who made the most recent update to the project brief. Useful for tracking collaboration and accountability., technical desc: Type: lastModifiedBy, field ID: fldnpuzHDn822OSDK']
+    campaign_creative_assets boolean [note: 'business desc: Indicates whether the client will provide creative assets for the campaign. If not selected, the internal design team will generate artwork based on campaign requirements., technical desc: Type: checkbox, field ID: fldHa98n7CGFUtRP8']
+    last_modified varchar [note: 'business desc: Timestamp that reflects the most recent update to the record, enabling version tracking and operational visibility., technical desc: Type: lastModifiedTime, field ID: fldjNeKge7EwhD3Le']
+    id int [note: 'business desc: Unique identifier., technical desc: Type: autoNumber, field ID: fldgoRDCTyjheljsZ']
+    actual_q varchar [note: 'business desc: This formula compares the quarter of {start_date} to the current quarter (based on TODAY()) within the same year. It returns:
+
+Q0 if the date is in the same quarter as the current one.
+
+Q-1, Q-2, or Q-3 if it is 1, 2, or 3 quarters earlier, respectively.
+
+An empty value if it falls outside that range or in a different year.
+
+Use this to determine which quarter (relative to the current quarter) a record belongs to—helpful for segmenting or tracking past events within the current year.
+
+, technical desc: Type: formula, field ID: fldzuVqYAYDlwIoA8']
+    quarter_of_the_year varchar [note: 'business desc: his formula determines the quarter (Q1, Q2, Q3, or Q4) for the date in {start_date} and appends the respective year. The first part uses the month to calculate which quarter the date falls into; the second part adds the four-digit year. As a result, regardless of whether the date is in a past, current, or future year, you’ll see the quarter followed by the year, such as “Q3 2022” or “Q1 2025.” This is useful for quickly identifying the specific quarter and year of any given date., technical desc: Type: formula, field ID: fldjLnAk3DgCMNG3l']
+    active_campaign int [note: 'business desc: This field connects an entry to its active marketing campaign.  Provides campaign tracking., technical desc: Type: multipleRecordLinks, Reference to active_campaign table, field ID: fldF9LH2bpo56VWSR']
+    ai_context varchar [note: 'business desc: Generates a JSON object containing key campaign details from specified fields., technical desc: Type: aiText, field ID: fldRkQ6VkcfWTWvtp']
+    clients int [note: 'business desc: This relationship connects orders to clients, enabling order tracking and client management., technical desc: Type: multipleRecordLinks, Reference to clients table, field ID: fldyVuxzYgthhEE4D']
+    note: '### project_brief Table (airtable id: tblkmpqL98s7MydEh) - This table has 50 fields - This table consolidates all necessary data for evaluating and processing campaign briefs submitted by clients. It includes contact information, campaign details, target demographics, media preferences, geography targeting, and workflow status. This structure ensures standardized data collection, review, and collaboration for streamlined campaign approval   and execution workflows within the Grassroots CRM platform.'
+}
+
+Table active_campaign {
+    active_campaign_id varchar [note: 'business desc: Unique identifier for each project brief, (autonumber + company name + created date) ., technical desc: Type: formula, field ID: fldXSlviUO3baBEu8']
+    client_name text [note: 'business desc: Name of the client submitting the brief., technical desc: Type: multilineText, field ID: fld9GAOWrsnO9PbGh']
+    record_id varchar [note: 'business desc: System-generated unique identifier used for referencing this record across the platform and integrations., technical desc: Type: formula, field ID: fldVNO4gCFXxbj5jS']
+    company_name text [note: 'business desc: Company name associated with the campaign., technical desc: Type: multilineText, field ID: fldyXTtLQADQzmY5X']
+    email varchar [note: 'business desc: Contact email for the client., technical desc: Type: email, field ID: fldiyOYEffJ4tUfle']
+    phone varchar [note: 'business desc: Contact number for the client., technical desc: Type: phoneNumber, field ID: fldSMyRJ9XidlcUtW']
+    country varchar [note: 'business desc: Country of origin for the campaign. Options: United States., technical desc: Type: singleSelect, Options: United States, field ID: fldALGuAfRgs04Mk6']
+    state_province varchar [note: 'business desc: U.S. state or province of the client. Options: Alabama, Alaska, Arizona, Arkansas, California, Colorado, Connecticut, Delaware, Florida, Georgia, Hawaii, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana, Maine, Maryland, Massachusetts, Michigan, Minnesota, Mississippi, Missouri, Montana, Nebraska, Nevada, New Hampshire, New Jersey, New Mexico, New York, North Carolina, North Dakota, Ohio, Oklahoma, Oregon, Pennsylvania, Rhode Island, South Carolina, South Dakota, Tennessee, Texas, Utah, Vermont, Virginia, Washington, West Virginia, Wisconsin, Wyoming., technical desc: Type: singleSelect, Options: Alabama, Alaska, Arizona, Arkansas, California, Colorado, Connecticut, Delaware, Florida, Georgia, Hawaii, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana, Maine, Maryland, Massachusetts, Michigan, Minnesota, Mississippi, Missouri, Montana, Nebraska, Nevada, New Hampshire, New Jersey, New Mexico, New York, North Carolina, North Dakota, Ohio, Oklahoma, Oregon, Pennsylvania, Rhode Island, South Carolina, South Dakota, Tennessee, Texas, Utah, Vermont, Virginia, Washington, West Virginia, Wisconsin, Wyoming, field ID: fldOntUh0zMbC0I2b']
+    city text [note: 'business desc: City where the client is located., technical desc: Type: multilineText, field ID: fldPdYGnv12EuUtpz']
+    website varchar [note: 'business desc: Optional website link provided by the client., technical desc: Type: url, field ID: fldlaXa5Jp8kEj4aS']
+    campaign_title text [note: 'business desc: Name/title of the campaign., technical desc: Type: multilineText, field ID: fldnw85OXX3AWlWTL']
+    primary_objective text [note: 'business desc: Primary goal or objective of the campaign., technical desc: Type: multilineText, field ID: fldSJmQLDE2aVCp4q']
+    budget decimal [note: 'business desc: Estimated campaign budget in USD., technical desc: Type: currency, Precision: 2, Symbol: $, field ID: fld4BIoLaZZcSzuqa']
+    start_date date [note: 'business desc: Planned start date of the campaign., technical desc: Type: date, Format: YYYY-MM-DD, field ID: fld95S2mIfISCQZX8']
+    end_date date [note: 'business desc: Planned end date of the campaign., technical desc: Type: date, Format: YYYY-MM-DD, field ID: fldANjRIV377KNJ0g']
+    age_range_min float [note: 'business desc: Minimum age of the campaign target audience., technical desc: Type: number, field ID: fldyzTlryGg3ZANTO']
+    age_range_max float [note: 'business desc: Maximum age of the campaign target audience., technical desc: Type: number, field ID: fldaKdJ0XfggjoXJi']
+    target_geography_state varchar [note: 'business desc: U.S. state targeted by the campaign. Options: Alabama, Alaska, Arizona, Arkansas, California, Colorado, Connecticut, Delaware, Florida, Georgia, Hawaii, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana, Maine, Maryland, Massachusetts, Michigan, Minnesota, Mississippi, Missouri, Montana, Nebraska, Nevada, New Hampshire, New Jersey, New Mexico, New York, North Carolina, North Dakota, Ohio, Oklahoma, Oregon, Pennsylvania, Rhode Island, South Carolina, South Dakota, Tennessee, Texas, Utah, Vermont, Virginia, Washington, West Virginia, Wisconsin, Wyoming., technical desc: Type: singleSelect, Options: Alabama, Alaska, Arizona, Arkansas, California, Colorado, Connecticut, Delaware, Florida, Georgia, Hawaii, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana, Maine, Maryland, Massachusetts, Michigan, Minnesota, Mississippi, Missouri, Montana, Nebraska, Nevada, New Hampshire, New Jersey, New Mexico, New York, North Carolina, North Dakota, Ohio, Oklahoma, Oregon, Pennsylvania, Rhode Island, South Carolina, South Dakota, Tennessee, Texas, Utah, Vermont, Virginia, Washington, West Virginia, Wisconsin, Wyoming, field ID: fldLIqscDABdqBIRy']
+    target_geography_city text [note: 'business desc: City targeted by the campaign., technical desc: Type: multilineText, field ID: fldgJ3YiUV48KmVrn']
+    target_communities varchar [note: 'business desc: Demographic communities targeted by the campaign. Options: African American, Caribbean, Arab, East Asian, U.S. Indigenous, Indian American, Latino/Hispanic, Russian, South Asian, Southeast Asian, Jewish, Pacific Islander, East Slavic, West European, West African, Other., technical desc: Type: multipleSelects, Options: African American, Caribbean, Arab, East Asian, U.S. Indigenous, Indian American, Latino/Hispanic Russian, South Asian, Southeast Asian, Jewish, Pacific Islander, East Slavic, West European, West African, Other, Russian, Latino/Hispanic, field ID: fld9kj3v3XEexBssb']
+    preferred_media_placements varchar [note: 'business desc: Types of media preferred for ad placement. Options: Digital, Print, Radio, TV, Unconventional, Other., technical desc: Type: multipleSelects, Options: Digital, Print, Radio, TV, Unconventional, Other, field ID: fldyYt7OtLz9nnIka']
+    target_audience_details text [note: 'business desc: Additional details about audience demographics or behaviors., technical desc: Type: multilineText, field ID: fld89Akhe855C4c7J']
+    uploaded_documents varchar [note: 'business desc: Supporting files for the campaign brief., technical desc: Type: multipleAttachments, field ID: fld16mqv6xejmqNaP']
+    status varchar [note: 'business desc: Current review status (Options: Pending Review, Approved, Rejected)., technical desc: Type: singleSelect, Options: Pending Review, Approved, Rejected, field ID: fldfQqmP9x0h8oU3R']
+    review_notes text [note: 'business desc: Internal notes added by reviewer., technical desc: Type: richText, field ID: fldEmd1JcKrJPZT8D']
+    use_digital boolean [note: 'business desc: Indicates whether the campaign intends to use Digital media., technical desc: Type: checkbox, field ID: fldIKTh0LekDzZ4RG']
+    use_tv boolean [note: 'business desc: Indicates whether the campaign intends to use TV media., technical desc: Type: checkbox, field ID: fldIpYIT2Q5kI3wU8']
+    use_radio boolean [note: 'business desc: Indicates whether the campaign intends to use Radio media., technical desc: Type: checkbox, field ID: fldlgR14nZPnmsVys']
+    use_print boolean [note: 'business desc: Indicates whether the campaign intends to use Print media., technical desc: Type: checkbox, field ID: fldnl8TwuDwMXomaZ']
+    use_unconventional boolean [note: 'business desc: Indicates whether the campaign intends to use Unconventional media., technical desc: Type: checkbox, field ID: fldL3h55Eb9oDJ61O']
+    use_other boolean [note: 'business desc: Indicates whether the campaign intends to use Other types of media., technical desc: Type: checkbox, field ID: fldkKXtQubNMVNLlU']
+    other_media_types text [note: 'business desc: Optional field where the client can specify any additional media types not covered in the standard media placement options. Enables flexibility for unconventional requests and ensures the campaign brief captures all relevant execution preferences., technical desc: Type: richText, field ID: fldsBfu8Hbe84JyTS']
+    digital_percentage float [note: 'business desc: Percentage of the total budget allocated to Digital media., technical desc: Type: percent, field ID: fldlCCq0N49J8kXSc']
+    tv_percentage float [note: 'business desc: Percentage of the total budget allocated to TV media., technical desc: Type: percent, field ID: flddJGnc0qgjOp6jD']
+    radio_percentage float [note: 'business desc: Percentage of the total budget allocated to Radio media., technical desc: Type: percent, field ID: fldZ9T7JuMpf4k4cd']
+    print_percentage float [note: 'business desc: Percentage of the total budget allocated to Print media., technical desc: Type: percent, field ID: fldLzyDZGNZNnLaii']
+    unconventional_percentage float [note: 'business desc: Percentage of the total budget allocated to Unconventional media., technical desc: Type: percent, field ID: fldxqcJ36brvCcJse']
+    other_percentage float [note: 'business desc: Percentage of the total budget allocated to Other media., technical desc: Type: percent, field ID: fld4lqzf7wSPK8sSU']
+    reviewed_by varchar [note: 'business desc: User who reviewed and updated the project brief., technical desc: Type: singleCollaborator, field ID: fldJkRWllhbCIsRtV']
+    created varchar [note: 'business desc: Timestamp automatically captured when the record is first created, supporting audit trails and chronological tracking., technical desc: Type: createdTime, field ID: fldLj07Z9sCcOm1DC']
+    media_allocation_validation varchar [note: 'business desc: Validates whether the total media allocation exceeds 100%. Displays a red warning if the combined percentages of all selected media types surpass 100%. Used for preventing over-allocation of campaign budgets., technical desc: Type: formula, field ID: fld2wc5HbjF5rB3bT']
+    last_modified_by varchar [note: 'business desc: Automatically records the user who made the most recent update to the project brief. Useful for tracking collaboration and accountability., technical desc: Type: lastModifiedBy, field ID: fld79bNf1ktlI4Gl4']
+    campaign_creative_assets boolean [note: 'business desc: Indicates whether the client will provide creative assets for the campaign. If not selected, the internal design team will generate artwork based on campaign requirements., technical desc: Type: checkbox, field ID: fldrUQmVvz1YAJFxs']
+    project_brief_rel int [note: 'business desc: Connects projects to their briefs, providing context and details., technical desc: Type: multipleRecordLinks, Reference to project_brief table, field ID: fldkCCTDpCpN1VOua']
+    last_modified varchar [note: 'business desc: Timestamp that reflects the most recent update to the record, enabling version tracking and operational visibility., technical desc: Type: lastModifiedTime, field ID: fld3xVYOC4ZPXTRty']
+    id int [note: 'business desc: Unique identifier., technical desc: Type: autoNumber, field ID: fld08yRahvEAUB7aj']
+    actual_q varchar [note: 'business desc: This formula compares the quarter of {start_date} to the current quarter (based on TODAY()) within the same year. It returns:
+
+Q0 if the date is in the same quarter as the current one.
+
+Q-1, Q-2, or Q-3 if it is 1, 2, or 3 quarters earlier, respectively.
+
+An empty value if it falls outside that range or in a different year.
+
+Use this to determine which quarter (relative to the current quarter) a record belongs to—helpful for segmenting or tracking past events within the current year.
+
+, technical desc: Type: formula, field ID: fldjeCEwYVYEcYcis']
+    quarter_of_the_year varchar [note: 'business desc: his formula determines the quarter (Q1, Q2, Q3, or Q4) for the date in {start_date} and appends the respective year. The first part uses the month to calculate which quarter the date falls into; the second part adds the four-digit year. As a result, regardless of whether the date is in a past, current, or future year, you’ll see the quarter followed by the year, such as “Q3 2022” or “Q1 2025.” This is useful for quickly identifying the specific quarter and year of any given date., technical desc: Type: formula, field ID: fld3v4OSrABVs3uLF']
+    clients int [note: 'business desc: Connects orders to their associated clients.  Provides customer context., technical desc: Type: multipleRecordLinks, Reference to clients table, field ID: fldFHUKnZjBLeaPnM']
+    media_placements int [note: 'business desc: This relationship connects media placements to associated campaigns.  It tracks which placements are part of each campaign., technical desc: Type: multipleRecordLinks, Reference to media_placements table, field ID: fldngEpNKUc3XwB00']
+    note: '### active_campaign Table (airtable id: tbl466Ejx5NqsO1mB) - This table has 50 fields - This table consolidates all necessary data for evaluating and processing campaign briefs submitted by clients. It includes contact information, campaign details, target demographics, media preferences, geography targeting, and workflow status. This structure ensures standardized data collection, review, and collaboration for streamlined campaign approval   and execution workflows within the Grassroots CRM platform.'
+}
+
+Table clients {
+    company_name varchar [note: 'business desc: Name of the company the client represents., technical desc: Type: singleLineText, field ID: fldyNBA0trS3bgYQP']
+    client_name varchar [note: 'business desc: Full name of the client., technical desc: Type: singleLineText, field ID: fldZVET5TuecVfHVr']
+    email varchar [note: 'business desc: Contact email for the client., technical desc: Type: email, field ID: fldfAP3xT0WVtrgLO']
+    phone varchar [note: 'business desc: Contact phone number for the client., technical desc: Type: phoneNumber, field ID: fldGeQjk0iLMUPuWh']
+    country varchar [note: 'business desc: Clients country of origin. Options: United States, technical desc: Type: singleSelect, Options: United States, field ID: fldEOvQb6ccY7psGz']
+    state_province varchar [note: 'business desc: U.S. State of the client. Includes all 50 states., technical desc: Type: singleSelect, Options: Alabama, Alaska, Arizona, Arkansas, California, Colorado, Connecticut, Delaware, Florida, Georgia, Hawaii, Idaho, Illinois, Indiana, Iowa, Kansas, Kentucky, Louisiana, Maine, Maryland, Massachusetts, Michigan, Minnesota, Mississippi, Missouri, Montana, Nebraska, Nevada, New Hampshire, New Jersey, New Mexico, New York, North Carolina, North Dakota, Ohio, Oklahoma, Oregon, Pennsylvania, Rhode Island, South Carolina, South Dakota, Tennessee, Texas, Utah, Vermont, Virginia, Washington, West Virginia, Wisconsin, Wyoming, field ID: fld23R9uPQesuPBKj']
+    city varchar [note: 'business desc: City where the client is based., technical desc: Type: singleLineText, field ID: fldcgcaHlUlkIlBah']
+    website varchar [note: 'business desc: Website of the clients company, if available., technical desc: Type: url, field ID: fld7LJfC9F4IZoDQ5']
+    created varchar [note: 'business desc: Timestamp automatically captured when the record is first created, supporting audit trails and chronological tracking., technical desc: Type: createdTime, field ID: fldPOolk92JYqOkoF']
+    last_modified varchar [note: 'business desc: Timestamp that reflects the most recent update to the record, enabling version tracking and operational visibility., technical desc: Type: lastModifiedTime, field ID: fldGKvNSucdjQdBew']
+    last_modified_by varchar [note: 'business desc: Automatically records the user who made the most recent update to the client record. Useful for tracking collaboration and accountability., technical desc: Type: lastModifiedBy, field ID: fldsPr7goHTlblK7M']
+    project_brief int [note: 'business desc: Connects projects to their detailed briefs, providing context., technical desc: Type: multipleRecordLinks, Reference to project_brief table, field ID: fldbokg9mWK3KVZS1']
+    active_campaign int [note: 'business desc: This relationship connects records, linking a record to its active campaign.  Provides campaign context., technical desc: Type: multipleRecordLinks, Reference to active_campaign table, field ID: fldR9PHX7rz7DSVRW']
+    id int [note: 'business desc: Unique identifier., technical desc: Type: autoNumber, field ID: fld6DwWfSijqwBcEO']
+    record_id varchar [note: 'business desc: System-generated unique identifier used for referencing this record across the platform and integrations., technical desc: Type: formula, field ID: fld7974ivOaW3eITT']
+    note: '### clients Table (airtable id: tblchWDOuPzJczwMZ) - This table has 15 fields - This table stores information about clients submitting campaign briefs, including their contact details and organizational context. It serves as a master registry to link client identity with submitted and approved campaign records across the CRM system.'
+}
+
+Table media_placements {
+    campaign_title varchar [note: 'business desc: The campaign title stores the name of a marketing campaign., technical desc: Type: singleLineText, field ID: fldKdUp445tfeNJ3b']
+    media_type varchar [note: 'business desc: Stores the type of media (e.g., image, video, audio)., technical desc: Type: singleSelect, Options: Digital, Print, Radio, TV, Unconventional, Other, field ID: fldlQVi7AK2SFaoO0']
+    media_budget_allocation_percent float [note: 'business desc: Percentage of budget allocated to media campaigns., technical desc: Type: percent, field ID: fldau6CSZsNL3KjXs']
+    media_budget_allocation_amount decimal [note: 'business desc: Amount allocated to media campaigns.  Numeric value., technical desc: Type: currency, Precision: 2, Symbol: $, field ID: fldGLonfew9imVm3P']
+    notes text [note: 'business desc: Free-form text notes about a record., technical desc: Type: multilineText, field ID: fldTZjpb8lCSUatXD']
+    record_id varchar [note: 'business desc: Unique identifier for each record in the system., technical desc: Type: formula, field ID: fldPKJGVSIynoJsqf']
+    created varchar [note: 'business desc: Date and time a record was created., technical desc: Type: createdTime, field ID: fldc8asVqbOmSPxch']
+    last_modified varchar [note: 'business desc: Date and time the record was last updated., technical desc: Type: lastModifiedTime, field ID: fldE06NSo3Ysp5wlO']
+    last_modified_by varchar [note: 'business desc: The user who last updated the record.  Stores a user ID., technical desc: Type: lastModifiedBy, field ID: fldePBICnpqKsvB4r']
+    active_campaign int [note: 'business desc: No description available., technical desc: Type: multipleRecordLinks, Reference to active_campaign table, field ID: fldZ00L5RbsrQXTEE']
+    note: '### media_placements Table (airtable id: tblyugS6YRaq9Iipf) - This table has 10 fields - This table defines the distribution of campaign budgets across specific media types. It supports planning, tracking, and allocation transparency during campaign execution.'
+}
+
+Ref: project_brief.active_campaign > active_campaign.active_campaign_id [note: 'Many-to-many relationship.']
+Ref: project_brief.clients > clients.company_name [note: 'Many-to-many relationship.']
+Ref: active_campaign.project_brief_rel > project_brief.project_brief_id [note: 'Many-to-many relationship.']
+Ref: active_campaign.clients > clients.company_name [note: 'Many-to-many relationship.']
+Ref: active_campaign.media_placements > media_placements.campaign_title [note: 'Many-to-many relationship.']
+Ref: clients.project_brief > project_brief.project_brief_id [note: 'Many-to-many relationship.']
+Ref: clients.active_campaign > active_campaign.active_campaign_id [note: 'Many-to-many relationship.']
+Ref: media_placements.active_campaign > active_campaign.active_campaign_id [note: 'Many-to-many relationship.']
