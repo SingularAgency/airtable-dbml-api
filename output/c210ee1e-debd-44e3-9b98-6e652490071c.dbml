@@ -1,6 +1,0 @@
-Table Employees {
-    Name singleLineText [note: 'business desc: Employee full name, technical desc: Type: singleLineText, field ID: fld123XYZ, readonly field: false']
-    Email email [note: 'business desc: Employee email address, technical desc: Type: email, field ID: fld456DEF, readonly field: false']
-    note: '### Employees Table (airtable id: tbl123ABC) - Employees - Table for managing employees information'
-}
-

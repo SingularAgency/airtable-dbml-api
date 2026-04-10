@@ -584,6 +584,356 @@ This is ideal for processing large schemas with many tables and fields.`,
     };
   }
 
+  @Post('generate-from-schema-job')
+  @HttpCode(202) // Accepted
+  @ApiOperation({
+    summary: 'Generate DBML from previous schema extraction job',
+    description: `Starts an asynchronous job to convert Airtable schema to DBML using a previous schema extraction job.
+    
+## Prerequisites
+- A **successful** schema extraction job (status: completed, no errors)
+- The schema job must contain valid table data
+
+## How to use:
+1. **First, extract schema** using the schema-extractor endpoint to get a Job ID
+2. **Verify the schema job** using GET /json-dbml/validate-schema-job/{schemaJobId} to ensure it's valid
+3. **Submit the Job ID** to this endpoint along with your DBML generation preferences
+4. **Check the status** at GET /jobs/{jobId}/status
+5. **Download the result** from GET /jobs/{jobId}/download when status is "completed"
+
+## Important Notes:
+- This endpoint will fail if the schema extraction job failed or contains errors
+- Use the validation endpoint first to check schema job status
+- If schema extraction failed, fix the issue and try again before using this endpoint
+
+This eliminates the need to copy and paste the schema between endpoints.`,
+  })
+  @ApiQuery({
+    name: 'schemaJobId',
+    type: String,
+    required: true,
+    description: 'Job ID from previous schema extraction job',
+    example: 'a1b2c3d4-e5f6-7890-abcd-ef1234567890'
+  })
+  @ApiQuery({
+    name: 'useAirtableTypes',
+    type: Boolean,
+    required: false,
+    description: 'If true, uses Airtable field types in the DBML. Defaults to false.',
+  })
+  @ApiQuery({
+    name: 'useAI',
+    type: Boolean,
+    required: false,
+    description: 'If false, disables AI generation and uses predefined business descriptions. Defaults to true, enabling AI-powered descriptions.',
+  })
+  @ApiResponse({
+    status: 202,
+    description: 'Job accepted and processing started',
+    schema: {
+      type: 'object',
+      properties: {
+        jobId: { type: 'string' },
+        status: { type: 'string', example: 'pending' },
+        message: { type: 'string' },
+        statusUrl: { type: 'string' },
+        downloadUrl: { type: 'string' },
+        schemaJobId: { type: 'string', description: 'The schema job ID that was used' },
+        schemaInfo: {
+          type: 'object',
+          properties: {
+            sizeInMB: { type: 'number', example: 2.45 },
+            tables: { type: 'number', example: 15 },
+            totalFields: { type: 'number', example: 120 }
+          }
+        }
+      },
+    },
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Error while processing the schema job or generating DBML',
+    content: {
+      'application/json': {
+        schema: {
+          type: 'object',
+          properties: {
+            statusCode: { type: 'number', example: 400 },
+            message: { type: 'string', example: 'Schema job not found or invalid' }
+          }
+        }
+      }
+    }
+  })
+  @ApiResponse({
+    status: 500,
+    description: 'Internal server error',
+    content: {
+      'application/json': {
+        schema: {
+          type: 'object',
+          properties: {
+            statusCode: { type: 'number', example: 500 },
+            message: { type: 'string', example: 'Internal server error' }
+          }
+        }
+      }
+    }
+  })
+  async generateDbmlFromSchemaJob(
+    @Query('schemaJobId') schemaJobId: string,
+    @Query('useAirtableTypes') useAirtableTypes: string,
+    @Query('useAI') useAI: string,
+  ) {
+    try {
+      // Validate required parameter
+      if (!schemaJobId) {
+        throw new Error('schemaJobId is required');
+      }
+
+      // Get the schema from the previous job
+      const schemaJobResult = this.jobService.getJobResultPath(schemaJobId);
+      
+      if (!fs.existsSync(schemaJobResult)) {
+        throw new Error(`Schema job ${schemaJobId} not found or not completed`);
+      }
+
+      // Read the schema content
+      const schemaContent = fs.readFileSync(schemaJobResult, 'utf-8');
+      let schemaData;
+      
+      try {
+        schemaData = JSON.parse(schemaContent);
+      } catch (parseError) {
+        throw new Error(`Invalid JSON schema from job ${schemaJobId}`);
+      }
+
+      // Validate that it's a valid schema
+      if (!schemaData.tables || !Array.isArray(schemaData.tables)) {
+        // Check if it's an error response from schema extraction
+        if (schemaData.error) {
+          const errorDetails = schemaData.details ? ` (Base: ${schemaData.details.baseId})` : '';
+          throw new Error(`Schema extraction failed: ${schemaData.message}${errorDetails}. Please fix the issue and try schema extraction again.`);
+        }
+        
+        // Check if it's an empty or malformed response
+        if (typeof schemaData === 'string') {
+          throw new Error(`Schema job ${schemaJobId} returned a string instead of JSON. This usually indicates an error during processing.`);
+        }
+        
+        throw new Error(`Invalid schema format from job ${schemaJobId}. Expected 'tables' array but got: ${JSON.stringify(schemaData).substring(0, 200)}...`);
+      }
+      
+      // Additional validation: check if tables array is empty
+      if (schemaData.tables.length === 0) {
+        throw new Error(`Schema from job ${schemaJobId} contains no tables. This might indicate an empty base or extraction error.`);
+      }
+
+      // Convert query parameters to boolean values
+      const useAirtableTypesBool = useAirtableTypes === 'true';
+      const useAIBool = useAI !== 'false'; // Default to true unless explicitly set to false
+
+      // If AI is disabled, set the disableLLM flag in the configuration
+      if (!useAIBool) {
+        if (!schemaData.geminiConfig) {
+          schemaData.geminiConfig = {};
+        }
+        schemaData.geminiConfig.disableLLM = true;
+        schemaData.geminiConfig.businessDescriptionStrategy = BusinessDescriptionStrategy.HYBRID;
+      }
+      
+      // Calculate JSON size in MB
+      const jsonSize = this.calculateJsonSizeMB(schemaData);
+      
+      // Calculate total number of fields
+      const totalFields = schemaData.tables.reduce((sum: number, table: any) => sum + table.fields.length, 0);
+      
+      // Create a new job
+      const jobId = this.jobService.createJob('dbml-generation');
+      
+      // Start background processing (without await)
+      setTimeout(() => {
+        this.jobService.processAsyncJob(jobId, async (updateProgress) => {
+          // Calculate total items to process for progress estimation
+          const totalTables = schemaData.tables.length;
+          let totalProcessableFields = 0;
+          schemaData.tables.forEach((table: any) => {
+            totalProcessableFields += table.fields.length;
+          });
+          const totalItems = totalTables + totalProcessableFields;
+          let processedItems = 0;
+          
+          // Process the schema to generate DBML with progress reporting
+          return await this.jsonDbmlService.processJsonToDbmlWithProgress(
+            schemaData,
+            useAirtableTypesBool,
+            (currentItem, itemType, name) => {
+              processedItems++;
+              const progress = Math.floor((processedItems / totalItems) * 100);
+              updateProgress(
+                progress, 
+                `Processing ${itemType}: ${name} (${processedItems}/${totalItems})`
+              );
+            }
+          );
+        });
+      }, 0);
+      
+      // Return immediately the job ID and useful URLs along with schema info
+      return {
+        jobId,
+        status: 'pending',
+        message: 'DBML generation job started successfully from schema job',
+        statusUrl: `/jobs/${jobId}/status`,
+        downloadUrl: `/jobs/${jobId}/download`,
+        schemaJobId: schemaJobId,
+        schemaInfo: {
+          sizeInMB: jsonSize,
+          tables: schemaData.tables.length,
+          totalFields: totalFields
+        }
+      };
+    } catch (error) {
+      console.error('Error starting DBML generation from schema job:', error);
+      throw error;
+    }
+  }
+
+  @Get('validate-schema-job/:schemaJobId')
+  @ApiOperation({
+    summary: 'Validate schema job before DBML generation',
+    description: `Validates that a schema extraction job completed successfully and contains valid data before attempting DBML generation.
+    
+This endpoint helps prevent errors by checking:
+- Job completion status
+- Schema validity
+- Data structure
+- Error conditions`,
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Schema job validation result',
+    schema: {
+      type: 'object',
+      properties: {
+        valid: { type: 'boolean' },
+        message: { type: 'string' },
+        schemaInfo: {
+          type: 'object',
+          properties: {
+            tables: { type: 'number' },
+            totalFields: { type: 'number' },
+            sizeInMB: { type: 'number' }
+          }
+        },
+        errors: { type: 'array', items: { type: 'string' } }
+      }
+    }
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Schema job validation failed',
+    content: {
+      'application/json': {
+        schema: {
+          type: 'object',
+          properties: {
+            statusCode: { type: 'number', example: 400 },
+            message: { type: 'string' },
+            errors: { type: 'array', items: { type: 'string' } }
+          }
+        }
+      }
+    }
+  })
+  async validateSchemaJob(@Query('schemaJobId') schemaJobId: string) {
+    try {
+      // Validate required parameter
+      if (!schemaJobId) {
+        throw new Error('schemaJobId is required');
+      }
+
+      // Get the schema from the previous job
+      const schemaJobResult = this.jobService.getJobResultPath(schemaJobId);
+      
+      if (!fs.existsSync(schemaJobResult)) {
+        return {
+          valid: false,
+          message: `Schema job ${schemaJobId} not found or not completed`,
+          errors: ['Job result file does not exist']
+        };
+      }
+
+      // Read the schema content
+      const schemaContent = fs.readFileSync(schemaJobResult, 'utf-8');
+      let schemaData;
+      
+      try {
+        schemaData = JSON.parse(schemaContent);
+      } catch (parseError) {
+        return {
+          valid: false,
+          message: `Invalid JSON schema from job ${schemaJobId}`,
+          errors: ['Schema content is not valid JSON']
+        };
+      }
+
+      // Check if it's an error response
+      if (schemaData.error) {
+        return {
+          valid: false,
+          message: `Schema extraction failed: ${schemaData.message}`,
+          errors: [
+            'Schema extraction job failed',
+            schemaData.message,
+            schemaData.details ? `Base ID: ${schemaData.details.baseId}` : 'No base ID available'
+          ]
+        };
+      }
+
+      // Validate schema structure
+      if (!schemaData.tables || !Array.isArray(schemaData.tables)) {
+        return {
+          valid: false,
+          message: `Invalid schema format from job ${schemaJobId}`,
+          errors: [
+            'Schema does not contain tables array',
+            `Expected structure: { tables: [...] }, got: ${JSON.stringify(schemaData).substring(0, 100)}...`
+          ]
+        };
+      }
+
+      if (schemaData.tables.length === 0) {
+        return {
+          valid: false,
+          message: `Schema from job ${schemaJobId} contains no tables`,
+          errors: ['Tables array is empty', 'This might indicate an empty base or extraction error']
+        };
+      }
+
+      // Calculate schema info
+      const totalFields = schemaData.tables.reduce((sum: number, table: any) => sum + table.fields.length, 0);
+      const jsonSize = this.calculateJsonSizeMB(schemaData);
+
+      return {
+        valid: true,
+        message: `Schema job ${schemaJobId} is valid and ready for DBML generation`,
+        schemaInfo: {
+          tables: schemaData.tables.length,
+          totalFields: totalFields,
+          sizeInMB: jsonSize
+        },
+        errors: []
+      };
+    } catch (error) {
+      return {
+        valid: false,
+        message: `Error validating schema job: ${error.message}`,
+        errors: [error.message]
+      };
+    }
+  }
+
   // Método auxiliar para calcular el tamaño del JSON en MB
   private calculateJsonSizeMB(obj: any): number {
     // Convertir el objeto a cadena JSON

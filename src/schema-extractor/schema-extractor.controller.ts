@@ -1,16 +1,128 @@
-import { Controller, Post, Body, HttpCode } from '@nestjs/common';
+import { Controller, Post, Body, HttpCode, Logger, Get, Query } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiBody } from '@nestjs/swagger';
 import { SchemaExtractorService } from './schema-extractor.service';
 import { ExtractSchemaDto } from './dto/extract-schema.dto';
 import { JobService } from '../job/job.service';
+import axios from 'axios';
 
 @ApiTags('schema-extractor')
 @Controller('schema-extractor')
 export class SchemaExtractorController {
+  private readonly logger = new Logger(SchemaExtractorController.name);
+  
   constructor(
     private readonly schemaExtractorService: SchemaExtractorService,
     private readonly jobService: JobService,
   ) {}
+
+  @Get('test-connection')
+  @ApiOperation({
+    summary: 'Test Airtable API connection',
+    description: `Tests the connection to Airtable API with provided credentials.
+    
+This endpoint helps diagnose connection issues by:
+- Validating token format
+- Testing API connectivity
+- Checking base access permissions
+- Providing detailed error information`,
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Connection test successful',
+    schema: {
+      type: 'object',
+      properties: {
+        success: { type: 'boolean' },
+        message: { type: 'string' },
+        baseInfo: {
+          type: 'object',
+          properties: {
+            baseId: { type: 'string' },
+            tablesCount: { type: 'number' }
+          }
+        }
+      }
+    }
+  })
+  @ApiResponse({
+    status: 400,
+    description: 'Connection test failed',
+    content: {
+      'application/json': {
+        schema: {
+          type: 'object',
+          properties: {
+            success: { type: 'boolean' },
+            error: { type: 'string' },
+            details: { type: 'string' }
+          }
+        }
+      }
+    }
+  })
+  async testConnection(
+    @Query('baseId') baseId: string,
+    @Query('accessToken') accessToken: string,
+  ) {
+    try {
+      if (!baseId || !accessToken) {
+        return {
+          success: false,
+          error: 'Missing parameters',
+          details: 'Both baseId and accessToken are required as query parameters'
+        };
+      }
+
+      // Test the connection by making a minimal request
+      const apiUrl = `https://api.airtable.com/v0/meta/bases/${baseId}/tables`;
+      const headers = {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'application/json',
+      };
+
+      const response = await axios.get(apiUrl, { 
+        headers, 
+        timeout: 10000,
+        validateStatus: (status: number) => status < 500
+      });
+
+      if (response.data && response.data.tables) {
+        return {
+          success: true,
+          message: 'Connection successful',
+          baseInfo: {
+            baseId: baseId,
+            tablesCount: response.data.tables.length
+          }
+        };
+      } else {
+        return {
+          success: false,
+          error: 'Invalid response format',
+          details: 'Response does not contain expected table data'
+        };
+      }
+    } catch (error) {
+      let errorMessage = 'Unknown error';
+      let details = '';
+
+      if (error.response) {
+        errorMessage = `HTTP ${error.response.status}`;
+        details = error.response.data?.error?.message || JSON.stringify(error.response.data);
+      } else if (error.code) {
+        errorMessage = `Network error: ${error.code}`;
+        details = error.message;
+      } else {
+        details = error.message;
+      }
+
+      return {
+        success: false,
+        error: errorMessage,
+        details: details
+      };
+    }
+  }
 
   @Post('extract')
   @HttpCode(202)
@@ -40,7 +152,7 @@ Once the schema is extracted, you can:
 
 ## About Personal Access Tokens
 
-- Requires an Airtable Personal Access Token (starting with "pat.")
+- Requires an Airtable Personal Access Token (starting with "pat")
 - Create tokens in your Airtable account settings
 - Make sure your token has permission to read schema metadata
 `,
@@ -78,10 +190,15 @@ Once the schema is extracted, you can:
             updateProgress
           );
         } catch (error) {
+          this.logger.error(`Schema extraction failed for base ${schemaDto.baseId}: ${error.message}`);
           return JSON.stringify({
             error: true,
             message: error.message,
-            stack: error.stack,
+            details: {
+              baseId: schemaDto.baseId,
+              timestamp: new Date().toISOString(),
+              errorType: error.constructor.name
+            }
           }, null, 2);
         }
       });

@@ -49,7 +49,7 @@ export class AirtableDocsService {
       // Obtener información de todas las tablas de Airtable
       const allTablesUrl = `https://api.airtable.com/v0/meta/bases/${airtableConfig.baseId}/tables`;
       const headers = {
-        Authorization: `Bearer ${airtableConfig.apiKey}`,
+        Authorization: `Bearer ${airtableConfig.accessToken}`,
         'Content-Type': 'application/json',
       };
 
@@ -95,8 +95,10 @@ export class AirtableDocsService {
       const results = {
         tablesProcessed: 0,
         tablesUpdated: 0,
+        tablesRenamed: 0,
         fieldsProcessed: 0,
         fieldsUpdated: 0,
+        fieldsRenamed: 0,
         errors: [],
       };
 
@@ -114,6 +116,9 @@ export class AirtableDocsService {
           continue;
         }
 
+        // Check if table is protected (declare once per table iteration)
+        const isTableProtected = airtableConfig.protectedTables?.includes(table.name) || false;
+
         // Extraer descripción de la tabla
         const tableDescPattern = /note:\s*'(###.*?)(?:'\s*$|\s*-\s*(.*)'\s*$)/m;
         const tableDescMatch = tableDescPattern.exec(table.content);
@@ -122,8 +127,8 @@ export class AirtableDocsService {
         if (tableDescMatch && tableDescMatch[2]) {
           tableDescription = this.cleanDescription(tableDescMatch[2]);
           
-          // Verificar si la tabla ya tiene descripción
-          if (!airtableTable.description || airtableConfig.forceUpdate) {
+          // Verificar si la tabla ya tiene descripción y si no está protegida
+          if (!airtableTable.description || (airtableConfig.forceUpdate && !isTableProtected)) {
             // Actualizar descripción de la tabla
             await this.updateTableDescription(
               airtableConfig, 
@@ -131,6 +136,22 @@ export class AirtableDocsService {
               tableDescription
             );
             results.tablesUpdated++;
+          }
+        }
+
+        // Convert table name to snake_case if requested
+        if (airtableConfig.convertToSnakeCase && !isTableProtected) {
+          const currentTableName = airtableTable.name;
+          if (!this.isSnakeCase(currentTableName)) {
+            const snakeCaseName = this.convertToSnakeCase(currentTableName);
+            if (snakeCaseName !== currentTableName) {
+              await this.updateTableName(
+                airtableConfig,
+                airtableTable.id,
+                snakeCaseName
+              );
+              results.tablesRenamed++;
+            }
           }
         }
 
@@ -174,8 +195,8 @@ export class AirtableDocsService {
             continue;
           }
           
-          // Verificar si el campo ya tiene descripción
-          if (!airtableField.description || airtableConfig.forceUpdate) {
+          // Verificar si el campo ya tiene descripción y si la tabla no está protegida
+          if (!airtableField.description || (airtableConfig.forceUpdate && !isTableProtected)) {
             // Actualizar descripción del campo
             await this.updateFieldDescription(
               airtableConfig,
@@ -186,9 +207,75 @@ export class AirtableDocsService {
             results.fieldsUpdated++;
           }
         }
+
+        // Convert all field names to snake_case if requested (process ALL fields, not just DBML fields)
+        if (airtableConfig.convertToSnakeCase && !isTableProtected) {
+          for (const airtableField of airtableTable.fields) {
+            const currentFieldName = airtableField.name;
+            if (!this.isSnakeCase(currentFieldName)) {
+              const snakeCaseName = this.convertToSnakeCase(currentFieldName);
+              if (snakeCaseName !== currentFieldName) {
+                await this.updateFieldName(
+                  airtableConfig,
+                  airtableTable.id,
+                  airtableField.id,
+                  snakeCaseName
+                );
+                results.fieldsRenamed++;
+              }
+            }
+          }
+        }
       }
 
-      updateProgress(100, `Completed: ${results.tablesUpdated} tables and ${results.fieldsUpdated} fields updated`);
+      // Process ALL Airtable tables for snake_case conversion (not just DBML tables)
+      // Get fresh table list to ensure we process all tables, including any that weren't in DBML
+      if (airtableConfig.convertToSnakeCase) {
+        updateProgress(95, 'Processing all Airtable tables for snake_case conversion');
+        
+        // Get fresh list of all tables from Airtable
+        const freshTablesResponse = await axios.get(allTablesUrl, { headers });
+        const freshAirtableTables = freshTablesResponse.data.tables;
+        
+        for (const airtableTable of freshAirtableTables) {
+          const isTableProtected = airtableConfig.protectedTables?.includes(airtableTable.name) || false;
+          
+          if (!isTableProtected) {
+            // Convert table name to snake_case
+            const currentTableName = airtableTable.name;
+            if (!this.isSnakeCase(currentTableName)) {
+              const snakeCaseName = this.convertToSnakeCase(currentTableName);
+              if (snakeCaseName !== currentTableName) {
+                await this.updateTableName(
+                  airtableConfig,
+                  airtableTable.id,
+                  snakeCaseName
+                );
+                results.tablesRenamed++;
+              }
+            }
+
+            // Convert all field names to snake_case
+            for (const airtableField of airtableTable.fields) {
+              const currentFieldName = airtableField.name;
+              if (!this.isSnakeCase(currentFieldName)) {
+                const snakeCaseName = this.convertToSnakeCase(currentFieldName);
+                if (snakeCaseName !== currentFieldName) {
+                  await this.updateFieldName(
+                    airtableConfig,
+                    airtableTable.id,
+                    airtableField.id,
+                    snakeCaseName
+                  );
+                  results.fieldsRenamed++;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      updateProgress(100, `Completed: ${results.tablesUpdated} tables updated, ${results.tablesRenamed} tables renamed, ${results.fieldsUpdated} fields updated, ${results.fieldsRenamed} fields renamed`);
       
       // Generar reporte final
       return JSON.stringify(results, null, 2);
@@ -216,7 +303,7 @@ export class AirtableDocsService {
     try {
       const url = `https://api.airtable.com/v0/meta/bases/${config.baseId}/tables/${tableId}`;
       const headers = {
-        Authorization: `Bearer ${config.apiKey}`,
+        Authorization: `Bearer ${config.accessToken}`,
         'Content-Type': 'application/json',
       };
       
@@ -242,7 +329,7 @@ export class AirtableDocsService {
     try {
       const url = `https://api.airtable.com/v0/meta/bases/${config.baseId}/tables/${tableId}/fields/${fieldId}`;
       const headers = {
-        Authorization: `Bearer ${config.apiKey}`,
+        Authorization: `Bearer ${config.accessToken}`,
         'Content-Type': 'application/json',
       };
       
@@ -252,6 +339,102 @@ export class AirtableDocsService {
       await new Promise(resolve => setTimeout(resolve, 200));
     } catch (error) {
       this.logger.error(`Error updating field ${fieldId} in table ${tableId}: ${error.message}`);
+      throw error;
+    }
+  }
+
+  /**
+   * Verifies if a field name is already in snake_case format
+   */
+  private isSnakeCase(fieldName: string): boolean {
+    // Snake case pattern: only lowercase letters, numbers, and underscores
+    // Must not start or end with underscore, and no consecutive underscores
+    const snakeCasePattern = /^[a-z][a-z0-9_]*[a-z0-9]$|^[a-z]$/;
+    return snakeCasePattern.test(fieldName) && !fieldName.includes('__');
+  }
+
+  /**
+   * Converts a field name to snake_case format
+   */
+  private convertToSnakeCase(fieldName: string): string {
+    // If already in snake_case, return as is
+    if (this.isSnakeCase(fieldName)) {
+      return fieldName;
+    }
+
+    let result = fieldName;
+
+    // Handle camelCase and PascalCase: insert underscore before uppercase letters
+    result = result.replace(/([a-z0-9])([A-Z])/g, '$1_$2');
+
+    // Handle kebab-case: replace hyphens with underscores
+    result = result.replace(/-/g, '_');
+
+    // Handle spaces: replace with underscores
+    result = result.replace(/\s+/g, '_');
+
+    // Handle special characters: remove or replace
+    result = result.replace(/[^a-zA-Z0-9_]/g, '');
+
+    // Convert to lowercase
+    result = result.toLowerCase();
+
+    // Remove consecutive underscores
+    result = result.replace(/_+/g, '_');
+
+    // Remove leading and trailing underscores
+    result = result.replace(/^_+|_+$/g, '');
+
+    return result;
+  }
+
+  /**
+   * Updates the name of a field in Airtable
+   */
+  private async updateFieldName(
+    config: AirtableConfig,
+    tableId: string,
+    fieldId: string,
+    newName: string
+  ): Promise<void> {
+    try {
+      const url = `https://api.airtable.com/v0/meta/bases/${config.baseId}/tables/${tableId}/fields/${fieldId}`;
+      const headers = {
+        Authorization: `Bearer ${config.accessToken}`,
+        'Content-Type': 'application/json',
+      };
+      
+      await axios.patch(url, { name: newName }, { headers });
+      
+      // Esperar un poco para evitar rate limiting
+      await new Promise(resolve => setTimeout(resolve, 200));
+    } catch (error) {
+      this.logger.error(`Error updating field name ${fieldId} in table ${tableId}: ${error.message}`);
+      throw error;
+    }
+  }
+
+  /**
+   * Updates the name of a table in Airtable
+   */
+  private async updateTableName(
+    config: AirtableConfig,
+    tableId: string,
+    newName: string
+  ): Promise<void> {
+    try {
+      const url = `https://api.airtable.com/v0/meta/bases/${config.baseId}/tables/${tableId}`;
+      const headers = {
+        Authorization: `Bearer ${config.accessToken}`,
+        'Content-Type': 'application/json',
+      };
+      
+      await axios.patch(url, { name: newName }, { headers });
+      
+      // Esperar un poco para evitar rate limiting
+      await new Promise(resolve => setTimeout(resolve, 200));
+    } catch (error) {
+      this.logger.error(`Error updating table name ${tableId}: ${error.message}`);
       throw error;
     }
   }
@@ -288,7 +471,7 @@ export class AirtableDocsService {
       // Obtener información de todas las tablas de Airtable
       const allTablesUrl = `https://api.airtable.com/v0/meta/bases/${airtableConfig.baseId}/tables`;
       const headers = {
-        Authorization: `Bearer ${airtableConfig.apiKey}`,
+        Authorization: `Bearer ${airtableConfig.accessToken}`,
         'Content-Type': 'application/json',
       };
 
@@ -334,8 +517,10 @@ export class AirtableDocsService {
       const results = {
         tablesProcessed: 0,
         tablesUpdated: 0,
+        tablesRenamed: 0,
         fieldsProcessed: 0,
         fieldsUpdated: 0,
+        fieldsRenamed: 0,
         errors: [],
       };
 
@@ -353,6 +538,9 @@ export class AirtableDocsService {
           continue;
         }
 
+        // Check if table is protected (declare once per table iteration)
+        const isTableProtected = airtableConfig.protectedTables?.includes(table.name) || false;
+
         // Extraer descripción de la tabla
         const tableDescPattern = /note:\s*'(###.*?)(?:'\s*$|\s*-\s*(.*)'\s*$)/m;
         const tableDescMatch = tableDescPattern.exec(table.content);
@@ -361,8 +549,8 @@ export class AirtableDocsService {
         if (tableDescMatch && tableDescMatch[2]) {
           tableDescription = this.cleanDescription(tableDescMatch[2]);
           
-          // Verificar si la tabla ya tiene descripción
-          if (!airtableTable.description || airtableConfig.forceUpdate) {
+          // Verificar si la tabla ya tiene descripción y si no está protegida
+          if (!airtableTable.description || (airtableConfig.forceUpdate && !isTableProtected)) {
             // Actualizar descripción de la tabla
             await this.updateTableDescription(
               airtableConfig, 
@@ -370,6 +558,22 @@ export class AirtableDocsService {
               tableDescription
             );
             results.tablesUpdated++;
+          }
+        }
+
+        // Convert table name to snake_case if requested
+        if (airtableConfig.convertToSnakeCase && !isTableProtected) {
+          const currentTableName = airtableTable.name;
+          if (!this.isSnakeCase(currentTableName)) {
+            const snakeCaseName = this.convertToSnakeCase(currentTableName);
+            if (snakeCaseName !== currentTableName) {
+              await this.updateTableName(
+                airtableConfig,
+                airtableTable.id,
+                snakeCaseName
+              );
+              results.tablesRenamed++;
+            }
           }
         }
 
@@ -413,8 +617,8 @@ export class AirtableDocsService {
             continue;
           }
           
-          // Verificar si el campo ya tiene descripción
-          if (!airtableField.description || airtableConfig.forceUpdate) {
+          // Verificar si el campo ya tiene descripción y si la tabla no está protegida
+          if (!airtableField.description || (airtableConfig.forceUpdate && !isTableProtected)) {
             // Actualizar descripción del campo
             await this.updateFieldDescription(
               airtableConfig,
@@ -425,9 +629,75 @@ export class AirtableDocsService {
             results.fieldsUpdated++;
           }
         }
+
+        // Convert all field names to snake_case if requested (process ALL fields, not just DBML fields)
+        if (airtableConfig.convertToSnakeCase && !isTableProtected) {
+          for (const airtableField of airtableTable.fields) {
+            const currentFieldName = airtableField.name;
+            if (!this.isSnakeCase(currentFieldName)) {
+              const snakeCaseName = this.convertToSnakeCase(currentFieldName);
+              if (snakeCaseName !== currentFieldName) {
+                await this.updateFieldName(
+                  airtableConfig,
+                  airtableTable.id,
+                  airtableField.id,
+                  snakeCaseName
+                );
+                results.fieldsRenamed++;
+              }
+            }
+          }
+        }
       }
 
-      updateProgress(100, `Completed: ${results.tablesUpdated} tables and ${results.fieldsUpdated} fields updated`);
+      // Process ALL Airtable tables for snake_case conversion (not just DBML tables)
+      // Get fresh table list to ensure we process all tables, including any that weren't in DBML
+      if (airtableConfig.convertToSnakeCase) {
+        updateProgress(95, 'Processing all Airtable tables for snake_case conversion');
+        
+        // Get fresh list of all tables from Airtable
+        const freshTablesResponse = await axios.get(allTablesUrl, { headers });
+        const freshAirtableTables = freshTablesResponse.data.tables;
+        
+        for (const airtableTable of freshAirtableTables) {
+          const isTableProtected = airtableConfig.protectedTables?.includes(airtableTable.name) || false;
+          
+          if (!isTableProtected) {
+            // Convert table name to snake_case
+            const currentTableName = airtableTable.name;
+            if (!this.isSnakeCase(currentTableName)) {
+              const snakeCaseName = this.convertToSnakeCase(currentTableName);
+              if (snakeCaseName !== currentTableName) {
+                await this.updateTableName(
+                  airtableConfig,
+                  airtableTable.id,
+                  snakeCaseName
+                );
+                results.tablesRenamed++;
+              }
+            }
+
+            // Convert all field names to snake_case
+            for (const airtableField of airtableTable.fields) {
+              const currentFieldName = airtableField.name;
+              if (!this.isSnakeCase(currentFieldName)) {
+                const snakeCaseName = this.convertToSnakeCase(currentFieldName);
+                if (snakeCaseName !== currentFieldName) {
+                  await this.updateFieldName(
+                    airtableConfig,
+                    airtableTable.id,
+                    airtableField.id,
+                    snakeCaseName
+                  );
+                  results.fieldsRenamed++;
+                }
+              }
+            }
+          }
+        }
+      }
+
+      updateProgress(100, `Completed: ${results.tablesUpdated} tables updated, ${results.tablesRenamed} tables renamed, ${results.fieldsUpdated} fields updated, ${results.fieldsRenamed} fields renamed`);
       
       // Generar reporte final
       return JSON.stringify(results, null, 2);

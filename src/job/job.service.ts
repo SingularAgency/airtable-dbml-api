@@ -4,7 +4,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { JobGateway } from './job.gateway';
 
-export type JobType = 'schema-extraction' | 'dbml-generation' | 'airtable-documentation';
+export type JobType = 'schema-extraction' | 'dbml-generation' | 'airtable-documentation' | 'csv-report-generation' | 'views-report-generation' | 'dbml-to-csv';
 
 export interface JobStatus {
   id: string;
@@ -83,28 +83,66 @@ export class JobService {
     return job;
   }
 
+  private getResultFileExtension(jobType: JobType): string {
+    switch (jobType) {
+      case 'csv-report-generation':
+      case 'views-report-generation':
+      case 'dbml-to-csv':
+        return 'csv';
+      case 'schema-extraction':
+        return 'json'; // Schema is stored as JSON
+      case 'dbml-generation':
+      case 'airtable-documentation':
+      default:
+        return 'dbml';
+    }
+  }
+
   storeJobResult(jobId: string, content: string): string {
-    const filePath = path.join(this.outputDir, `${jobId}.dbml`);
+    const job = this.jobs.get(jobId);
+    if (!job) {
+      // Fallback or error
+      const filePath = path.join(this.outputDir, `${jobId}.txt`);
+      fs.writeFileSync(filePath, content, 'utf8');
+      return filePath;
+    }
+
+    const extension = this.getResultFileExtension(job.jobType);
+    const filePath = path.join(this.outputDir, `${jobId}.${extension}`);
     fs.writeFileSync(filePath, content, 'utf8');
     
-    const job = this.jobs.get(jobId);
-    if (job) {
-      // Notificar que hay un resultado disponible
-      this.jobGateway.notifyJobUpdate(jobId, {
-        jobId,
-        status: 'completed',
-        jobType: job.jobType,
-        event: 'result_ready',
-        resultUrl: `/api/jobs/${jobId}/result`,
-        timestamp: new Date().toISOString()
-      });
-    }
+    // Notificar que hay un resultado disponible
+    this.jobGateway.notifyJobUpdate(jobId, {
+      jobId,
+      status: 'completed',
+      jobType: job.jobType,
+      event: 'result_ready',
+      resultUrl: `/api/jobs/${jobId}/result`,
+      timestamp: new Date().toISOString()
+    });
     
     return filePath;
   }
 
-  getJobResultPath(jobId: string): string {
-    return path.join(this.outputDir, `${jobId}.dbml`);
+  getJobResultPath(jobId: string): string | undefined {
+    const job = this.jobs.get(jobId);
+    if (!job) return undefined;
+
+    const extension = this.getResultFileExtension(job.jobType);
+    const filePath = path.join(this.outputDir, `${jobId}.${extension}`);
+
+    // Check if the file actually exists before returning the path
+    if (fs.existsSync(filePath)) {
+      return filePath;
+    }
+    
+    // For backwards compatibility, check for .dbml if the specific file isn't found
+    const legacyPath = path.join(this.outputDir, `${jobId}.dbml`);
+    if (fs.existsSync(legacyPath)) {
+      return legacyPath;
+    }
+
+    return undefined; // Or return the expected path even if it doesn't exist yet
   }
 
   async processAsyncJob(

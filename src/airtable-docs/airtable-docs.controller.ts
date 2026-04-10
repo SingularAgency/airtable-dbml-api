@@ -25,6 +25,8 @@ export class AirtableDocsController {
 
 - **Intelligent Processing**: Extracts business descriptions from DBML and applies them to corresponding tables and fields in Airtable.
 - **Respects Existing Documentation**: By default, only updates empty descriptions, unless force update option is enabled.
+- **Table Protection**: When force update is enabled, you can specify tables to protect from overwriting.
+- **Field Name Conversion**: Optionally convert field names to snake_case format for consistency.
 - **Real-time Progress**: Provides detailed information about the process progress.
 - **Error Handling**: Records and reports detailed errors during the process.
 - **Rate Limiting**: Includes pauses between requests to avoid Airtable API rate limits.
@@ -35,7 +37,8 @@ export class AirtableDocsController {
 2. The system retrieves the DBML from the previous job
 3. It extracts business descriptions and maps them to Airtable tables and fields
 4. Updates only empty descriptions unless force update is enabled
-5. Returns a detailed report of the process
+5. When force update is enabled, protected tables are skipped
+6. Returns a detailed report of the process
 `,
   })
   @ApiBody({
@@ -62,9 +65,11 @@ export class AirtableDocsController {
     
     // Configuración de Airtable
     const airtableConfig = {
-      apiKey: docsDto.apiKey,
       baseId: docsDto.baseId,
+      accessToken: docsDto.accessToken,
       forceUpdate: docsDto.forceUpdate || false,
+      protectedTables: docsDto.protectedTables || [],
+      convertToSnakeCase: docsDto.convertToSnakeCase || false,
     };
     
     // Iniciar el procesamiento en segundo plano
@@ -110,6 +115,8 @@ export class AirtableDocsController {
 
 - **Intelligent Processing**: Extracts business descriptions from DBML and applies them to corresponding tables and fields in Airtable.
 - **Respects Existing Documentation**: By default, only updates empty descriptions, unless force update option is enabled.
+- **Table Protection**: When force update is enabled, you can specify tables to protect from overwriting.
+- **Field Name Conversion**: Optionally convert field names to snake_case format for consistency.
 - **Real-time Progress**: Provides detailed information about the process progress.
 - **Error Handling**: Records and reports detailed errors during the process.
 - **Rate Limiting**: Includes pauses between requests to avoid Airtable API rate limits.
@@ -120,27 +127,39 @@ export class AirtableDocsController {
 2. The system processes the uploaded DBML file
 3. It extracts business descriptions and maps them to Airtable tables and fields
 4. Updates only empty descriptions unless force update is enabled
-5. Returns a detailed report of the process
+5. When force update is enabled, protected tables are skipped
+6. Returns a detailed report of the process
 `,
   })
   @ApiBody({
     schema: {
       type: 'object',
       properties: {
-        apiKey: { 
-          type: 'string', 
-          description: 'API Key for Airtable',
-          example: 'key123xyz' 
-        },
         baseId: { 
           type: 'string', 
           description: 'Base ID of the Airtable base',
-          example: 'app123xyz' 
+          example: 'appXXXXXXXXXXXXXX' 
+        },
+        accessToken: { 
+          type: 'string', 
+          description: 'Access Token for Airtable',
+          example: 'pat.XXXXXXXXXXXXXXXXXXXXXXXX' 
         },
         forceUpdate: { 
           type: 'boolean', 
           description: 'Whether to force update existing descriptions',
           default: false 
+        },
+        protectedTables: {
+          type: 'array',
+          items: { type: 'string' },
+          description: 'Array of table names to protect from force update (will not be overwritten even if forceUpdate is true)',
+          example: ['Users', 'Products', 'Orders']
+        },
+        convertToSnakeCase: {
+          type: 'boolean',
+          description: 'Whether to convert field names to snake_case format',
+          default: false
         },
         dbmlFile: {
           type: 'string',
@@ -148,7 +167,7 @@ export class AirtableDocsController {
           description: 'DBML file to upload'
         },
       },
-      required: ['apiKey', 'baseId', 'dbmlFile']
+      required: ['baseId', 'accessToken', 'dbmlFile']
     },
   })
   @ApiResponse({
@@ -174,9 +193,11 @@ export class AirtableDocsController {
     
     // Configuración de Airtable
     const airtableConfig = {
-      apiKey: docsDto.apiKey,
       baseId: docsDto.baseId,
+      accessToken: docsDto.accessToken,
       forceUpdate: docsDto.forceUpdate || false,
+      protectedTables: docsDto.protectedTables || [],
+      convertToSnakeCase: docsDto.convertToSnakeCase || false,
     };
     
     // Iniciar el procesamiento en segundo plano

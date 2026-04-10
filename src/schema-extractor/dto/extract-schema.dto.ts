@@ -11,8 +11,8 @@ export class ExtractSchemaDto {
   baseId: string;
 
   @ApiProperty({
-    description: 'Airtable Personal Access Token (starting with "pat.")',
-    example: 'pat.XXXXXXXXXXXXXXXXXXXXXXXX',
+    description: 'Airtable Personal Access Token (starting with "pat")',
+    example: 'patqMgZFR4QA65YVZ.XXXXXXXXXXXXXXXXXXXXXXXX',
   })
   @IsNotEmpty()
   @IsString()

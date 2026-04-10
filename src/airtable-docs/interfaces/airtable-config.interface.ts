@@ -1,5 +1,7 @@
 export interface AirtableConfig {
-  apiKey: string;
   baseId: string;
+  accessToken: string;
   forceUpdate?: boolean;
+  protectedTables?: string[];
+  convertToSnakeCase?: boolean;
 }

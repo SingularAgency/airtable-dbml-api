@@ -2,6 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { GeminiService } from '../gemini/gemini.service';
 import { BusinessDescriptionStrategy } from './Dto/create-json-dbml.dto';
 
+export type TypeMode = 'dbml' | 'smartsheet' | 'airtable';
+
 @Injectable()
 export class JsonDbmlService {
   constructor(private readonly geminiService: GeminiService) {}
@@ -72,13 +74,27 @@ export class JsonDbmlService {
    * Maps Airtable field types to DBML-compatible types.
    * @param airtableType The Airtable field type.
    * @param useAirtableTypes If true, uses Airtable types directly; otherwise, maps to DBML types.
+   * @param typeMode Optional type mode for SmartSheet support (dbml, smartsheet, airtable).
+   * @param originalSmartSheetType Optional original SmartSheet type (for smartsheet mode).
    * @returns The field type for DBML.
    */
-  private mapFieldType(airtableType: string, useAirtableTypes: boolean): string {
-    if (useAirtableTypes) {
+  private mapFieldType(
+    airtableType: string,
+    useAirtableTypes: boolean,
+    typeMode?: TypeMode,
+    originalSmartSheetType?: string
+  ): string {
+    // Handle SmartSheet type mode
+    if (typeMode === 'smartsheet' && originalSmartSheetType) {
+      return originalSmartSheetType; // Return original SmartSheet type
+    }
+
+    // Handle Airtable type mode
+    if (typeMode === 'airtable' || useAirtableTypes) {
       return airtableType; // Directly return Airtable's type
     }
 
+    // Handle DBML standard mode (default)
     const mapping: Record<string, string> = {
       singleLineText: 'varchar',
       multilineText: 'text',
@@ -226,7 +242,13 @@ export class JsonDbmlService {
     let isRelationship = false;
     let relatedTableName = '';
 
-    if (fieldType === 'currency') {
+    if (fieldType === 'formula') {
+      // Add SmartSheet formula to technical description if available
+      const smartsheetFormula = options.smartsheetFormula;
+      if (smartsheetFormula) {
+        technicalNote += `, SmartSheet Formula: ${smartsheetFormula}`;
+      }
+    } else if (fieldType === 'currency') {
       const precision = options.precision || 'N/A';
       const symbol = options.symbol || 'N/A';
       technicalNote += `, Precision: ${precision}, Symbol: ${symbol}`;
@@ -425,7 +447,8 @@ export class JsonDbmlService {
       // Procesar cada campo
       for (const field of table.fields) {
         const fieldName = this.cleanFieldName(field.name);
-        const fieldType = this.mapFieldType(field.type, useAirtableTypes);
+        const originalSmartSheetType = field.options?.originalSmartSheetType;
+        const fieldType = this.mapFieldType(field.type, useAirtableTypes, undefined, originalSmartSheetType);
         const note = await this.formatFieldNote(field, tableMapping, geminiConfig, useAirtableTypes);
         dbml += `    ${fieldName} ${fieldType} [note: '${note}']\n`;
       }
@@ -433,8 +456,19 @@ export class JsonDbmlService {
       // Generar la descripción de negocio para la tabla
       const businessDesc = await this.generateTableBusinessDescription(table, geminiConfig);
       
-      // Agregar la nota de la tabla - removido el conteo de campos
-      const techDesc = `### ${tableName} Table (airtable id: ${table.id})`;
+      // Build enhanced technical description with path and original name
+      let techDesc = `### ${tableName} Table (airtable id: ${table.id})`;
+      
+      // Add original sheet name if available
+      if (table.originalSheetName) {
+        techDesc += `\nOriginal Sheet Name: ${table.originalSheetName}`;
+      }
+      
+      // Add path if available
+      if (table.path) {
+        techDesc += `\nPath: ${table.path}`;
+      }
+      
       const sanitizedTechDesc = this.sanitizeForDbml(techDesc);
       const sanitizedBusinessDesc = this.sanitizeForDbml(businessDesc);
       dbml += `    note: '${sanitizedTechDesc} - ${sanitizedBusinessDesc}'\n`;
@@ -449,7 +483,9 @@ export class JsonDbmlService {
   public async processJsonToDbmlWithProgress(
     jsonGlobal: any, 
     useAirtableTypes = false,
-    progressCallback?: (currentItem: number, itemType: string, name: string) => void
+    progressCallback?: (currentItem: number, itemType: string, name: string) => void,
+    typeMode?: TypeMode,
+    getOriginalSmartSheetType?: (field: any) => string | undefined
   ): Promise<string> {
     const geminiConfig = jsonGlobal.geminiConfig || {
       model: 'gpt-4o-mini',
@@ -497,8 +533,19 @@ export class JsonDbmlService {
       // Generar la descripción de negocio para la tabla
       const businessDesc = await this.generateTableBusinessDescription(table, geminiConfig);
       
-      // Agregar la nota de la tabla - removido el conteo de campos
-      const techDesc = `### ${tableName} Table (airtable id: ${table.id})`;
+      // Build enhanced technical description with path and original name
+      let techDesc = `### ${tableName} Table (airtable id: ${table.id})`;
+      
+      // Add original sheet name if available
+      if (table.originalSheetName) {
+        techDesc += `\nOriginal Sheet Name: ${table.originalSheetName}`;
+      }
+      
+      // Add path if available
+      if (table.path) {
+        techDesc += `\nPath: ${table.path}`;
+      }
+      
       const sanitizedTechDesc = this.sanitizeForDbml(techDesc);
       const sanitizedBusinessDesc = this.sanitizeForDbml(businessDesc);
       dbml += `    note: '${sanitizedTechDesc} - ${sanitizedBusinessDesc}'\n`;

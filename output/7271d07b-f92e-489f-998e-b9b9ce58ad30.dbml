@@ -1,9 +1,0 @@
-{
-  "tablesProcessed": 3,
-  "tablesUpdated": 3,
-  "fieldsProcessed": 41,
-  "fieldsUpdated": 40,
-  "errors": [
-    "Field Total_Tasks not found in table Projects"
-  ]
-}

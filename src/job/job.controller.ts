@@ -3,6 +3,7 @@ import { JobService } from './job.service';
 import { Response } from 'express';
 import { ApiTags, ApiOperation, ApiParam, ApiResponse } from '@nestjs/swagger';
 import * as fs from 'fs';
+import * as path from 'path';
 
 @ApiTags('jobs')
 @Controller('jobs')
@@ -24,7 +25,7 @@ export class JobController {
         description: { type: 'string' },
         jobType: { 
           type: 'string', 
-          enum: ['schema-extraction', 'dbml-generation', 'airtable-documentation'],
+          enum: ['schema-extraction', 'dbml-generation', 'airtable-documentation', 'csv-report-generation'],
           description: 'Type of job being processed'
         },
         createdAt: { type: 'string', format: 'date-time' },
@@ -43,13 +44,11 @@ export class JobController {
     return job;
   }
 
-  @Get(':id/download')
-  @ApiOperation({ summary: 'Download job result' })
+  @Get(':id/result')
+  @ApiOperation({ summary: 'Get or download job result' })
   @ApiParam({ name: 'id', description: 'Job ID' })
-  @ApiResponse({ status: 200, description: 'Job result downloaded successfully' })
+  @ApiResponse({ status: 200, description: 'Job result file.' })
   @ApiResponse({ status: 404, description: 'Job not found or not completed' })
-  @Header('Content-Type', 'application/octet-stream')
-  @Header('Content-Disposition', 'attachment; filename="output.dbml"')
   downloadJobResult(@Param('id') id: string, @Res() res: Response) {
     const job = this.jobService.getJob(id);
     if (!job) {
@@ -63,10 +62,24 @@ export class JobController {
     }
 
     const filePath = this.jobService.getJobResultPath(id);
-    if (!fs.existsSync(filePath)) {
+    if (!filePath || !fs.existsSync(filePath)) {
       throw new NotFoundException(`Result file for job ${id} not found`);
     }
 
-    res.download(filePath);
+    const fileExtension = path.extname(filePath).toLowerCase();
+    let contentType = 'application/octet-stream';
+    if (fileExtension === '.csv') {
+      contentType = 'text/csv';
+    } else if (fileExtension === '.json') {
+      contentType = 'application/json';
+    } else if (fileExtension === '.dbml') {
+        contentType = 'text/plain';
+    }
+
+    res.setHeader('Content-Type', contentType);
+    res.setHeader('Content-Disposition', `attachment; filename="${path.basename(filePath)}"`);
+    
+    const fileStream = fs.createReadStream(filePath);
+    fileStream.pipe(res);
   }
 }
