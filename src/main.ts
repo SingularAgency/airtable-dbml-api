@@ -65,6 +65,10 @@ async function bootstrap() {
     .addTag('schema-extractor', 'Airtable schema extraction endpoints')
     .addTag('dbml', 'DBML generation endpoints')
     .addTag('airtable-docs', 'Airtable documentation endpoints')
+    .addTag(
+      'automations-docs',
+      'Export Airtable automations metadata to Markdown',
+    )
     .addTag('jobs', 'Background job management endpoints')
     .addTag('websockets', 'Real-time update connections')
     .build();

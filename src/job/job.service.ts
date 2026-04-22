@@ -4,7 +4,14 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { JobGateway } from './job.gateway';
 
-export type JobType = 'schema-extraction' | 'dbml-generation' | 'airtable-documentation' | 'csv-report-generation' | 'views-report-generation' | 'dbml-to-csv';
+export type JobType =
+  | 'schema-extraction'
+  | 'dbml-generation'
+  | 'airtable-documentation'
+  | 'csv-report-generation'
+  | 'views-report-generation'
+  | 'dbml-to-csv'
+  | 'automations-docs-export';
 
 export interface JobStatus {
   id: string;
@@ -91,6 +98,8 @@ export class JobService {
         return 'csv';
       case 'schema-extraction':
         return 'json'; // Schema is stored as JSON
+      case 'automations-docs-export':
+        return 'md';
       case 'dbml-generation':
       case 'airtable-documentation':
       default:

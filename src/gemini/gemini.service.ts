@@ -212,6 +212,151 @@ export class GeminiService {
   }
 
   /**
+   * Infer human-readable English labels for all Airtable `workflowActionTypeId` and
+   * `workflowTriggerTypeId` values using OpenAI. Calls are **batched**; each batch
+   * uses {@link ThrottleService.throttle} before the request (same pattern as DBML / Gemini flows).
+   */
+  async inferAirtableAutomationLabelsBatched(
+    actionTypeIds: string[],
+    triggerTypeIds: string[],
+    modelName: string = DEFAULT_GEMINI_MODEL,
+  ): Promise<{ actions: Record<string, string>; triggers: Record<string, string> }> {
+    const uniqueActions = [
+      ...new Set(
+        (actionTypeIds || []).filter((x) => typeof x === 'string' && x.length > 0),
+      ),
+    ];
+    const uniqueTriggers = [
+      ...new Set(
+        (triggerTypeIds || []).filter((x) => typeof x === 'string' && x.length > 0),
+      ),
+    ];
+    const outActions: Record<string, string> = {};
+    const outTriggers: Record<string, string> = {};
+    const CHUNK = 20;
+
+    for (let i = 0; i < uniqueActions.length; i += CHUNK) {
+      const chunk = uniqueActions.slice(i, i + CHUNK);
+      const part = await this.inferAirtableAutomationLabelChunk(
+        chunk,
+        [],
+        modelName,
+      );
+      Object.assign(outActions, part.actions);
+    }
+    for (let i = 0; i < uniqueTriggers.length; i += CHUNK) {
+      const chunk = uniqueTriggers.slice(i, i + CHUNK);
+      const part = await this.inferAirtableAutomationLabelChunk(
+        [],
+        chunk,
+        modelName,
+      );
+      Object.assign(outTriggers, part.triggers);
+    }
+
+    return { actions: outActions, triggers: outTriggers };
+  }
+
+  private async inferAirtableAutomationLabelChunk(
+    actionIds: string[],
+    triggerIds: string[],
+    modelName: string,
+  ): Promise<{ actions: Record<string, string>; triggers: Record<string, string> }> {
+    if (actionIds.length === 0 && triggerIds.length === 0) {
+      return { actions: {}, triggers: {} };
+    }
+    try {
+      await this.throttleService.throttle();
+      const prompt = `You document Airtable automations. The API only exposes opaque internal ids for action types and trigger types.
+
+For EVERY id in the lists below, assign a short, clear English label (2–8 words) that a builder would understand. Examples of style: "When a record is created", "When a record matches conditions", "Run a script", "AI: generate content", "Slack: send message", "Delay", "Gmail: send email". If an id looks like a random hash, infer the most likely product area (e.g. marketplace app, email, schedule) or use "App or integration block" / "Custom trigger" if completely opaque.
+
+actionTypeIds (workflowActionTypeId) — may be empty:
+${JSON.stringify(actionIds)}
+
+triggerTypeIds (workflowTriggerTypeId) — may be empty:
+${JSON.stringify(triggerIds)}
+
+Return a single JSON object ONLY (no markdown) with this exact structure. Every id from the input must appear as a key in the matching object. Use the id string exactly as the key.
+{"actions":{"<id>":"<label>",...},"triggers":{"<id>":"<label>",...}}`;
+
+      const completion = await this.openai.chat.completions.create({
+        model: modelName,
+        messages: [{ role: 'user', content: prompt }],
+        temperature: 0.2,
+        max_tokens: 4000,
+        response_format: { type: 'json_object' },
+      });
+
+      const text = completion.choices?.[0]?.message?.content?.trim() ?? '';
+      const parsed = this.parseAirtableLabelJsonFromLlm(text);
+      if (!parsed) {
+        this.logger.warn('Could not parse automation label JSON from LLM response');
+        return { actions: {}, triggers: {} };
+      }
+      return {
+        actions: this.sanitizeIdLabelMap(parsed.actions),
+        triggers: this.sanitizeIdLabelMap(parsed.triggers),
+      };
+    } catch (error: any) {
+      if (this.isQuotaExceededError(error)) {
+        const retryDelay = this.extractRetryDelay(error) || 45;
+        this.throttleService.notifyQuotaExceeded(retryDelay);
+        this.logger.warn(
+          `Quota or rate limit when inferring automation labels: ${error?.message}`,
+        );
+      } else {
+        this.logger.error(
+          'Error inferring Airtable automation labels:',
+          error?.message,
+        );
+      }
+      return { actions: {}, triggers: {} };
+    }
+  }
+
+  private parseAirtableLabelJsonFromLlm(text: string): {
+    actions: Record<string, string>;
+    triggers: Record<string, string>;
+  } | null {
+    const trimmed = text.trim();
+    const fence = trimmed.match(/```(?:json)?\s*([\s\S]*?)```/);
+    const jsonStr = fence ? fence[1]!.trim() : trimmed;
+    try {
+      const data = JSON.parse(jsonStr) as {
+        actions?: unknown;
+        triggers?: unknown;
+      };
+      return {
+        actions: typeof data.actions === 'object' && data.actions !== null
+          ? (data.actions as Record<string, string>)
+          : {},
+        triggers:
+          typeof data.triggers === 'object' && data.triggers !== null
+            ? (data.triggers as Record<string, string>)
+            : {},
+      };
+    } catch {
+      return null;
+    }
+  }
+
+  private sanitizeIdLabelMap(
+    m: Record<string, string> | undefined,
+  ): Record<string, string> {
+    if (!m || typeof m !== 'object') {
+      return {};
+    }
+    const out: Record<string, string> = {};
+    for (const [k, v] of Object.entries(m)) {
+      if (typeof v === 'string' && v.trim().length > 0) {
+        out[k] = v.trim();
+      }
+    }
+    return out;
+  }
+
+  /**
    * Determines if an error is due to exceeding quota
    */
   private isQuotaExceededError(error: any): boolean {

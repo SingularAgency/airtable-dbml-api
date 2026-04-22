@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Res, NotFoundException, Header } from '@nestjs/common';
+import { Controller, Get, Param, Res, NotFoundException } from '@nestjs/common';
 import { JobService } from './job.service';
 import { Response } from 'express';
 import { ApiTags, ApiOperation, ApiParam, ApiResponse } from '@nestjs/swagger';
@@ -23,10 +23,18 @@ export class JobController {
         status: { type: 'string', enum: ['pending', 'processing', 'completed', 'failed'] },
         progress: { type: 'number' },
         description: { type: 'string' },
-        jobType: { 
-          type: 'string', 
-          enum: ['schema-extraction', 'dbml-generation', 'airtable-documentation', 'csv-report-generation'],
-          description: 'Type of job being processed'
+        jobType: {
+          type: 'string',
+          enum: [
+            'schema-extraction',
+            'dbml-generation',
+            'airtable-documentation',
+            'csv-report-generation',
+            'views-report-generation',
+            'dbml-to-csv',
+            'automations-docs-export',
+          ],
+          description: 'Type of job being processed',
         },
         createdAt: { type: 'string', format: 'date-time' },
         updatedAt: { type: 'string', format: 'date-time' },
@@ -73,7 +81,9 @@ export class JobController {
     } else if (fileExtension === '.json') {
       contentType = 'application/json';
     } else if (fileExtension === '.dbml') {
-        contentType = 'text/plain';
+      contentType = 'text/plain';
+    } else if (fileExtension === '.md') {
+      contentType = 'text/markdown; charset=utf-8';
     }
 
     res.setHeader('Content-Type', contentType);

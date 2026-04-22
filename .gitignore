@@ -59,4 +59,9 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 .csv
 output/*.dbml
 output/*.csv
-output/*.json   
+output/*.json
+output/*.md
+output/*.txt
+
+# Local API test captures (do not commit)
+automations-result.txt
